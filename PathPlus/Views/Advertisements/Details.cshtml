@@ -1,0 +1,98 @@
+﻿@model PathPlus.Models.Advertisement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Advertisement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AgeRange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgeRange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Money)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Money)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Limitation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Limitation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Advertisers.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Advertisers.CompanyName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdvertisementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

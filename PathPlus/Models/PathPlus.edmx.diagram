@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f47a01d51e774448a8f2018ec3b47397" Name="Diagram1">
+        <EntityTypeShape EntityType="PathPlusModel.Administrator" Width="1.5" PointX="13.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.AdministratorAuthorityCategory" Width="1.5" PointX="11" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.AdvertisemenStatusCategory" Width="1.5" PointX="8.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Advertisement" Width="1.5" PointX="11" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.AdvertisementPhoto" Width="1.5" PointX="13.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Advertisers" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Announcement" Width="1.5" PointX="11" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.AnnouncementStatusCategory" Width="1.5" PointX="8.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Card" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.CardStatusCategory" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Comment" Width="1.5" PointX="8.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.CommentGroupPost" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Draw" Width="1.5" PointX="10.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Group" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupAuthorityCategory" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupManagement" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupPost" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupPostPhoto" Width="1.5" PointX="12.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupPostStatusCategory" Width="1.5" PointX="8.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.GroupPrivateCategory" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.JoinGroup" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Member" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.MemberAccountStatusCategory" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.MemberPrivateCategory" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Message" Width="1.5" PointX="5.25" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.PairingStatusCategory" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Post" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.PostCategory" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.PostPhoto" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.PostStatusCategory" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Record" Width="1.5" PointX="15.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Relationship" Width="1.5" PointX="5.25" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.Term" Width="1.5" PointX="11" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PathPlusModel.TermStatusCategory" Width="1.5" PointX="8.75" PointY="34.5" IsExpanded="true" />
+        <AssociationConnector Association="PathPlusModel.Relationship45" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship48" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship21" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship46" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship47" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship40" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship6" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship8" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship1" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship2" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship16" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship17" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship50" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship7" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship11" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship13" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship15" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship39" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship9" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship49" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship12" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship14" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship41" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship43" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship10" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship31" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship33" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship37" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship38" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship4" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship36" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship42" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship5" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.Relationship44" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.AdvertisementManagement" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.AnnouncemenManagement" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.DataProcces" ManuallyRouted="false" />
+        <AssociationConnector Association="PathPlusModel.TermManagement" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

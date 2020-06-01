@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Path+抽卡</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ffa7b6e8e7.js" crossorigin="anonymous"></script>
+
+    <link href="~/Content/Mystyle.css" rel="stylesheet" />
+</head>
+<body>
+    <!--<div id="startback" class="startback">
+        <div id="start" class="row ">
+
+        </div>
+    </div>-->
+    <div class="fixed layout-root img-fluid">
+        <div id="container" class="container">
+            <!--外框-->
+            <div id="container1" class="row">
+
+                <div id="" class="rounded mx-auto d-block">
+                    <div id="Pcard1" class="Pcard1">
+                        <div id="cardcover1" class="cardcover">
+
+                        </div>
+                        <div class="cardback">
+                            <div class="backheader">
+                                <div id="picture1">
+                                    <img src="~/image/@(ViewBag.Photo).jpeg" style="width:200px;height: 200px;" />
+                                </div> <!--輸入大頭貼位址，200x200(px)-->
+                            </div>
+                            <div class="backcontent">
+                                <span>王XX</span>
+                                <p>@ViewBag.Gender</p>
+                                <p>興趣專長:</p>
+                                <p>@ViewBag.Interests</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div id="dialog-face" class="none">
+    </div>
+    <div id="dialog" class="none">
+        <div id="dialog-wrapper">
+            <div class="dialog-header">
+                <div id="picture">
+                    <img src="~/image/@(ViewBag.Photo).jpeg" style="width:450px;height: 450px;" />
+                </div>  <!--輸入大頭貼位址的地方,照片大小450x450(px)-->
+            </div>
+            <div class="dialog-content">
+                <span>王XX</span>
+                <p>@ViewBag.Gender</p>
+                <p>興趣專長:</p>
+                <p>@ViewBag.Interests</p>
+            </div>
+
+            <div class="dialog-footer">
+                <hr />
+                <div id="message" class="rounded">
+                    <i class="fas fa-heart-broken fa-4x">
+                        @Html.ActionLink("討厭", "likeStatus", new { LikeStatus = 1 }, new { onclick = "return confirm('您確定要刪除給個機會啊')", @class = "btn btn-info" })
+
+                    </i>
+                </div>   <!--愛心符號-->
+                <div id="heart" class="rounded">
+                    <i class="fas fa-heart fa-4x">
+                        @Html.ActionLink("喜歡", "likeStatus", new { LikeStatus = 0 }, new { @class = "btn btn-danger" })
+                    </i>
+                </div>            <!--傳送訊息-->
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        var container = document.getElementById("container");//宣告物件container
+
+        container.addEventListener("click", turn);//監聽container
+
+
+        //點擊的話顯示牌
+        //$("#start").fadeOut(600).fadeIn(600);
+        //$("#start").click(function () {
+        //    $('#start').fadeOut(350);
+        //    $("#Pcard1").css({ 'display': 'block' });
+        //});
+
+
+
+
+
+
+        //點擊的話翻牌
+        function turn(evt) {
+            CardID = evt.target;
+            console.log(CardID.id);//偵錯用
+            $("#" + CardID.id).addClass('turncover');
+            $("#" + CardID.id).next().addClass('turnback');
+
+            switch (CardID.id) {
+                case cardcover1:
+                    animate1();
+                    break;
+            }
+            console.log(CardID.id);
+
+            if (CardID.id == "cardcover1") {
+                setTimeout(animate1, 500);
+            }
+
+
+            toggleDialog(true);
+
+        }
+
+
+        function animate1() {
+            $('#Pcard1').animate({
+                bottom: '-900px',
+                height: '+=100px',
+                width: '+=160px'
+            });
+        }
+
+
+
+        function toggleDialog(show) {
+            var animationClass = show ? "slipUp" : "slipBottom";
+            var animation = function () {
+                var ele = document.getElementById("dialog-face");
+                ele.className = "dialog-face " + animationClass;
+                ele = document.getElementById("dialog");
+                ele.className = "dialog-root " + animationClass;
+                ele = document.getElementById("dialog-wrapper");
+                ele.className = "dialog-wrapper " + animationClass;
+            };
+
+            setTimeout(animation, 1000);
+        }
+
+
+
+
+    </script>
+</body>
+</html>
+

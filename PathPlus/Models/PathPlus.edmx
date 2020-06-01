@@ -1,0 +1,2560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PathPlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="AdministratorID" />
+          </Key>
+          <Property Name="AdministratorID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tittle" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="AuthorityCategoryID" Type="char" MaxLength="1" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdministratorAuthorityCategory">
+          <Key>
+            <PropertyRef Name="AuthorityCategoryID" />
+          </Key>
+          <Property Name="AuthorityCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AuthorityCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertisemenStatusCategory">
+          <Key>
+            <PropertyRef Name="AdStatusCategoryID" />
+          </Key>
+          <Property Name="AdStatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AdStatusCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdvertisementID" />
+          </Key>
+          <Property Name="AdvertisementID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AdText" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="AgeRange" Type="varchar" MaxLength="6" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Money" Type="money" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Limitation" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CompanyID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AdStatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertisementManagement">
+          <Key>
+            <PropertyRef Name="AdvertisementID" />
+            <PropertyRef Name="AdministratorID" />
+          </Key>
+          <Property Name="AdvertisementID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AdministratorID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdvertisementPhoto">
+          <Key>
+            <PropertyRef Name="AdPhotoSN" />
+          </Key>
+          <Property Name="AdPhotoSN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AdvertisementID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisers">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="30" />
+          <Property Name="Mail" Type="varchar" MaxLength="65" />
+        </EntityType>
+        <EntityType Name="AnnouncemenManagement">
+          <Key>
+            <PropertyRef Name="AnnouncemenID" />
+            <PropertyRef Name="AdministratorID" />
+          </Key>
+          <Property Name="AnnouncemenID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AdministratorID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementID" />
+          </Key>
+          <Property Name="AnnouncementID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RevokeDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Editor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnnouncementStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Interests" Type="nvarchar" MaxLength="100" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="CardStatusID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CardStatusCategory">
+          <Key>
+            <PropertyRef Name="CardStatusID" />
+          </Key>
+          <Property Name="CardStatusID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CardStatusName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="PostID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Like" Type="bit" Nullable="false" />
+          <Property Name="SaveDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ShareDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReportDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="MessageDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CommentGroupPost">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupPostID" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="GroupPostID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Like" Type="bit" Nullable="false" />
+          <Property Name="SaveDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ShareDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReportDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="CommentDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DataProcces">
+          <Key>
+            <PropertyRef Name="AdministratorID" />
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="AdministratorID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="QuestionID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Draw">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="CardID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="CardID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DrawMemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="PairingStatusID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupIntroduction" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupInformation" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="PrivateCategoryID" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="GroupAuthorityCategory">
+          <Key>
+            <PropertyRef Name="AuthorityCategoryID" />
+          </Key>
+          <Property Name="AuthorityCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AuthorityCategotyName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupManagement">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="GroupID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ManageDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AuthorityCategoryID" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="GroupPost">
+          <Key>
+            <PropertyRef Name="GroupPostID" />
+          </Key>
+          <Property Name="GroupPostID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="GroupID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupPostPhoto">
+          <Key>
+            <PropertyRef Name="PostPhotoSN" />
+          </Key>
+          <Property Name="PostPhotoSN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GroupPostID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupPostStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupPrivateCategory">
+          <Key>
+            <PropertyRef Name="PrivateCategoryID" />
+          </Key>
+          <Property Name="PrivateCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PrivateCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JoinGroup">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="GroupID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Birthday" Type="datetime2" Precision="7" />
+          <Property Name="PersonalProfile" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegisteredDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PrivateCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AccountStatusID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PostCount" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Follower" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Fans" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="MemberAccountStatusCategory">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AccountStatusName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberPrivateCategory">
+          <Key>
+            <PropertyRef Name="PrivateCategoryID" />
+          </Key>
+          <Property Name="PrivateCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PrivateCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageSN" />
+          </Key>
+          <Property Name="MessageSN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AcceptMemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="MessageContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MessageDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PairingStatusCategory">
+          <Key>
+            <PropertyRef Name="PairingStatusID" />
+          </Key>
+          <Property Name="PairingStatusID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PairingStatusName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="PostContent" Type="nvarchar(max)" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="CategoryID" Type="char" MaxLength="1" />
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostPhoto">
+          <Key>
+            <PropertyRef Name="PostPhotoSN" />
+          </Key>
+          <Property Name="PostPhotoSN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="MemberID" Type="char" MaxLength="15" />
+          <Property Name="PostID" Type="char" MaxLength="15" />
+          <Property Name="ProcessingDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReplyMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="RelationshipSN" />
+          </Key>
+          <Property Name="RelationshipSN" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FollowDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BlockDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReportDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" />
+          <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="RSMemberID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="TermID" />
+          </Key>
+          <Property Name="TermID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RevokeDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Editor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TermManagement">
+          <Key>
+            <PropertyRef Name="TermID" />
+            <PropertyRef Name="AdministratorID" />
+          </Key>
+          <Property Name="TermID" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="AdministratorID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TermStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="Relationship1">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JoinGroup" Type="Self.JoinGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="JoinGroup">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship11">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="JoinGroup" Type="Self.JoinGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="JoinGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship12">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship13">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship14">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship15">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship16">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="CommentGroupPost" Type="Self.CommentGroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="CommentGroupPost">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship17">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="1" />
+          <End Role="CommentGroupPost" Type="Self.CommentGroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Principal>
+            <Dependent Role="CommentGroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship2">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship21">
+          <End Role="Advertisers" Type="Self.Advertisers" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisers">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship22">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="1" />
+          <End Role="AdvertisementManagement" Type="Self.AdvertisementManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="AdvertisementID" />
+            </Principal>
+            <Dependent Role="AdvertisementManagement">
+              <PropertyRef Name="AdvertisementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship23">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AdvertisementManagement" Type="Self.AdvertisementManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdministratorID" />
+            </Principal>
+            <Dependent Role="AdvertisementManagement">
+              <PropertyRef Name="AdministratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship24">
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="1" />
+          <End Role="AnnouncemenManagement" Type="Self.AnnouncemenManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcement">
+              <PropertyRef Name="AnnouncementID" />
+            </Principal>
+            <Dependent Role="AnnouncemenManagement">
+              <PropertyRef Name="AnnouncemenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship25">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AnnouncemenManagement" Type="Self.AnnouncemenManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdministratorID" />
+            </Principal>
+            <Dependent Role="AnnouncemenManagement">
+              <PropertyRef Name="AdministratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship26">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="TermManagement" Type="Self.TermManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="TermID" />
+            </Principal>
+            <Dependent Role="TermManagement">
+              <PropertyRef Name="TermID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship27">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="TermManagement" Type="Self.TermManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdministratorID" />
+            </Principal>
+            <Dependent Role="TermManagement">
+              <PropertyRef Name="AdministratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship28">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="DataProcces" Type="Self.DataProcces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="AdministratorID" />
+            </Principal>
+            <Dependent Role="DataProcces">
+              <PropertyRef Name="AdministratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship29">
+          <End Role="Record" Type="Self.Record" Multiplicity="1" />
+          <End Role="DataProcces" Type="Self.DataProcces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Record">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="DataProcces">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship31">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship33">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Relationship" Type="Self.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship36">
+          <End Role="PostStatusCategory" Type="Self.PostStatusCategory" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship37">
+          <End Role="MemberPrivateCategory" Type="Self.MemberPrivateCategory" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberPrivateCategory">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship38">
+          <End Role="MemberAccountStatusCategory" Type="Self.MemberAccountStatusCategory" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccountStatusCategory">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship39">
+          <End Role="GroupPrivateCategory" Type="Self.GroupPrivateCategory" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPrivateCategory">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship4">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship40">
+          <End Role="CardStatusCategory" Type="Self.CardStatusCategory" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardStatusCategory">
+              <PropertyRef Name="CardStatusID" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="CardStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship41">
+          <End Role="GroupPostStatusCategory" Type="Self.GroupPostStatusCategory" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPostStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship42">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostPhoto" Type="Self.PostPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostPhoto">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship43">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="1" />
+          <End Role="GroupPostPhoto" Type="Self.GroupPostPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Principal>
+            <Dependent Role="GroupPostPhoto">
+              <PropertyRef Name="GroupPostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship44">
+          <End Role="TermStatusCategory" Type="Self.TermStatusCategory" Multiplicity="1" />
+          <End Role="Term" Type="Self.Term" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TermStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Term">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship45">
+          <End Role="AdministratorAuthorityCategory" Type="Self.AdministratorAuthorityCategory" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministratorAuthorityCategory">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship46">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="1" />
+          <End Role="AdvertisementPhoto" Type="Self.AdvertisementPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="AdvertisementID" />
+            </Principal>
+            <Dependent Role="AdvertisementPhoto">
+              <PropertyRef Name="AdvertisementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship47">
+          <End Role="AnnouncementStatusCategory" Type="Self.AnnouncementStatusCategory" Multiplicity="1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnnouncementStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship48">
+          <End Role="AdvertisemenStatusCategory" Type="Self.AdvertisemenStatusCategory" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisemenStatusCategory">
+              <PropertyRef Name="AdStatusCategoryID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="AdStatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship49">
+          <End Role="GroupAuthorityCategory" Type="Self.GroupAuthorityCategory" Multiplicity="0..1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupAuthorityCategory">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship50">
+          <End Role="PairingStatusCategory" Type="Self.PairingStatusCategory" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PairingStatusCategory">
+              <PropertyRef Name="PairingStatusID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="PairingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship7">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="CardID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="CardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PathPlusModelStoreContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdministratorAuthorityCategory" EntityType="Self.AdministratorAuthorityCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertisemenStatusCategory" EntityType="Self.AdvertisemenStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertisementManagement" EntityType="Self.AdvertisementManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvertisementPhoto" EntityType="Self.AdvertisementPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisers" EntityType="Self.Advertisers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnnouncemenManagement" EntityType="Self.AnnouncemenManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnnouncementStatusCategory" EntityType="Self.AnnouncementStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CardStatusCategory" EntityType="Self.CardStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentGroupPost" EntityType="Self.CommentGroupPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataProcces" EntityType="Self.DataProcces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Draw" EntityType="Self.Draw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupAuthorityCategory" EntityType="Self.GroupAuthorityCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupManagement" EntityType="Self.GroupManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPost" EntityType="Self.GroupPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPostPhoto" EntityType="Self.GroupPostPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPostStatusCategory" EntityType="Self.GroupPostStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPrivateCategory" EntityType="Self.GroupPrivateCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JoinGroup" EntityType="Self.JoinGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberAccountStatusCategory" EntityType="Self.MemberAccountStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberPrivateCategory" EntityType="Self.MemberPrivateCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PairingStatusCategory" EntityType="Self.PairingStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostCategory" EntityType="Self.PostCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostPhoto" EntityType="Self.PostPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostStatusCategory" EntityType="Self.PostStatusCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relationship" EntityType="Self.Relationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Term" EntityType="Self.Term" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TermManagement" EntityType="Self.TermManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TermStatusCategory" EntityType="Self.TermStatusCategory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="JoinGroup" EntitySet="JoinGroup" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="JoinGroup" EntitySet="JoinGroup" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship12" Association="Self.Relationship12">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship13" Association="Self.Relationship13">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship14" Association="Self.Relationship14">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship16" Association="Self.Relationship16">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentGroupPost" EntitySet="CommentGroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship17" Association="Self.Relationship17">
+            <End Role="GroupPost" EntitySet="GroupPost" />
+            <End Role="CommentGroupPost" EntitySet="CommentGroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship2" Association="Self.Relationship2">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship21" Association="Self.Relationship21">
+            <End Role="Advertisers" EntitySet="Advertisers" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship22" Association="Self.Relationship22">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="AdvertisementManagement" EntitySet="AdvertisementManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship23" Association="Self.Relationship23">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AdvertisementManagement" EntitySet="AdvertisementManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship24" Association="Self.Relationship24">
+            <End Role="Announcement" EntitySet="Announcement" />
+            <End Role="AnnouncemenManagement" EntitySet="AnnouncemenManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship25" Association="Self.Relationship25">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AnnouncemenManagement" EntitySet="AnnouncemenManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship26" Association="Self.Relationship26">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="TermManagement" EntitySet="TermManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship27" Association="Self.Relationship27">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="TermManagement" EntitySet="TermManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship28" Association="Self.Relationship28">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="DataProcces" EntitySet="DataProcces" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship29" Association="Self.Relationship29">
+            <End Role="Record" EntitySet="Record" />
+            <End Role="DataProcces" EntitySet="DataProcces" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship31" Association="Self.Relationship31">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship33" Association="Self.Relationship33">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Relationship" EntitySet="Relationship" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship36" Association="Self.Relationship36">
+            <End Role="PostStatusCategory" EntitySet="PostStatusCategory" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship37" Association="Self.Relationship37">
+            <End Role="MemberPrivateCategory" EntitySet="MemberPrivateCategory" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship38" Association="Self.Relationship38">
+            <End Role="MemberAccountStatusCategory" EntitySet="MemberAccountStatusCategory" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship39" Association="Self.Relationship39">
+            <End Role="GroupPrivateCategory" EntitySet="GroupPrivateCategory" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship4" Association="Self.Relationship4">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship40" Association="Self.Relationship40">
+            <End Role="CardStatusCategory" EntitySet="CardStatusCategory" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship41" Association="Self.Relationship41">
+            <End Role="GroupPostStatusCategory" EntitySet="GroupPostStatusCategory" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship42" Association="Self.Relationship42">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostPhoto" EntitySet="PostPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship43" Association="Self.Relationship43">
+            <End Role="GroupPost" EntitySet="GroupPost" />
+            <End Role="GroupPostPhoto" EntitySet="GroupPostPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship44" Association="Self.Relationship44">
+            <End Role="TermStatusCategory" EntitySet="TermStatusCategory" />
+            <End Role="Term" EntitySet="Term" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship45" Association="Self.Relationship45">
+            <End Role="AdministratorAuthorityCategory" EntitySet="AdministratorAuthorityCategory" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship46" Association="Self.Relationship46">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="AdvertisementPhoto" EntitySet="AdvertisementPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship47" Association="Self.Relationship47">
+            <End Role="AnnouncementStatusCategory" EntitySet="AnnouncementStatusCategory" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship48" Association="Self.Relationship48">
+            <End Role="AdvertisemenStatusCategory" EntitySet="AdvertisemenStatusCategory" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship49" Association="Self.Relationship49">
+            <End Role="GroupAuthorityCategory" EntitySet="GroupAuthorityCategory" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="PostCategory" EntitySet="PostCategory" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship50" Association="Self.Relationship50">
+            <End Role="PairingStatusCategory" EntitySet="PairingStatusCategory" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Card" EntitySet="Card" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PathPlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="AdministratorID" />
+          </Key>
+          <Property Name="AdministratorID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tittle" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorityCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AdministratorAuthorityCategory" Relationship="Self.Relationship45" FromRole="Administrator" ToRole="AdministratorAuthorityCategory" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.AdvertisementManagement" FromRole="Administrator" ToRole="Advertisement" />
+          <NavigationProperty Name="Announcement" Relationship="Self.AnnouncemenManagement" FromRole="Administrator" ToRole="Announcement" />
+          <NavigationProperty Name="Record" Relationship="Self.DataProcces" FromRole="Administrator" ToRole="Record" />
+          <NavigationProperty Name="Term" Relationship="Self.TermManagement" FromRole="Administrator" ToRole="Term" />
+        </EntityType>
+        <EntityType Name="AdministratorAuthorityCategory">
+          <Key>
+            <PropertyRef Name="AuthorityCategoryID" />
+          </Key>
+          <Property Name="AuthorityCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AuthorityCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.Relationship45" FromRole="AdministratorAuthorityCategory" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="AdvertisemenStatusCategory">
+          <Key>
+            <PropertyRef Name="AdStatusCategoryID" />
+          </Key>
+          <Property Name="AdStatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AdStatusCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.Relationship48" FromRole="AdvertisemenStatusCategory" ToRole="Advertisement" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="AdvertisementID" />
+          </Key>
+          <Property Name="AdvertisementID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AdText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AgeRange" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Money" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Limitation" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CompanyID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AdStatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AdvertisemenStatusCategory" Relationship="Self.Relationship48" FromRole="Advertisement" ToRole="AdvertisemenStatusCategory" />
+          <NavigationProperty Name="Advertisers" Relationship="Self.Relationship21" FromRole="Advertisement" ToRole="Advertisers" />
+          <NavigationProperty Name="AdvertisementPhoto" Relationship="Self.Relationship46" FromRole="Advertisement" ToRole="AdvertisementPhoto" />
+          <NavigationProperty Name="Administrator" Relationship="Self.AdvertisementManagement" FromRole="Advertisement" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="AdvertisementPhoto">
+          <Key>
+            <PropertyRef Name="AdPhotoSN" />
+          </Key>
+          <Property Name="AdPhotoSN" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdvertisementID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.Relationship46" FromRole="AdvertisementPhoto" ToRole="Advertisement" />
+        </EntityType>
+        <EntityType Name="Advertisers">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="65" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.Relationship21" FromRole="Advertisers" ToRole="Advertisement" />
+        </EntityType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementID" />
+          </Key>
+          <Property Name="AnnouncementID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RevokeDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Editor" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AnnouncementStatusCategory" Relationship="Self.Relationship47" FromRole="Announcement" ToRole="AnnouncementStatusCategory" />
+          <NavigationProperty Name="Administrator" Relationship="Self.AnnouncemenManagement" FromRole="Announcement" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="AnnouncementStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Announcement" Relationship="Self.Relationship47" FromRole="AnnouncementStatusCategory" ToRole="Announcement" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Interests" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CardStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CardStatusCategory" Relationship="Self.Relationship40" FromRole="Card" ToRole="CardStatusCategory" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship6" FromRole="Card" ToRole="Member" />
+          <NavigationProperty Name="Draw" Relationship="Self.Relationship8" FromRole="Card" ToRole="Draw" />
+        </EntityType>
+        <EntityType Name="CardStatusCategory">
+          <Key>
+            <PropertyRef Name="CardStatusID" />
+          </Key>
+          <Property Name="CardStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CardStatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="Self.Relationship40" FromRole="CardStatusCategory" ToRole="Card" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Like" Type="Boolean" Nullable="false" />
+          <Property Name="SaveDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ShareDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship1" FromRole="Comment" ToRole="Member" />
+          <NavigationProperty Name="Post" Relationship="Self.Relationship2" FromRole="Comment" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="CommentGroupPost">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupPostID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupPostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Like" Type="Boolean" Nullable="false" />
+          <Property Name="SaveDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ShareDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship16" FromRole="CommentGroupPost" ToRole="Member" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.Relationship17" FromRole="CommentGroupPost" ToRole="GroupPost" />
+        </EntityType>
+        <EntityType Name="Draw">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="CardID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CardID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DrawMemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PairingStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="Self.Relationship8" FromRole="Draw" ToRole="Card" />
+          <NavigationProperty Name="PairingStatusCategory" Relationship="Self.Relationship50" FromRole="Draw" ToRole="PairingStatusCategory" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship7" FromRole="Draw" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GroupIntroduction" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GroupInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PrivateCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="JoinGroup" Relationship="Self.Relationship11" FromRole="Group" ToRole="JoinGroup" />
+          <NavigationProperty Name="GroupManagement" Relationship="Self.Relationship13" FromRole="Group" ToRole="GroupManagement" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.Relationship15" FromRole="Group" ToRole="GroupPost" />
+          <NavigationProperty Name="GroupPrivateCategory" Relationship="Self.Relationship39" FromRole="Group" ToRole="GroupPrivateCategory" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship9" FromRole="Group" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="GroupAuthorityCategory">
+          <Key>
+            <PropertyRef Name="AuthorityCategoryID" />
+          </Key>
+          <Property Name="AuthorityCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AuthorityCategotyName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GroupManagement" Relationship="Self.Relationship49" FromRole="GroupAuthorityCategory" ToRole="GroupManagement" />
+        </EntityType>
+        <EntityType Name="GroupManagement">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ManageDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AuthorityCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Group" Relationship="Self.Relationship13" FromRole="GroupManagement" ToRole="Group" />
+          <NavigationProperty Name="GroupAuthorityCategory" Relationship="Self.Relationship49" FromRole="GroupManagement" ToRole="GroupAuthorityCategory" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship12" FromRole="GroupManagement" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="GroupPost">
+          <Key>
+            <PropertyRef Name="GroupPostID" />
+          </Key>
+          <Property Name="GroupPostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CommentGroupPost" Relationship="Self.Relationship17" FromRole="GroupPost" ToRole="CommentGroupPost" />
+          <NavigationProperty Name="Group" Relationship="Self.Relationship15" FromRole="GroupPost" ToRole="Group" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship14" FromRole="GroupPost" ToRole="Member" />
+          <NavigationProperty Name="GroupPostStatusCategory" Relationship="Self.Relationship41" FromRole="GroupPost" ToRole="GroupPostStatusCategory" />
+          <NavigationProperty Name="GroupPostPhoto" Relationship="Self.Relationship43" FromRole="GroupPost" ToRole="GroupPostPhoto" />
+        </EntityType>
+        <EntityType Name="GroupPostPhoto">
+          <Key>
+            <PropertyRef Name="PostPhotoSN" />
+          </Key>
+          <Property Name="PostPhotoSN" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupPostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.Relationship43" FromRole="GroupPostPhoto" ToRole="GroupPost" />
+        </EntityType>
+        <EntityType Name="GroupPostStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.Relationship41" FromRole="GroupPostStatusCategory" ToRole="GroupPost" />
+        </EntityType>
+        <EntityType Name="GroupPrivateCategory">
+          <Key>
+            <PropertyRef Name="PrivateCategoryID" />
+          </Key>
+          <Property Name="PrivateCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PrivateCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.Relationship39" FromRole="GroupPrivateCategory" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="JoinGroup">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Group" Relationship="Self.Relationship11" FromRole="JoinGroup" ToRole="Group" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship10" FromRole="JoinGroup" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Birthday" Type="DateTime" Precision="7" />
+          <Property Name="PersonalProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegisteredDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PrivateCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PostCount" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Follower" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Fans" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Card" Relationship="Self.Relationship6" FromRole="Member" ToRole="Card" />
+          <NavigationProperty Name="Comment" Relationship="Self.Relationship1" FromRole="Member" ToRole="Comment" />
+          <NavigationProperty Name="CommentGroupPost" Relationship="Self.Relationship16" FromRole="Member" ToRole="CommentGroupPost" />
+          <NavigationProperty Name="Draw" Relationship="Self.Relationship7" FromRole="Member" ToRole="Draw" />
+          <NavigationProperty Name="Group" Relationship="Self.Relationship9" FromRole="Member" ToRole="Group" />
+          <NavigationProperty Name="GroupManagement" Relationship="Self.Relationship12" FromRole="Member" ToRole="GroupManagement" />
+          <NavigationProperty Name="GroupPost" Relationship="Self.Relationship14" FromRole="Member" ToRole="GroupPost" />
+          <NavigationProperty Name="JoinGroup" Relationship="Self.Relationship10" FromRole="Member" ToRole="JoinGroup" />
+          <NavigationProperty Name="Message" Relationship="Self.Relationship31" FromRole="Member" ToRole="Message" />
+          <NavigationProperty Name="Relationship" Relationship="Self.Relationship33" FromRole="Member" ToRole="Relationship" />
+          <NavigationProperty Name="MemberPrivateCategory" Relationship="Self.Relationship37" FromRole="Member" ToRole="MemberPrivateCategory" />
+          <NavigationProperty Name="MemberAccountStatusCategory" Relationship="Self.Relationship38" FromRole="Member" ToRole="MemberAccountStatusCategory" />
+          <NavigationProperty Name="Post" Relationship="Self.Relationship4" FromRole="Member" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="MemberAccountStatusCategory">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountStatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship38" FromRole="MemberAccountStatusCategory" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="MemberPrivateCategory">
+          <Key>
+            <PropertyRef Name="PrivateCategoryID" />
+          </Key>
+          <Property Name="PrivateCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PrivateCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship37" FromRole="MemberPrivateCategory" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageSN" />
+          </Key>
+          <Property Name="MessageSN" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AcceptMemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MessageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship31" FromRole="Message" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="PairingStatusCategory">
+          <Key>
+            <PropertyRef Name="PairingStatusID" />
+          </Key>
+          <Property Name="PairingStatusID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PairingStatusName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Draw" Relationship="Self.Relationship50" FromRole="PairingStatusCategory" ToRole="Draw" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.Relationship2" FromRole="Post" ToRole="Comment" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship4" FromRole="Post" ToRole="Member" />
+          <NavigationProperty Name="PostStatusCategory" Relationship="Self.Relationship36" FromRole="Post" ToRole="PostStatusCategory" />
+          <NavigationProperty Name="PostPhoto" Relationship="Self.Relationship42" FromRole="Post" ToRole="PostPhoto" />
+          <NavigationProperty Name="PostCategory" Relationship="Self.Relationship5" FromRole="Post" ToRole="PostCategory" />
+        </EntityType>
+        <EntityType Name="PostCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.Relationship5" FromRole="PostCategory" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="PostPhoto">
+          <Key>
+            <PropertyRef Name="PostPhotoSN" />
+          </Key>
+          <Property Name="PostPhotoSN" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.Relationship42" FromRole="PostPhoto" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="PostStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.Relationship36" FromRole="PostStatusCategory" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="PostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="ProcessingDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReplyMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Administrator" Relationship="Self.DataProcces" FromRole="Record" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="RelationshipSN" />
+          </Key>
+          <Property Name="RelationshipSN" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FollowDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BlockDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RSMemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.Relationship33" FromRole="Relationship" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="TermID" />
+          </Key>
+          <Property Name="TermID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RevokeDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Editor" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TermStatusCategory" Relationship="Self.Relationship44" FromRole="Term" ToRole="TermStatusCategory" />
+          <NavigationProperty Name="Administrator" Relationship="Self.TermManagement" FromRole="Term" ToRole="Administrator" />
+        </EntityType>
+        <EntityType Name="TermStatusCategory">
+          <Key>
+            <PropertyRef Name="StatusCategoryID" />
+          </Key>
+          <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StatusCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Term" Relationship="Self.Relationship44" FromRole="TermStatusCategory" ToRole="Term" />
+        </EntityType>
+        <Association Name="Relationship45">
+          <End Role="AdministratorAuthorityCategory" Type="Self.AdministratorAuthorityCategory" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministratorAuthorityCategory">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship48">
+          <End Role="AdvertisemenStatusCategory" Type="Self.AdvertisemenStatusCategory" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvertisemenStatusCategory">
+              <PropertyRef Name="AdStatusCategoryID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="AdStatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship21">
+          <End Role="Advertisers" Type="Self.Advertisers" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisers">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship46">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="1" />
+          <End Role="AdvertisementPhoto" Type="Self.AdvertisementPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="AdvertisementID" />
+            </Principal>
+            <Dependent Role="AdvertisementPhoto">
+              <PropertyRef Name="AdvertisementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship47">
+          <End Role="AnnouncementStatusCategory" Type="Self.AnnouncementStatusCategory" Multiplicity="1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnnouncementStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship40">
+          <End Role="CardStatusCategory" Type="Self.CardStatusCategory" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardStatusCategory">
+              <PropertyRef Name="CardStatusID" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="CardStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Card" Type="Self.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="CardID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="CardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship1">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship2">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship16">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="CommentGroupPost" Type="Self.CommentGroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="CommentGroupPost">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship17">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="1" />
+          <End Role="CommentGroupPost" Type="Self.CommentGroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Principal>
+            <Dependent Role="CommentGroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship50">
+          <End Role="PairingStatusCategory" Type="Self.PairingStatusCategory" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PairingStatusCategory">
+              <PropertyRef Name="PairingStatusID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="PairingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship7">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Draw" Type="Self.Draw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Draw">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship11">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="JoinGroup" Type="Self.JoinGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="JoinGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship13">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship15">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship39">
+          <End Role="GroupPrivateCategory" Type="Self.GroupPrivateCategory" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPrivateCategory">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship49">
+          <End Role="GroupAuthorityCategory" Type="Self.GroupAuthorityCategory" Multiplicity="0..1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupAuthorityCategory">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="AuthorityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship12">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GroupManagement">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship14">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship41">
+          <End Role="GroupPostStatusCategory" Type="Self.GroupPostStatusCategory" Multiplicity="1" />
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPostStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="GroupPost">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship43">
+          <End Role="GroupPost" Type="Self.GroupPost" Multiplicity="1" />
+          <End Role="GroupPostPhoto" Type="Self.GroupPostPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupPost">
+              <PropertyRef Name="GroupPostID" />
+            </Principal>
+            <Dependent Role="GroupPostPhoto">
+              <PropertyRef Name="GroupPostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JoinGroup" Type="Self.JoinGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="JoinGroup">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship31">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship33">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Relationship" Type="Self.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship37">
+          <End Role="MemberPrivateCategory" Type="Self.MemberPrivateCategory" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberPrivateCategory">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="PrivateCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship38">
+          <End Role="MemberAccountStatusCategory" Type="Self.MemberAccountStatusCategory" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberAccountStatusCategory">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship4">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship36">
+          <End Role="PostStatusCategory" Type="Self.PostStatusCategory" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship42">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostPhoto" Type="Self.PostPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostPhoto">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship44">
+          <End Role="TermStatusCategory" Type="Self.TermStatusCategory" Multiplicity="1" />
+          <End Role="Term" Type="Self.Term" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TermStatusCategory">
+              <PropertyRef Name="StatusCategoryID" />
+            </Principal>
+            <Dependent Role="Term">
+              <PropertyRef Name="StatusCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AdvertisementManagement">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+        </Association>
+        <Association Name="AnnouncemenManagement">
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+        </Association>
+        <Association Name="DataProcces">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+        </Association>
+        <Association Name="TermManagement">
+          <End Role="Term" Type="Self.Term" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PathPlusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="AdministratorAuthorityCategory" EntityType="Self.AdministratorAuthorityCategory" />
+          <EntitySet Name="AdvertisemenStatusCategory" EntityType="Self.AdvertisemenStatusCategory" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" />
+          <EntitySet Name="AdvertisementPhoto" EntityType="Self.AdvertisementPhoto" />
+          <EntitySet Name="Advertisers" EntityType="Self.Advertisers" />
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" />
+          <EntitySet Name="AnnouncementStatusCategory" EntityType="Self.AnnouncementStatusCategory" />
+          <EntitySet Name="Card" EntityType="Self.Card" />
+          <EntitySet Name="CardStatusCategory" EntityType="Self.CardStatusCategory" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="CommentGroupPost" EntityType="Self.CommentGroupPost" />
+          <EntitySet Name="Draw" EntityType="Self.Draw" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="GroupAuthorityCategory" EntityType="Self.GroupAuthorityCategory" />
+          <EntitySet Name="GroupManagement" EntityType="Self.GroupManagement" />
+          <EntitySet Name="GroupPost" EntityType="Self.GroupPost" />
+          <EntitySet Name="GroupPostPhoto" EntityType="Self.GroupPostPhoto" />
+          <EntitySet Name="GroupPostStatusCategory" EntityType="Self.GroupPostStatusCategory" />
+          <EntitySet Name="GroupPrivateCategory" EntityType="Self.GroupPrivateCategory" />
+          <EntitySet Name="JoinGroup" EntityType="Self.JoinGroup" />
+          <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="MemberAccountStatusCategory" EntityType="Self.MemberAccountStatusCategory" />
+          <EntitySet Name="MemberPrivateCategory" EntityType="Self.MemberPrivateCategory" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="PairingStatusCategory" EntityType="Self.PairingStatusCategory" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="PostCategory" EntityType="Self.PostCategory" />
+          <EntitySet Name="PostPhoto" EntityType="Self.PostPhoto" />
+          <EntitySet Name="PostStatusCategory" EntityType="Self.PostStatusCategory" />
+          <EntitySet Name="Record" EntityType="Self.Record" />
+          <EntitySet Name="Relationship" EntityType="Self.Relationship" />
+          <EntitySet Name="Term" EntityType="Self.Term" />
+          <EntitySet Name="TermStatusCategory" EntityType="Self.TermStatusCategory" />
+          <AssociationSet Name="Relationship45" Association="Self.Relationship45">
+            <End Role="AdministratorAuthorityCategory" EntitySet="AdministratorAuthorityCategory" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship48" Association="Self.Relationship48">
+            <End Role="AdvertisemenStatusCategory" EntitySet="AdvertisemenStatusCategory" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship21" Association="Self.Relationship21">
+            <End Role="Advertisers" EntitySet="Advertisers" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship46" Association="Self.Relationship46">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="AdvertisementPhoto" EntitySet="AdvertisementPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship47" Association="Self.Relationship47">
+            <End Role="AnnouncementStatusCategory" EntitySet="AnnouncementStatusCategory" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship40" Association="Self.Relationship40">
+            <End Role="CardStatusCategory" EntitySet="CardStatusCategory" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Card" EntitySet="Card" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship2" Association="Self.Relationship2">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship16" Association="Self.Relationship16">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentGroupPost" EntitySet="CommentGroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship17" Association="Self.Relationship17">
+            <End Role="GroupPost" EntitySet="GroupPost" />
+            <End Role="CommentGroupPost" EntitySet="CommentGroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship50" Association="Self.Relationship50">
+            <End Role="PairingStatusCategory" EntitySet="PairingStatusCategory" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Draw" EntitySet="Draw" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship11" Association="Self.Relationship11">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="JoinGroup" EntitySet="JoinGroup" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship13" Association="Self.Relationship13">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship15" Association="Self.Relationship15">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship39" Association="Self.Relationship39">
+            <End Role="GroupPrivateCategory" EntitySet="GroupPrivateCategory" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship49" Association="Self.Relationship49">
+            <End Role="GroupAuthorityCategory" EntitySet="GroupAuthorityCategory" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship12" Association="Self.Relationship12">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship14" Association="Self.Relationship14">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship41" Association="Self.Relationship41">
+            <End Role="GroupPostStatusCategory" EntitySet="GroupPostStatusCategory" />
+            <End Role="GroupPost" EntitySet="GroupPost" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship43" Association="Self.Relationship43">
+            <End Role="GroupPost" EntitySet="GroupPost" />
+            <End Role="GroupPostPhoto" EntitySet="GroupPostPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="JoinGroup" EntitySet="JoinGroup" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship31" Association="Self.Relationship31">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship33" Association="Self.Relationship33">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Relationship" EntitySet="Relationship" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship37" Association="Self.Relationship37">
+            <End Role="MemberPrivateCategory" EntitySet="MemberPrivateCategory" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship38" Association="Self.Relationship38">
+            <End Role="MemberAccountStatusCategory" EntitySet="MemberAccountStatusCategory" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship4" Association="Self.Relationship4">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship36" Association="Self.Relationship36">
+            <End Role="PostStatusCategory" EntitySet="PostStatusCategory" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship42" Association="Self.Relationship42">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostPhoto" EntitySet="PostPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="PostCategory" EntitySet="PostCategory" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship44" Association="Self.Relationship44">
+            <End Role="TermStatusCategory" EntitySet="TermStatusCategory" />
+            <End Role="Term" EntitySet="Term" />
+          </AssociationSet>
+          <AssociationSet Name="AdvertisementManagement" Association="Self.AdvertisementManagement">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="AnnouncemenManagement" Association="Self.AnnouncemenManagement">
+            <End Role="Announcement" EntitySet="Announcement" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="DataProcces" Association="Self.DataProcces">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="TermManagement" Association="Self.TermManagement">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PathPlusModelStoreContainer" CdmEntityContainer="PathPlusEntities">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="PathPlusModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Tittle" ColumnName="Tittle" />
+                <ScalarProperty Name="AuthorityCategoryID" ColumnName="AuthorityCategoryID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdministratorAuthorityCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.AdministratorAuthorityCategory">
+              <MappingFragment StoreEntitySet="AdministratorAuthorityCategory">
+                <ScalarProperty Name="AuthorityCategoryID" ColumnName="AuthorityCategoryID" />
+                <ScalarProperty Name="AuthorityCategoryName" ColumnName="AuthorityCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertisemenStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.AdvertisemenStatusCategory">
+              <MappingFragment StoreEntitySet="AdvertisemenStatusCategory">
+                <ScalarProperty Name="AdStatusCategoryID" ColumnName="AdStatusCategoryID" />
+                <ScalarProperty Name="AdStatusCategoryName" ColumnName="AdStatusCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisement">
+            <EntityTypeMapping TypeName="PathPlusModel.Advertisement">
+              <MappingFragment StoreEntitySet="Advertisement">
+                <ScalarProperty Name="AdvertisementID" ColumnName="AdvertisementID" />
+                <ScalarProperty Name="AdText" ColumnName="AdText" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AgeRange" ColumnName="AgeRange" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Limitation" ColumnName="Limitation" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="AdStatusCategoryID" ColumnName="AdStatusCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertisementPhoto">
+            <EntityTypeMapping TypeName="PathPlusModel.AdvertisementPhoto">
+              <MappingFragment StoreEntitySet="AdvertisementPhoto">
+                <ScalarProperty Name="AdPhotoSN" ColumnName="AdPhotoSN" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="AdvertisementID" ColumnName="AdvertisementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisers">
+            <EntityTypeMapping TypeName="PathPlusModel.Advertisers">
+              <MappingFragment StoreEntitySet="Advertisers">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcement">
+            <EntityTypeMapping TypeName="PathPlusModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="AnnouncementID" ColumnName="AnnouncementID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="RevokeDate" ColumnName="RevokeDate" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnnouncementStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.AnnouncementStatusCategory">
+              <MappingFragment StoreEntitySet="AnnouncementStatusCategory">
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+                <ScalarProperty Name="StatusCategoryName" ColumnName="StatusCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Card">
+            <EntityTypeMapping TypeName="PathPlusModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CardStatusID" ColumnName="CardStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.CardStatusCategory">
+              <MappingFragment StoreEntitySet="CardStatusCategory">
+                <ScalarProperty Name="CardStatusID" ColumnName="CardStatusID" />
+                <ScalarProperty Name="CardStatusName" ColumnName="CardStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="PathPlusModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Like" ColumnName="Like" />
+                <ScalarProperty Name="SaveDate" ColumnName="SaveDate" />
+                <ScalarProperty Name="ShareDate" ColumnName="ShareDate" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentGroupPost">
+            <EntityTypeMapping TypeName="PathPlusModel.CommentGroupPost">
+              <MappingFragment StoreEntitySet="CommentGroupPost">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="GroupPostID" ColumnName="GroupPostID" />
+                <ScalarProperty Name="Like" ColumnName="Like" />
+                <ScalarProperty Name="SaveDate" ColumnName="SaveDate" />
+                <ScalarProperty Name="ShareDate" ColumnName="ShareDate" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Draw">
+            <EntityTypeMapping TypeName="PathPlusModel.Draw">
+              <MappingFragment StoreEntitySet="Draw">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DrawMemberID" ColumnName="DrawMemberID" />
+                <ScalarProperty Name="PairingStatusID" ColumnName="PairingStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="PathPlusModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GroupIntroduction" ColumnName="GroupIntroduction" />
+                <ScalarProperty Name="GroupInformation" ColumnName="GroupInformation" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PrivateCategoryID" ColumnName="PrivateCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupAuthorityCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupAuthorityCategory">
+              <MappingFragment StoreEntitySet="GroupAuthorityCategory">
+                <ScalarProperty Name="AuthorityCategoryID" ColumnName="AuthorityCategoryID" />
+                <ScalarProperty Name="AuthorityCategotyName" ColumnName="AuthorityCategotyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupManagement">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupManagement">
+              <MappingFragment StoreEntitySet="GroupManagement">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ManageDate" ColumnName="ManageDate" />
+                <ScalarProperty Name="AuthorityCategoryID" ColumnName="AuthorityCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPost">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupPost">
+              <MappingFragment StoreEntitySet="GroupPost">
+                <ScalarProperty Name="GroupPostID" ColumnName="GroupPostID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPostPhoto">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupPostPhoto">
+              <MappingFragment StoreEntitySet="GroupPostPhoto">
+                <ScalarProperty Name="PostPhotoSN" ColumnName="PostPhotoSN" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GroupPostID" ColumnName="GroupPostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPostStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupPostStatusCategory">
+              <MappingFragment StoreEntitySet="GroupPostStatusCategory">
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+                <ScalarProperty Name="StatusCategoryName" ColumnName="StatusCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPrivateCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.GroupPrivateCategory">
+              <MappingFragment StoreEntitySet="GroupPrivateCategory">
+                <ScalarProperty Name="PrivateCategoryID" ColumnName="PrivateCategoryID" />
+                <ScalarProperty Name="PrivateCategoryName" ColumnName="PrivateCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JoinGroup">
+            <EntityTypeMapping TypeName="PathPlusModel.JoinGroup">
+              <MappingFragment StoreEntitySet="JoinGroup">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="PathPlusModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PersonalProfile" ColumnName="PersonalProfile" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="PrivateCategoryID" ColumnName="PrivateCategoryID" />
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+                <ScalarProperty Name="PostCount" ColumnName="PostCount" />
+                <ScalarProperty Name="Follower" ColumnName="Follower" />
+                <ScalarProperty Name="Fans" ColumnName="Fans" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberAccountStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.MemberAccountStatusCategory">
+              <MappingFragment StoreEntitySet="MemberAccountStatusCategory">
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+                <ScalarProperty Name="AccountStatusName" ColumnName="AccountStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberPrivateCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.MemberPrivateCategory">
+              <MappingFragment StoreEntitySet="MemberPrivateCategory">
+                <ScalarProperty Name="PrivateCategoryID" ColumnName="PrivateCategoryID" />
+                <ScalarProperty Name="PrivateCategoryName" ColumnName="PrivateCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="PathPlusModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageSN" ColumnName="MessageSN" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="AcceptMemberID" ColumnName="AcceptMemberID" />
+                <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PairingStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.PairingStatusCategory">
+              <MappingFragment StoreEntitySet="PairingStatusCategory">
+                <ScalarProperty Name="PairingStatusID" ColumnName="PairingStatusID" />
+                <ScalarProperty Name="PairingStatusName" ColumnName="PairingStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="PathPlusModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.PostCategory">
+              <MappingFragment StoreEntitySet="PostCategory">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostPhoto">
+            <EntityTypeMapping TypeName="PathPlusModel.PostPhoto">
+              <MappingFragment StoreEntitySet="PostPhoto">
+                <ScalarProperty Name="PostPhotoSN" ColumnName="PostPhotoSN" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.PostStatusCategory">
+              <MappingFragment StoreEntitySet="PostStatusCategory">
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+                <ScalarProperty Name="StatusCategoryName" ColumnName="StatusCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Record">
+            <EntityTypeMapping TypeName="PathPlusModel.Record">
+              <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="ProcessingDate" ColumnName="ProcessingDate" />
+                <ScalarProperty Name="ReplyMessage" ColumnName="ReplyMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relationship">
+            <EntityTypeMapping TypeName="PathPlusModel.Relationship">
+              <MappingFragment StoreEntitySet="Relationship">
+                <ScalarProperty Name="RelationshipSN" ColumnName="RelationshipSN" />
+                <ScalarProperty Name="FollowDate" ColumnName="FollowDate" />
+                <ScalarProperty Name="BlockDate" ColumnName="BlockDate" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="RSMemberID" ColumnName="RSMemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Term">
+            <EntityTypeMapping TypeName="PathPlusModel.Term">
+              <MappingFragment StoreEntitySet="Term">
+                <ScalarProperty Name="TermID" ColumnName="TermID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="RevokeDate" ColumnName="RevokeDate" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TermStatusCategory">
+            <EntityTypeMapping TypeName="PathPlusModel.TermStatusCategory">
+              <MappingFragment StoreEntitySet="TermStatusCategory">
+                <ScalarProperty Name="StatusCategoryID" ColumnName="StatusCategoryID" />
+                <ScalarProperty Name="StatusCategoryName" ColumnName="StatusCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AdvertisementManagement" TypeName="PathPlusModel.AdvertisementManagement" StoreEntitySet="AdvertisementManagement">
+            <EndProperty Name="Advertisement">
+              <ScalarProperty Name="AdvertisementID" ColumnName="AdvertisementID" />
+            </EndProperty>
+            <EndProperty Name="Administrator">
+              <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AnnouncemenManagement" TypeName="PathPlusModel.AnnouncemenManagement" StoreEntitySet="AnnouncemenManagement">
+            <EndProperty Name="Announcement">
+              <ScalarProperty Name="AnnouncementID" ColumnName="AnnouncemenID" />
+            </EndProperty>
+            <EndProperty Name="Administrator">
+              <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DataProcces" TypeName="PathPlusModel.DataProcces" StoreEntitySet="DataProcces">
+            <EndProperty Name="Administrator">
+              <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
+            </EndProperty>
+            <EndProperty Name="Record">
+              <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TermManagement" TypeName="PathPlusModel.TermManagement" StoreEntitySet="TermManagement">
+            <EndProperty Name="Term">
+              <ScalarProperty Name="TermID" ColumnName="TermID" />
+            </EndProperty>
+            <EndProperty Name="Administrator">
+              <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

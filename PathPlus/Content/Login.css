@@ -1,0 +1,102 @@
+﻿.container {
+    width: 100%;
+    height: 900px;
+}
+
+#row1 {
+    width: 100%;
+    height: 900px;
+}
+
+.row {
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    font-size: 0.8em;
+}
+
+#left {
+    height: 100%;
+}
+
+#right {
+    height: 100%;
+}
+
+#righthead {
+    width: 230px;
+    height: 140px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#rightcotent {
+    width: 90%;
+    height: 45%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 150px;
+}
+
+#rightbottom {
+    width: 90%;
+    height: 8%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+
+#account, #password {
+    width: 80%;
+    height: 40px;
+    background-color: #efefef;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#loginbutton {
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #0681ea;
+    color: #ffffff;
+}
+
+#Reset1 {
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #0681ea;
+    color: #ffffff;
+}
+
+
+
+#line {
+    width: 80%;
+}
+
+#registered {
+    color: #006cc8;
+    font-weight: bold;
+}
+
+
+@media (min-width: 1px) and (max-width: 768px) {
+    #left {
+        display: none;
+    }
+}
+
+#logingif {
+    margin-top: 80px;
+}

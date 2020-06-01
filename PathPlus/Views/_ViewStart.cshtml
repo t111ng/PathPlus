@@ -1,0 +1,45 @@
+﻿@{
+    string ControllerName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+    string ActionName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Action"]);
+    switch (ActionName.ToUpper())
+    {
+        case "ABOUT":
+            Layout = "~/Views/Shared/_AboutLayout.cshtml";
+            break;
+        case "REGISTERED":
+            Layout = "~/Views/Shared/_RegisteredLayout.cshtml";
+            break;
+        case "INDEX":
+            if (ControllerName.ToUpper() == "HOME")
+            {
+                Layout = "~/Views/Shared/_IndexLayout.cshtml";
+                break;
+            }
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        default:
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+
+    switch (ControllerName.ToUpper())
+    {
+        case "MANAGERLOGIN":
+        case "TERMS":
+        case "ANNOUNCEMENTS":
+        case "ADVERTISEMENTS":
+        case "ADVERTISERS":
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+            break;
+        default:
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+    //switch (ControllerName.ToUpper())
+    //{
+    //    default:
+    //        Layout = "~/Views/Shared/_Layout.cshtml";
+    //        break;
+    //}
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}

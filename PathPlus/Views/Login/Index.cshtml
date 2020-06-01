@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@if (Session["account"] == null)
+{
+    <div id="row1" class="row">
+        <div id="left" class="col-md-6 col-lg-7 col-xl-7">
+            <img id="logingif" class="rounded float-right " src="~/image/loginimage.gif" />
+        </div>
+        <div id="right" class="col-xs-12 col-sm-10 col-md-6 col-lg-5 col-xl-5">
+            <form action="@Url.Action("Index")" method="post">
+                <div id="rightcotent">
+                    <div id="righthead" class="rounded mx-auto d-block">
+                        <img src="~/image/登入頁用path.jpg" />
+                    </div>
+                    <div id="rightbody">
+                        <div class="form-group">
+                            <input id="account" name="account" type="text" placeholder="用戶名稱或電子郵件" class="form-control rounded mx-auto d-block border-0" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input id="password" name="pwd" type="password" placeholder="密碼" class="form-control rounded mx-auto d-block border-0 " required />
+                            <div></div>
+                        </div>
+
+                        <input id="loginbutton" type="submit" value="登入" class="btn btn-outline-primary rounded mx-auto d-block border-0" />
+                        <input id="Reset1" type="reset" value="重填" class="btn btn-outline-primary rounded mx-auto d-block border-0" />
+                        <hr id="line" />
+                        <span class="text-danger row justify-content-center align-items-sm-center">@ViewBag.Msg</span>
+                        <span class="row justify-content-center align-items-sm-center">忘記密碼?</span>
+                    </div>
+                </div>
+                <div id="rightbottom" class="row justify-content-center align-items-sm-center">
+                    <span>沒有帳號嗎?</span><span id="registered">@Html.ActionLink("註冊", "Registered", "Login")</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <footer class="mastfoot mt-auto">
+
+        <div id="bottomleft" class="col-xs-12 col-sm-12 col-md-6  col-lg-8 col-xl-8">
+            <span>@Html.ActionLink("關於", "About", "Home")</span>
+            <span> | </span>
+            <span>@Html.ActionLink("連絡我們", "Contact", "Home")</span>
+            <span> | </span>
+            <span>@Html.ActionLink("隱私", "Private", "Home")</span>
+            <span> | </span>
+            <span>@Html.ActionLink("使用條款", "Terms", "Home")</span>
+        </div>
+        <div id="bottomright" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 row justify-content-end"> <p>&copy; @DateTime.Now.Year - PathPlus Application</p></div>
+
+    </footer>
+}
+else
+{
+    <h3 class="text-danger">@ViewBag.Msg</h3>
+}
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script>
+
+    $('#pwd').keyup(function () {
+        if ($('#pwd').val().length < 8) {
+            $('#pwd').addClass('is-invalid');
+            $('#pwd~div').addClass('invalid-feedback').text('至少8個字元');
+        }
+        else {
+            $('#pwd').removeClass('is-invalid').addClass('is-valid');
+            $('#pwd~div').removeClass('invalid-feedback').addClass('valid-feedback').text('OK');
+        }
+    });
+</script>

@@ -1,0 +1,540 @@
+﻿body {
+    background: #fff;
+}
+
+
+#container {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    justify-content: space-evenly;
+    display: inline;
+}
+
+#Pcard1 {
+    width: 270px;
+    height: 400px;
+    margin: auto;
+    margin-top: 240px;
+    position: relative;
+    cursor: pointer;
+    perspective: 500px;
+    display: block;
+}
+
+.Pcard1 {
+    position: absolute;
+    border-radius: 15px;
+}
+
+#Pcard1 > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform .5s ease-in-out;
+    z-index: 5;
+}
+
+.cardcover {
+    background-image: url('../image/卡面1(小).jpg'); /*卡片背面圖案(小)*/
+ 
+    transform: rotateY(0deg);
+    border-radius: 15px;
+}
+
+.turncover {
+    transform: rotateY(-180deg);
+}
+
+.cardback {
+    background-color: #feedc5;
+    transform: rotateY(-180deg);
+    border-radius: 15px;
+    border-radius: 15px;
+}
+
+.turnback {
+    transform: rotateY(-360deg);
+}
+
+
+
+.none {
+    display: none;
+}
+
+.layout-root {
+    position: fixed;
+    background-image: url('../image/抽卡背景1.jpg'); /*抽卡背景*/
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+.layout-content {
+    line-height: 44px;
+    font-weight: 300;
+    font-size: 1em;
+    color: #000000;
+    text-indent: 10px;
+}
+
+    .layout-content .code {
+        line-height: 22px;
+        text-align: center;
+    }
+
+p {
+    display: block;
+    -webkit-margin-start: 0px;
+}
+
+a, button {
+    outline: none;
+}
+
+button {
+    border: none;
+    padding: 0.6em 1.2em;
+    background: #c0392b;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    display: block,inline;
+    position: relative;
+    margin: auto;
+    margin-left: 90px;
+    border-radius: 2px;
+    justify-content: space-evenly;
+}
+
+    button:hover, button:active, button:focus {
+        border: none;
+    }
+
+
+#Pcard1:hover {
+    height: 440px;
+    width: 297px;
+    box-shadow: 3px 3px 30px silver;
+}
+
+#cardcover1:hover {
+    background-image: url('../image/卡面1(大).jpg'); /*卡片背面圖案(大)*/
+    border-radius: 15px;
+}
+
+
+/* --------------------- 彈窗樣式 -------------------*/
+.dialog-face {
+    position: fixed;
+    background: #e0dfdf;
+    height: 300%;
+    width: 300%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    -webkit-animation-duration: 500ms;
+    -moz-animation-duration: 500ms;
+    -o-animation-duration: 500ms;
+    animation-duration: 500ms;
+}
+
+    .dialog-face.slipBottom[opacity="0"] {
+        display: none;
+    }
+
+    .dialog-face.slipUp {
+        opacity: 0.7;
+        -webkit-animation-name: dialogFaceSlipToUp;
+        -moz-animation-name: dialogFaceSlipToUp;
+        -o-animation-name: dialogFaceSlipToUp;
+        animation-name: dialogFaceSlipToUp;
+    }
+
+    .dialog-face.slipBottom {
+        opacity: 0;
+        visibility: hidden;
+        -webkit-animation-name: dialogFaceSlipToBottom;
+        -moz-animation-name: dialogFaceSlipToBottom;
+        -o-animation-name: dialogFaceSlipToBottom;
+        animation-name: dialogFaceSlipToBottom;
+    }
+
+.dialog-root {
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    -webkit-animation-duration: 500ms;
+    -moz-animation-duration: 500ms;
+    -o-animation-duration: 500ms;
+    animation-duration: 500ms;
+    -webkit-perspective: 1300px;
+    -moz-perspective: 1300px;
+    perspective: 1300px;
+}
+
+    .dialog-root.slipUp {
+        top: 50%;
+        opacity: 1;
+        -webkit-animation-name: dialogSlipToUp;
+        -moz-animation-name: dialogSlipToUp;
+        -o-animation-name: dialogSlipToUp;
+        animation-name: dialogSlipToUp;
+        -webkit-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .dialog-root.slipBottom {
+        top: 100%;
+        opacity: 0.3;
+        -webkit-animation-duration: 500ms;
+        -moz-animation-duration: 500ms;
+        -o-animation-duration: 500ms;
+        animation-duration: 500ms;
+        -webkit-animation-name: dialogSlipToBottom;
+        -moz-animation-name: dialogSlipToBottom;
+        -o-animation-name: dialogSlipToBottom;
+        animation-name: dialogSlipToBottom;
+        -webkit-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        -moz-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+    }
+
+.dialog-wrapper {
+    background: #feedc5;
+    width: 607px;
+    height: 900px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-animation-duration: 500ms;
+    -moz-animation-duration: 500ms;
+    -o-animation-duration: 500ms;
+    animation-duration: 500ms;
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+}
+
+    .dialog-wrapper.slipUp {
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: rotateX(0deg);
+        -ms-transform: rotateX(0deg);
+        -o-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-animation-name: contentSlipToUp;
+        -moz-animation-name: contentSlipToUp;
+        -o-animation-name: contentSlipToUp;
+        animation-name: contentSlipToUp;
+    }
+
+    .dialog-wrapper.slipBottom {
+        -webkit-transform: rotateY(90deg);
+        -moz-transform: rotateY(90deg);
+        -ms-transform: rotateY(90deg);
+        -o-transform: rotateY(90deg);
+        transform: rotateX(90deg);
+        -webkit-animation-name: contentSlipToBottom;
+        -moz-animation-name: contentSlipToBottom;
+        -o-animation-name: contentSlipToBottom;
+        animation-name: contentSlipToBottom;
+    }
+
+.dialog-header {
+    height: 450px;
+    background-image: url('../image/抽卡彈窗背景.jpg');
+    text-align: center;
+    position: relative;
+}
+
+
+.dialog-content {
+    font-weight: 300;
+    font-size: 2em;
+    color: #000000;
+    padding: 15px 40px 20px 40px;
+    margin: 0;
+}
+
+
+    .dialog-content p {
+        font-size: 0.5em;
+        margin: 0;
+        padding: 10px 0;
+    }
+
+.dialog-footer {
+    position: absolute;
+    margin: auto;
+}
+/* ---------------------動畫部分 -------------------*/
+
+@keyframes dialogFaceSlipToUp {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes dialogFaceSlipToBottom {
+    0% {
+        opacity: 0.7;
+        visibility: visible;
+    }
+
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+@keyframes dialogSlipToUp {
+    0% {
+        top: 100%;
+        opacity: 0.3;
+    }
+
+    100% {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes dialogSlipToBottom {
+    0% {
+        top: 50%;
+        opacity: 1;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0.3;
+        -webkit-transform: translate(-50%, 0);
+        -moz-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes contentSlipToUp {
+    0% {
+        -webkit-transform: rotateY(90deg);
+        -moz-transform: rotateY(90deg);
+        -ms-transform: rotateY(90deg);
+        -o-transform: rotateY(90deg);
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes contentSlipToBottom {
+    0% {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        transform: rotateX(0deg);
+    }
+
+    60% {
+        -webkit-transform: rotateY(60deg);
+        -moz-transform: rotateY(60deg);
+        -ms-transform: rotateY(60deg);
+        -o-transform: rotateY(60deg);
+        transform: rotateY(60deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(90deg);
+        -moz-transform: rotateY(90deg);
+        -ms-transform: rotateY(90deg);
+        -o-transform: rotateY(90deg);
+        transform: rotateY(90deg);
+    }
+}
+
+/*放卡片大頭貼的地方*/
+#picture {
+    width: 450px;
+    height: 450px;
+    margin: auto;
+    background-color: #808080;
+}
+
+#picture1 {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background-color: #808080;
+}
+
+
+/*小卡背面*/
+.backheader {
+    width: 100%;
+    height: 45%;
+    text-align: center;
+    position: relative;
+    background-image: url('/image/抽卡彈窗背景(小).jpg');
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.backcontent {
+    height: 60%;
+    font-size: 1pt;
+}
+
+#message {
+    position: absolute;
+    margin-left: 140px;
+    margin-top: 45px;
+    color: #000755;
+}
+
+#heart {
+    position: absolute;
+    margin-left: 390px;
+    margin-top: 45px;
+    color: #ff2c2c;
+}
+/*魔法陣*/
+/*#start {
+            width: 536px;
+            height: 538px;
+            position: relative;
+            border-radius: 50%;
+            top: 200px;
+            margin: auto;
+            background-image: url('image/魔法陣.jpg');
+            z-index: 10000;
+            box-shadow: 0px 0px 30px silver;
+        }
+
+            #start:hover {
+                width: 555px;
+                height: 555px;
+                background-image: url('image/魔法陣(大).jpg');
+                box-shadow: 0px 0px 60px silver;
+            }*/
+.container {
+    width: 100%;
+    height: 900px;
+}
+
+#row1 {
+    width: 100%;
+    height: 900px;
+}
+
+.row {
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    font-size: 0.8em;
+}
+
+#left {
+    height: 100%;
+}
+
+#right {
+    height: 100%;
+}
+
+#righthead {
+    width: 230px;
+    height: 140px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#rightcotent {
+    width: 90%;
+    height: 45%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 150px;
+}
+
+#rightbottom {
+    width: 90%;
+    height: 8%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+
+#account, #password {
+    width: 80%;
+    height: 40px;
+    background-color: #efefef;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#loginbutton {
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #0681ea;
+    color: #ffffff;
+}
+
+
+
+#line {
+    width: 80%;
+}
+
+#registered {
+    color: #006cc8;
+    font-weight: bold;
+}
+
+
+@media (min-width: 1px) and (max-width: 768px) {
+    #left {
+        display: none;
+    }
+}
+
+#logingif {
+    margin-top: 80px;
+}

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PathPlus.Models.Announcement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevokeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Editor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnouncementStatusCategory.StatusCategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RevokeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnouncementStatusCategory.StatusCategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AnnouncementID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AnnouncementID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AnnouncementID })
+        </td>
+    </tr>
+}
+
+</table>

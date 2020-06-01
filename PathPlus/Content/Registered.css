@@ -1,0 +1,99 @@
+﻿.container {
+    width: 100%;
+    height: 900px;
+}
+
+#row1 {
+    width: 100%;
+    height: 900px;
+}
+
+.row {
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    font-size: 0.8em;
+}
+
+
+#right {
+    width: 380px;
+    height: 100%;
+}
+
+#righthead {
+    width: 230px;
+    height: 120px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#rightcotent {
+    width: 90%;
+    height: 73%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#rightbottom {
+    width: 90%;
+    height: 8%;
+    border: solid 2px;
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+
+#mail, #psw, #account, #birthday, #gender, #name, #address {
+    width: 80%;
+    height: 40px;
+    background-color: #efefef;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#loginbutton {
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    background-color: #28bdff;
+    font-weight: bold;
+}
+
+#line {
+    width: 80%;
+}
+
+#login {
+    color: #006cc8;
+    font-weight: bold;
+}
+
+
+@media (min-width: 1px) and (max-width: 576px) {
+    #rightcotent {
+        border: none;
+    }
+}
+
+#slogan {
+    width: 250px;
+    height: 60px;
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #707070;
+    margin: auto
+}
+
+#note {
+    width: 240px;
+    height: 50px;
+    margin: auto;
+}

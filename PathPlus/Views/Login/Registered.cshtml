@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Registered";
+}
+
+<h2>Registered</h2>
+
+<div id="row1" class="row">
+    <div id="right" class="row justify-content-end">
+
+        <div id="rightcotent">
+            <div id="righthead" class="rounded mx-auto d-block">
+                <img src="~/image/登入頁用path.jpg" />
+            </div>
+            <div id="slogan" class="text-center">
+                註冊即可查看朋友的相片和影片。
+            </div>
+            <form action="@Url.Action("Registered")" method="post">
+                <div id="rightbody">
+                    <input class="rounded mx-auto d-block border-0" id="name" name="Name" type="text" placeholder="全名" value="" />
+                    <input class="rounded mx-auto d-block border-0" id="mail" name="Mail" type="text" placeholder="電子郵件" value="" />
+                    <div></div>
+                    <input class="rounded mx-auto d-block border-0" id="account" name="Account" type="text" placeholder="用戶名稱" value="" />
+                    <div></div>
+                    <input class="rounded mx-auto d-block border-0" id="psw" name="Password" type="Password" placeholder="密碼" value="" />
+                    <input class="rounded mx-auto d-block border-0" id="address" name="address" type="text" placeholder="地址" value="" />
+                    <select id="gender" name="gender" class="rounded mx-auto d-block border-0" value="">
+                        <option value="0">男</option>
+                        <option value="1">女</option>
+                        <option value="其他">其他</option>
+                    </select>
+                    <input id="loginbutton" type="submit" value="註冊" class="rounded mx-auto d-block btn-primary border-0" />
+                    @*<button id="loginbutton" type="submit" class="rounded mx-auto d-block btn-primary border-0" disabled>註冊</button>*@
+                    <hr id="line" />
+                    <div id="note" class="text-center">註冊即表示你同意我們的(連結服務條款) 、 (連結資料政策)和 (連結Cookie 政策) 。</div>
+                </div>
+            </form>
+        </div>
+        <div id="rightbottom" class="row justify-content-center align-items-sm-center">
+            <span>已經有帳號嗎?</span><span id="login">@Html.ActionLink("登入", "Index", "Login")</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-sm-6 col-md-3 col-lg-2 col-xl-2">關於</div>
+    <div class="col-xs-3 col-sm-6 col-md-3 col-lg-2 col-xl-2">使用說明</div>
+    <div class="col-xs-3 col-sm-6 col-md-3 col-lg-2 col-xl-2">隱私</div>
+    <div id="bottomleft" class="col-xs-3 col-sm-6 col-md-3  col-lg-2 col-xl-2"> 使用條款...</div>
+    <div id="bottomright" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 row justify-content-end">輸入2020 path plus...自動引入</div>
+</div>
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+
+<script>
+
+    $('#account').keyup(function () {
+        var val = $('#account').val()
+        var url = 'http://localhost:56408/Login/RegistCheck?account=' + val;
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function (data) {
+                $('#account').addClass('is-invalid');
+                $('#account~div').addClass('invalid-feedback').text(data);
+            },
+            error: function () { alert('連接失敗')}
+            });
+        //if ($('#pwd').val().length < 8) {
+        //    $('#pwd').addClass('is-invalid');
+        //    $('#pwd~div').addClass('invalid-feedback').text('至少8個字元');
+        //}
+        //else {
+        //    $('#pwd').removeClass('is-invalid').addClass('is-valid');
+        //    $('#pwd~div').removeClass('invalid-feedback').addClass('valid-feedback').text('OK');
+        //}
+    });
+</script>

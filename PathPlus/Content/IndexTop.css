@@ -1,0 +1,186 @@
+﻿/*-----------------↓↓↓↓↓↓↓↓以下navbarcss-↓↓↓↓↓↓↓↓↓------------------*/
+#container {
+    width: 100%
+}
+
+#bar {
+    width: 100%;
+}
+
+#navbar2 {
+    width: 100%;
+}
+
+
+#searchbar {
+    width: 30%;
+    position: absolute;
+    margin-left: 30%;
+}
+
+#searchbar1 {
+    width: 80%;
+}
+
+@media (min-width: 992px) and (max-width: 1197px) {
+    #searchbar1 {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 991px) {
+    #searchbar {
+        display: none;
+    }
+}
+
+#navbarbrand {
+    background-color: #ffffff;
+}
+
+#personalphoto1 {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+
+
+@media (min-width: 1px) and (max-width: 768px) {
+    #contentright {
+        display: none;
+    }
+}
+
+#Notifications1 {
+    position: absolute;
+    z-index: 100;
+    margin-left: -12px;
+    margin-top: -5px;
+}
+
+#Notifications2 {
+    position: absolute;
+    z-index: 100;
+    margin-left: -12px;
+    margin-top: -8px;
+}
+
+#Notifications3 {
+    position: absolute;
+    z-index: 100;
+    margin-left: -12px;
+    margin-top: -8px;
+}
+
+/*-----------------↑↑↑↑↑↑↑以上navbarcss↑↑↑↑↑↑↑----------------*/
+
+#contentrightup {
+    height: 150px;
+    margin-top: 20px;
+}
+
+
+
+#post {
+    cursor: pointer;
+}
+
+
+
+#like {
+    display: block;
+    cursor: pointer;
+    z-index: 50;
+}
+
+#like1 {
+    display: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+#Text1 {
+    height: 150px;
+}
+
+.width {
+    width: 30px;
+}
+
+
+.width1 {
+    width: 40px;
+}
+
+.personalphoto {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.publicphoto {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+
+
+.marginBottom-0 {
+    margin-bottom: 0;
+}
+
+
+     /*刪除dropdown箭頭*/
+    .caret-off::before {
+        display: none;
+    }
+
+    .caret-off::after {
+        display: none;
+    }
+
+#personalphoto2 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+#contentright {
+    width: 285px;
+    height: 800px;
+    position: absolute;
+    margin-left: 855px;
+}
+
+#contentrightup {
+    height: 150px;
+    margin-top: 20px;
+}
+
+#publicphoto1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu a::after {
+        transform: rotate(-90deg);
+        position: absolute;
+        right: 6px;
+        top: .8em;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-left: .1rem;
+        margin-right: .1rem;
+    }

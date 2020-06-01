@@ -1,0 +1,66 @@
+﻿@model PathPlus.Models.Announcement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Announcement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RevokeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RevokeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnouncementStatusCategory.StatusCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnouncementStatusCategory.StatusCategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AnnouncementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
