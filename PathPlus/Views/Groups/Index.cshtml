@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PathPlus.Models.Group>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@if (Session["id"] != null)
+{
+    <p>
+        @Html.ActionLink("新增社團", "Create", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("登出系統", "Logout", "Login", null, new { @class = "btn btn-danger" })
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("登入系統", "Index", "Login", null, new { @class = "btn btn-danger" })
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupIntroduction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupPrivateCategory.PrivateCategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupIntroduction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupInformation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupPrivateCategory.PrivateCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.MemberName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GroupID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GroupID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GroupID })
+            </td>
+        </tr>
+    }
+
+</table>
