@@ -143,6 +143,7 @@
     <Content Include="image\抽卡彈窗背景.jpg" />
     <Content Include="image\抽卡背景1.jpg" />
     <Content Include="image\抽卡頁面圖%28about%29.JPG" />
+    <Content Include="image\新增相片.jpg" />
     <Content Include="image\查詢鍵%28黑白%29.jpg" />
     <Content Include="image\極限運動%28about%29.jpg" />
     <Content Include="image\留言鍵%28黑白%29.jpg" />
@@ -189,6 +190,7 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyJS.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />

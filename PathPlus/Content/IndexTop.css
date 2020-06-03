@@ -13,9 +13,11 @@
 
 
 #searchbar {
-    width: 30%;
+    width: 20%;
     position: absolute;
     margin-left: 30%;
+    margin-top:-25px;
+    margin-left:20%;
 }
 
 #searchbar1 {
@@ -75,18 +77,32 @@
 
 /*-----------------↑↑↑↑↑↑↑以上navbarcss↑↑↑↑↑↑↑----------------*/
 
+/*----------控制內文與navbar距離--------------*/
+#HomeContainer{
+    margin-top:8%;
+}
+
+@media (min-width: 991px) and (max-width: 1450px) {
+    #HomeContainer {
+        margin-top: 12%;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 768px) {
+    #HomeContainer {
+        margin-top:30%;
+    }
+}
+/*----------控制內文與navbar距離--------------*/
+
 #contentrightup {
     height: 150px;
     margin-top: 20px;
 }
 
-
-
 #post {
     cursor: pointer;
 }
-
-
 
 #like {
     display: block;
@@ -102,6 +118,7 @@
 
 
 #Text1 {
+    width:80%;
     height: 150px;
 }
 
@@ -167,6 +184,7 @@
     border-radius: 50%;
 }
 
+/*-------------子菜單---------------*/
 .dropdown-submenu {
     position: relative;
 }
@@ -183,4 +201,29 @@
         left: 100%;
         margin-left: .1rem;
         margin-right: .1rem;
+      
     }
+/*-------------子菜單---------------*/
+
+
+
+
+#cross1, #cross2, #cross3, #cross4, #cross5 {
+    display: none;
+}
+
+
+#PhotoFile1, #PhotoFile2, #PhotoFile3, #PhotoFile4, #PhotoFile5 {
+    display: none;
+}
+
+#prephoto1, #prephoto2, #prephoto3, #prephoto4, #prephoto5 {
+    display: none;
+}
+
+#uploadphoto {
+    width:480px;
+    max-height: 190px;
+    overflow-x: scroll;
+}
+
