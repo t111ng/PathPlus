@@ -35,6 +35,9 @@ else
             @*@Html.DisplayNameFor(model => model.PostContent)*@
         </th>
         <th>
+            照片
+        </th>
+        <th>
             貼文日期
             @*@Html.DisplayNameFor(model => model.PostDate)*@
         </th>
@@ -57,45 +60,49 @@ else
         <th></th>
     </tr>
 
-@foreach (var item in data)
-{
-    <tr>
-        <td>
-            @item.GetType().GetProperty("PostContent").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.PostContent)*@
-        </td>
-        <td>
-            @item.GetType().GetProperty("PostDate").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.PostDate)*@
-        </td>
-        <td>
-            @item.GetType().GetProperty("EditDate").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.EditDate)*@
-        </td>
-        <td>
-            @item.GetType().GetProperty("MemberName").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.Member.MemberName)*@
-        </td>
-        <td>
-            @item.GetType().GetProperty("StatusCategoryName").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.PostStatusCategory.StatusCategoryName)*@
-        </td>
-        <td>
-            @*@item.GetType().GetProperty("CN").GetValue(item)*@
-            @item.GetType().GetProperty("CategoryName").GetValue(item)
-            @*@Html.DisplayFor(modelItem => item.PostCategory.CategoryName)*@
-        </td>
+    @foreach (var item in data)
+    {
+        <tr>
+            <td>
+                @item.GetType().GetProperty("PostContent").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostContent)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("Photo").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostContent)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("PostDate").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostDate)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("EditDate").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.EditDate)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("MemberName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.Member.MemberName)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("StatusCategoryName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostStatusCategory.StatusCategoryName)*@
+            </td>
+            <td>
+                @*@item.GetType().GetProperty("CN").GetValue(item)*@
+                @item.GetType().GetProperty("CategoryName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostCategory.CategoryName)*@
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
-            @Html.ActionLink("Details", "Details", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.GetType().GetProperty("PostID").GetValue(item) })
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GetType().GetProperty("PostID").GetValue(item) })
 
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })*@
-        </td>
-    </tr>
-}
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })*@
+            </td>
+        </tr>
+    }
 
 </table>

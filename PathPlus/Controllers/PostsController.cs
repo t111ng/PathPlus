@@ -8,15 +8,39 @@ using System.Web;
 using System.Web.Mvc;
 using PathPlus.Models;
 
+using System.Configuration;
+using System.Data.SqlClient;
+
 namespace PathPlus.Controllers
 {
     public class PostsController : Controller
     {
         private PathPlusEntities db = new PathPlusEntities();
 
+
+
+
+        //SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        //SqlCommand Cmd = new SqlCommand();
+        //SqlDataAdapter adp = new SqlDataAdapter();
+
+        //private DataTable querySql(string sql)
+        //{
+        //    Cmd.CommandText = sql;
+        //    Cmd.Connection = Conn;
+        //    adp.SelectCommand = Cmd;
+        //    DataSet ds = new DataSet();
+        //    adp.Fill(ds);
+        //    return ds.Tables[0];
+        //}
+
+
+
+
         // GET: Posts
         public ActionResult Index()
         {
+            //string ID = Session["id"].ToString();
             //var post = db.Post.Where(p => p.MemberID == @ID).Include(p => p.Member).Include(p => p.PostStatusCategory).Include(p => p.PostCategory);
 
 
@@ -27,21 +51,22 @@ namespace PathPlus.Controllers
 
             var post1 = (from p in db.Post
                          where p.MemberID == ID
+                         join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
 
 
             string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
             var post2 = (from p in db.Post
-                         where rid.Contains(p.MemberID)
+                         where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
+                         join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         //select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, CN = p.CategoryID == null ? null : c.CategoryName, s.StatusCategoryName });
-                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
             var post = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
             ViewBag.post = post.ToList();
