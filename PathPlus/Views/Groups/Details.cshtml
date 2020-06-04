@@ -1,0 +1,74 @@
+﻿@model PathPlus.Models.Group
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupIntroduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupIntroduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupInformation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupInformation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupPrivateCategory.PrivateCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupPrivateCategory.PrivateCategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.MemberName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.MemberName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GroupID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

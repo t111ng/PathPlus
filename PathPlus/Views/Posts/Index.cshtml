@@ -1,0 +1,108 @@
+﻿@*@model IEnumerable<PathPlus.Models.Post>*@
+
+@{
+    var data = ViewBag.post;
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+@if (Session["id"] != null)
+{
+    <p>
+        @Html.ActionLink("新增貼文", "Create", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("登出系統", "Logout", "Login", null, new { @class = "btn btn-danger" })
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("登入系統", "Index", "Login", null, new { @class = "btn btn-danger" })
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            貼文內容
+            @*@Html.DisplayNameFor(model => model.PostContent)*@
+        </th>
+        <th>
+            照片
+        </th>
+        <th>
+            貼文日期
+            @*@Html.DisplayNameFor(model => model.PostDate)*@
+        </th>
+        <th>
+            修改時間
+            @*@Html.DisplayNameFor(model => model.EditDate)*@
+        </th>
+        <th>
+            會員名稱
+            @*@Html.DisplayNameFor(model => model.Member.MemberName)*@
+        </th>
+        <th>
+            貼文狀態
+            @*@Html.DisplayNameFor(model => model.PostStatusCategory.StatusCategoryName)*@
+        </th>
+        <th>
+            貼文類別
+            @*@Html.DisplayNameFor(model => model.PostCategory.CategoryName)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in data)
+    {
+        <tr>
+            <td>
+                @item.GetType().GetProperty("PostContent").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostContent)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("Photo").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostContent)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("PostDate").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostDate)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("EditDate").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.EditDate)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("MemberName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.Member.MemberName)*@
+            </td>
+            <td>
+                @item.GetType().GetProperty("StatusCategoryName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostStatusCategory.StatusCategoryName)*@
+            </td>
+            <td>
+                @*@item.GetType().GetProperty("CN").GetValue(item)*@
+                @item.GetType().GetProperty("CategoryName").GetValue(item)
+                @*@Html.DisplayFor(modelItem => item.PostCategory.CategoryName)*@
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GetType().GetProperty("PostID").GetValue(item) }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GetType().GetProperty("PostID").GetValue(item) })
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })*@
+            </td>
+        </tr>
+    }
+
+</table>
