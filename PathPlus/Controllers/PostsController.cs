@@ -47,7 +47,7 @@ namespace PathPlus.Controllers
 
             //var post = (from p in db.Post select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, p.MemberID, p.CategoryID, p.StatusCategoryID });
 
-            string ID = Session["id"].ToString();
+            string ID = Session["account"].ToString();
 
             var post1 = (from p in db.Post
                          where p.MemberID == ID

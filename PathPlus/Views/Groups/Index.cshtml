@@ -11,7 +11,7 @@
 </p>
 
 
-@if (Session["id"] != null)
+@if (Session["account"] != null)
 {
     <p>
         @Html.ActionLink("新增社團", "Create", null, new { @class = "btn btn-primary" })

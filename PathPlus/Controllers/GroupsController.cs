@@ -67,7 +67,7 @@ namespace PathPlus.Controllers
             group.GroupID = id;
 
 
-            group.MemberID = Session["id"].ToString();
+            group.MemberID = Session["account"].ToString();
 
             Group grp = db.Group.Where(m => m.GroupName == group.GroupName).FirstOrDefault();
             //var grp = from a in db.Group where a.GroupName == group.GroupName select a;
@@ -75,7 +75,7 @@ namespace PathPlus.Controllers
             if (grp != null) return RedirectToAction("DupGrp");
 
             GroupManagement groupManagement = new GroupManagement();
-            groupManagement.MemberID = Session["id"].ToString();
+            groupManagement.MemberID = Session["accuont"].ToString();
             groupManagement.GroupID = id;
             groupManagement.ManageDate = DateTime.Now;
             groupManagement.AuthorityCategoryID = "0";
@@ -96,7 +96,7 @@ namespace PathPlus.Controllers
             post.PostContent = "我新增了一個群組：" + group.GroupName + "。歡迎大家加入～";
             post.PostDate = DateTime.Now;
             post.EditDate = DateTime.Now;
-            post.MemberID = Session["id"].ToString();
+            post.MemberID = Session["account"].ToString();
             //post.CategoryID = "0";
             post.StatusCategoryID = group.PrivateCategoryID;
 
