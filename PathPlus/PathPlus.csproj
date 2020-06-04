@@ -293,6 +293,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerLoginController.cs" />
+    <Compile Include="Controllers\PersonalHomePageController.cs" />
     <Compile Include="Controllers\SelfFeature.cs" />
     <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Controllers\VMContractController.cs" />
@@ -392,6 +393,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PathPlus.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonalViewModel.cs" />
     <Compile Include="Models\Post.cs">
       <DependentUpon>PathPlus.tt</DependentUpon>
     </Compile>
@@ -455,6 +457,9 @@
     <Content Include="Views\Advertisers\Details.cshtml" />
     <Content Include="Views\Advertisers\Edit.cshtml" />
     <Content Include="Views\Advertisers\Index.cshtml" />
+    <Content Include="Views\PersonalHomePage\Index.cshtml" />
+    <Content Include="Views\PersonalHomePage\Editpersonal.cshtml" />
+    <Content Include="Views\PersonalHomePage\viewpost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -464,6 +469,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Photo\" />
+    <Folder Include="Selfphoto\" />
     <Folder Include="Views\Contract\" />
   </ItemGroup>
   <ItemGroup>

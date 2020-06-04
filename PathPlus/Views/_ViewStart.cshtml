@@ -14,6 +14,10 @@
             {
                 Layout = "~/Views/Shared/_IndexLayout.cshtml";
                 break;
+            }else if(ControllerName.ToUpper() == "PERSONALHOMEPAGE")
+            {
+                Layout = "~/Views/Shared/_IndexLayout.cshtml";
+                break;
             }
             Layout = "~/Views/Shared/_Layout.cshtml";
             break;
@@ -32,6 +36,6 @@
             Layout = "~/Views/Shared/_ManagerLayout.cshtml";
             break;
     }
-    
-    
+
+
 }

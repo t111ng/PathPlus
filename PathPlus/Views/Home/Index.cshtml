@@ -177,11 +177,11 @@
         <!---------------↓↓↓↓↓↓↓主頁面右上側↓↓↓↓↓↓↓↓--------------------->
         <div id="contentrightup" class="row form-inline d-flex">
             <div id="" class="p-2">
-                <img class="img-thumbnail personalphoto" src="image/極限運動(about).jpg" />  <!--帶入照片-->
+                <a href="@Url.Action("Index","PersonalHomePage")"><img class="img-thumbnail personalphoto" src="image/極限運動(about).jpg" /></a>   <!--帶入照片-->
             </div>
             <div class="p-2">
                 <div class="h6">ching jen chen</div>       <!--帶入使用者姓名-->
-                <div class="h6 text-secondary">refref885645</div>   <!--帶入使用者帳號-->
+                <a href="@Url.Action("Index","PersonalHomePage")"> <div class="h6 text-secondary">refref885645</div></a>   <!--帶入使用者帳號-->
             </div>
             <div class="p-2 ">
                 <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#staticBackdrop">
