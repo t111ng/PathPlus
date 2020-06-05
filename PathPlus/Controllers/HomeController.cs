@@ -26,25 +26,37 @@ namespace PathPlus.Controllers
 
             var post1 = (from p in db.Post
                          where p.MemberID == ID
-                         join pp in db.PostPhoto on p.PostID equals pp.PostID
+                         //join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
 
 
             string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
             var post2 = (from p in db.Post
                          where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
-                         join pp in db.PostPhoto on p.PostID equals pp.PostID
+                         //join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
-
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+            //var post3 = from p in db.Post
+            //            where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
+            //            select new { p.PostID };
+            string[] rid2 = db.Post.Where(p => p.StatusCategoryID != "2").Where(p => rid.Contains(p.MemberID)).Select(p => p.PostID).ToList().ToArray();
+            string[] rid3 = db.Post.Where(p => p.StatusCategoryID != "2").Where(p => p.MemberID == ID).Select(p => p.PostID).ToList().ToArray();
+            var photo1 = from po in db.PostPhoto
+                        where rid2.Contains(po.PostID)
+                        select new { po.PostID,po.Photo};
+            var photo2 = from po in db.PostPhoto
+                         where rid3.Contains(po.PostID)
+                         select new { po.PostID, po.Photo };
             var post = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
+            var photo3 = photo2.Union(photo1).OrderByDescending(x => x.PostID).ToList();
             ViewBag.post = post.ToList();
+            ViewBag.photo = photo3.ToList();
             //--------取貼文資料 ---------
 
 

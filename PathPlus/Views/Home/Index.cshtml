@@ -1,6 +1,7 @@
 ﻿@{
 
     var data = ViewBag.post;
+    var data2 = ViewBag.photo;
 
 }
 
@@ -48,7 +49,7 @@
                                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                         </ol>
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
+                                            @*<div class="carousel-item active">
                                                 <img src="image/抽卡背景1.jpg" class="d-block w-100" alt="...">
                                             </div>
                                             <div class="carousel-item">
@@ -56,7 +57,15 @@
                                             </div>
                                             <div class="carousel-item">
                                                 <img src="image/極限運動(about).jpg" class="d-block w-100" alt="...">
-                                            </div>
+                                            </div>*@
+                                            @foreach(var item2 in data2)
+                                            {
+                                                @*@item2.GetType().GetProperty("PostID").GetValue(item2)*@
+                                                if (@item.GetType().GetProperty("PostID").GetValue(item) == @item2.GetType().GetProperty("PostID").GetValue(item2))
+                                                {
+                                                    @item2.GetType().GetProperty("Photo").GetValue(item2)
+                                                }
+                                            }
 
                                         </div>
                                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
