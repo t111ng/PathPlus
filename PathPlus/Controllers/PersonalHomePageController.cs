@@ -26,13 +26,15 @@ namespace PathPlus.Controllers
                 member = db.Member.Where(m => m.MemberID == MID).ToList(),
                 post = db.Post.Where(p => p.MemberID == MID).OrderByDescending(m => m.PostDate).ToList(),
 
-                postPhoto = db.PostPhoto.Where(p => selfpost.Contains(p.PostID)).ToList()
+                postPhoto = db.PostPhoto.Where(p => selfpost.Contains(p.PostID)).OrderByDescending(p=>p.PostID).ToList()
 
             };
             ViewBag.pp = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().PersonalProfile;
             ViewBag.mn = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().MemberName;
             ViewBag.em = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Mail;
             ViewBag.ph = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Photo;
+
+          
             return View(vm);
         }
 

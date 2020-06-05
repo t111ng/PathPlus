@@ -77,35 +77,45 @@
     @*<div class="rounded shadow-none text-center text-white bg-dark " style="font-size:15px;height:20px"><strong>My Post</strong></div>
         <hr />*@
 <div class="row">
-    
-    @foreach (var m in Model.postPhoto)
-    {
-        
-            <div class="col-sm-6 col-xs-12 col-md-4 p-2 " style="width:250px;height:250px" >
-                <a href="@Url.Action("viewpost")"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
-            </div>
-        
-    }
 
-    @* @foreach (var m in Model.post)
+
+    @*@{var postid = ""; }
+        @foreach (var m in Model.postPhoto)
         {
-            foreach (var a in Model.postPhoto)
+
+            if (postid != m.PostID)
             {
-                if (m.PostID == a.PostID)
-                {
-                    for (var i = 0; i < 1; i++)
-                    {
-                        <div class="col-sm-6 col-xs-12 col-md-4 p-2">
-                            <a href="#"><img src="~/Photo/@a.Photo.First()" class="rounded img-thumbnail" /></a>
-                        </div>
-                    }
-                }
+                <div class="col-sm-6 col-xs-12 col-md-4 p-2 " style="width:250px;height:250px">
+                    <a href="@Url.Action("viewpost")"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
+                </div>
+                postid = m.PostID;
+            }
+            else
+            {
+                break;
             }
 
-
-
-
         }*@
+
+
+      @{var postid = ""; }
+    @foreach (var m in Model.postPhoto)
+    {
+        if(postid != m.PostID) { 
+
+        <div class="col-sm-6 col-xs-12 col-md-4 p-2 " style="width:250px;height:250px">
+            <a href="@Url.Action("viewpost")"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
+        </div>
+            postid = m.PostID;
+        }
+        else
+        {
+           
+        }
+
+
+
+    }
 
 
 
