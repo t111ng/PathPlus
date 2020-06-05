@@ -151,6 +151,7 @@
     <Content Include="image\登入頁用path.jpg" />
     <Content Include="image\發文鍵.jpg" />
     <Content Include="image\註冊頁2-生日.jpg" />
+    <Content Include="image\點點點.jpg" />
     <Content Include="Models\PathPlus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PathPlus.Context.cs</LastGenOutput>
@@ -161,6 +162,17 @@
       <DependentUpon>PathPlus.edmx</DependentUpon>
       <LastGenOutput>PathPlus.cs</LastGenOutput>
     </Content>
+    <Content Include="Photo\2020651140281.jpg" />
+    <Content Include="Photo\2020651140282.jpg" />
+    <Content Include="Photo\2020651141091.jpg" />
+    <Content Include="Photo\2020651141511.jpg" />
+    <Content Include="Photo\2020651141512.jpg" />
+    <Content Include="Photo\2020651142571.jpg" />
+    <Content Include="Photo\2020651142572.jpg" />
+    <Content Include="Photo\2020651142573.jpg" />
+    <Content Include="Photo\2020651144321.jpg" />
+    <Content Include="Photo\2020651144322.jpg" />
+    <Content Include="Photo\2020651146361.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
