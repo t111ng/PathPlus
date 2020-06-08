@@ -3,8 +3,6 @@
     ViewBag.Title = "Registered";
 }
 
-<h2>Registered</h2>
-
 <div id="row1" class="row">
     <div id="right" class="row justify-content-end">
 
@@ -56,13 +54,13 @@
 
     $('#account').keyup(function () {
         var val = $('#account').val()
-        var url = 'http://localhost:59556/Login/RegistCheck?account=' + val;
+        var url = 'http://localhost:59556/Login/accCheck?AID=' + val;
         $.ajax({
             type: 'get',
             url: url,
             success: function (data) {
                 $('#account').addClass('is-invalid');
-                $('#account~div').addClass('invalid-feedback').text(data);
+                $('#account+div').addClass('invalid-feedback').text(data);
             },
             error: function () { alert('連接失敗')}
             });

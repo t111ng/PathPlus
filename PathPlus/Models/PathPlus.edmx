@@ -303,7 +303,7 @@
           <Property Name="PostID" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="PostContent" Type="nvarchar(max)" />
           <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EditDate" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="MemberID" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="CategoryID" Type="char" MaxLength="1" />
           <Property Name="StatusCategoryID" Type="char" MaxLength="1" Nullable="false" />
@@ -1433,7 +1433,7 @@
           <Property Name="PostID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PostContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="None" />
           <Property Name="MemberID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="CategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="StatusCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />

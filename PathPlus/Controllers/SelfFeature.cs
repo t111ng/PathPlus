@@ -14,100 +14,108 @@ namespace PathPlus.Controllers
         {
 
         }
-        public string GetPostID()
+        
+        public string GetID(string tableName)
         {
+            //最終結果回傳的字串ID
             string strval = "";
-            var result = dbSF.Post.OrderByDescending(m => m.PostID).FirstOrDefault();
-            if(result == null)
-            {
-                strval = "P02000000000001";
-            }
-            else
-            {
-                string substr = result.PostID.Substring(2, 13);
-                long intVal = (Convert.ToInt64(substr)) + 1;
-                strval = "P0" + intVal.ToString();
-            }
-            
-            return strval;
-        }
-
-        public string GetID(string table)
-        {
-            string strval = "";
-            //string idVal = "";
-            string word = "";
+            //用作儲存切割後的字串ID
             string substr = "";
-            switch (table)
+
+            switch (tableName)
             {
                 case "Member":
+                    //找最後一筆資料
                     var Member = dbSF.Member.OrderByDescending(m => m.MemberID).FirstOrDefault();
-                    substr = Member.MemberID.Substring(2, 13);
-                    word = "M0";
+                    //判斷該資料表是否有資料，有就從ID第5碼切割，沒有就是預設值0
+                    //(不拿出去判斷原因為如果是Null還使用Null.ID，會出現未將物件參考設定為物件的執行個體)
+                    substr = (Member == null) ? "0" :Member.MemberID.Substring(4);
+                    //前四碼ID製作
+                    strval = "M" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Post":
                     var Post = dbSF.Post.OrderByDescending(m => m.PostID).FirstOrDefault();
-                    substr = Post.PostID.Substring(2, 13);
-                    word = "P0";
+                    substr = (Post == null) ? "0" : Post.PostID.Substring(4);
+                    strval = "P" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Card":
                     var Card = dbSF.Card.OrderByDescending(m => m.CardID).FirstOrDefault();
-                    substr = Card.CardID.Substring(2, 13);
-                    word = "C0";
+                    substr = (Card == null) ? "0" : Card.CardID.Substring(4);
+                    strval = "C" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Group":
                     var Group = dbSF.Group.OrderByDescending(m => m.GroupID).FirstOrDefault();
-                    substr = Group.GroupID.Substring(2, 13);
-                    word = "G0";
+                    substr = (Group == null) ? "0" : Group.GroupID.Substring(4);
+                    strval = "G" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "GroupPost":
                     var GroupPost = dbSF.GroupPost.OrderByDescending(m => m.GroupPostID).FirstOrDefault();
-                    substr = GroupPost.GroupPostID.Substring(2, 13);
-                    word = "R0";
+                    substr = (GroupPost == null) ? "0" : GroupPost.GroupPostID.Substring(4);
+                    strval = "R" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Advertisers":
                     var Advertisers = dbSF.Advertisers.OrderByDescending(m => m.CompanyID).FirstOrDefault();
-                    substr = Advertisers.CompanyID.Substring(2, 13);
-                    word = "V0";
+                    substr = (Advertisers == null) ? "0" : Advertisers.CompanyID.Substring(4);
+                    strval = "V" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Advertisement":
                     var Advertisement = dbSF.Advertisement.OrderByDescending(m => m.AdvertisementID).FirstOrDefault();
-                    substr = Advertisement.AdvertisementID.Substring(2, 13);
-                    word = "D0";
+                    substr = (Advertisement == null) ? "0" : Advertisement.AdvertisementID.Substring(4);
+                    strval = "D" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Announcement":
                     var Announcement = dbSF.Announcement.OrderByDescending(m => m.AnnouncementID).FirstOrDefault();
-                    substr = Announcement.AnnouncementID.Substring(2, 13);
-                    word = "N0";
+                    substr = (Announcement == null) ? "0" : Announcement.AnnouncementID.Substring(4);
+                    strval = "N" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Term":
                     var Term = dbSF.Term.OrderByDescending(m => m.TermID).FirstOrDefault();
-                    substr = Term.TermID.Substring(2, 13);
-                    word = "T0";
+                    substr = (Term == null) ? "0" : Term.TermID.Substring(4);
+                    strval = "T" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Administrator":
                     var Administrator = dbSF.Administrator.OrderByDescending(m => m.AdministratorID).FirstOrDefault();
-                    substr = Administrator.AdministratorID.Substring(2, 13);
-                    word = "A0";
+                    substr = (Administrator == null) ? "0" : Administrator.AdministratorID.Substring(4);
+                    strval = "A" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
                 case "Record":
                     var Record = dbSF.Record.OrderByDescending(m => m.QuestionID).FirstOrDefault();
-                    substr = Record.QuestionID.Substring(2, 13);
-                    word = "Q0";
+                    substr = (Record == null) ? "0" : Record.QuestionID.Substring(4);
+                    strval = "Q" + DateTime.Now.Year.ToString().Substring(1, 3);
                     break;
             }
-
-            if (table == null)
+            //將字串轉成數字+1,再轉回字串
+            substr = ((Convert.ToInt64(substr)) + 1).ToString();
+            //假設ID為M02000000000001,切割字串存下來一開始為00000000001,轉成數字+1過程中再轉回字串會變成2
+            //所以要判斷目前切割字串中個數離11個還有多少
+            //把缺少的填到最終回傳字串
+            for (int i = 0; i < (11 - substr.Length); i++)
             {
-                strval = word + "2000000000001";
+                strval += 0;
             }
-            else
-            {
-                long intVal = (Convert.ToInt64(substr)) + 1;
-                strval = word + intVal.ToString();
-            }
+            //填完之後會跟最新ID結合
+            strval += substr;
 
             return strval;
         }
     }
 }
+
+//確認值的函式
+//public void checkFun()
+//{
+//    SelfFeature checkFun = new SelfFeature();
+
+//    Response.Write(checkFun.GetID("Member") + "<hr/>");
+//    Response.Write(checkFun.GetID("Post") + "<hr/>");
+//    Response.Write(checkFun.GetID("Card") + "<hr/>");
+//    Response.Write(checkFun.GetID("Group") + "<hr/>");
+//    Response.Write(checkFun.GetID("GroupPost") + "<hr/>");
+//    Response.Write(checkFun.GetID("Advertisers") + "<hr/>");
+//    Response.Write(checkFun.GetID("Advertisement") + "<hr/>");
+//    Response.Write(checkFun.GetID("Announcement") + "<hr/>");
+//    Response.Write(checkFun.GetID("Term") + "<hr/>");
+//    Response.Write(checkFun.GetID("Administrator") + "<hr/>");
+//    Response.Write(checkFun.GetID("Record") + "<hr/>");
+
+//}
