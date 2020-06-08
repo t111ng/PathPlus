@@ -132,20 +132,30 @@ namespace PathPlus.Controllers
         }
         public void Draw()
         {
-            //抓取所有可參與抽卡者的SQL
-            string sql = "select MemberID from [card] where CardStatusID=0";
 
             //SqlCommand cmd = new SqlCommand(sql, Conn);
             //SqlDataReader rd;
             //Conn.Open();
             //rd = cmd.ExecuteReader();
 
+            //存放可抽卡者MeberID
+            string sqlCount = "select Count(*) as [count] from [Card]";
+            var joinSqlCount = execCmdReader(sqlCount);
+            int joinSqlCounts = 0;
+            while (joinSqlCount.Read())
+            {
+                joinSqlCounts = int.Parse(joinSqlCount["count"].ToString());
+            }
+            
+            string[] joinDraw = new string[joinSqlCounts];
+            //計數器
+            CmdClose();
+            //抓取所有可參與抽卡者的SQL
+            string sql = "select MemberID from [Card] where CardStatusID=0";
+
             //執行抓取動作
             var rd = execCmdReader(sql);
 
-            //存放可抽卡者MeberID
-            string[] joinDraw = new string[4];
-            //計數器
             int joinCount = 0;
             while (rd.Read())
             {
@@ -207,11 +217,27 @@ namespace PathPlus.Controllers
                     {
                         //將配對到一組的人從同索引值裡分開
                         words = completePair[i].Split(',');
+                        string CID1="", CID2="";
 
+                        string sqlCID = "select CardID from [Card] where MemberID='" + words[0] + "'";
+                        var rdCID1 = execCmdReader(sqlCID);
+                        while (rdCID1.Read())
+                        {
+                            CID1 = rdCID1["CardID"].ToString();
+                        }
+                        CmdClose();
+
+                        string sqlCID2 = "select CardID from [Card] where MemberID='" + words[1] + "'";
+                        var rdCID2 = execCmdReader(sqlCID2);
+                        while (rdCID2.Read())
+                        {
+                            CID2 = rdCID2["CardID"].ToString();
+                        }
+                        CmdClose();
                         //產生一個配對到的資料行
                         dr = ds.Tables[0].NewRow();
                         dr[0] = words[0];
-                        dr[1] = "C02000000000002";
+                        dr[1] = CID1;
                         dr[2] = DateTime.Now.ToString("D");
                         dr[3] = words[1];
                         dr[4] = "2";
@@ -220,7 +246,7 @@ namespace PathPlus.Controllers
 
                         dr = ds.Tables[0].NewRow();
                         dr[0] = words[1];
-                        dr[1] = "C02000000000002";
+                        dr[1] = CID2;
                         dr[2] = DateTime.Now.ToString("D");
                         dr[3] = words[0];
                         dr[4] = "2";
@@ -236,8 +262,17 @@ namespace PathPlus.Controllers
                     //建造一個自動判斷增刪改的物件
                     SqlCommandBuilder obj = new SqlCommandBuilder(adp);
                     //執行動作
-
-                    adp.Update(ds);
+                    try
+                    {
+                        adp.Update(ds);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                     
+                    
+                    
                     //跳出迴圈
                     flagLoop = false;
                 }

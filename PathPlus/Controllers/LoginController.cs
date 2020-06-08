@@ -23,7 +23,7 @@ namespace PathPlus.Controllers
         public ActionResult Index(string account, string pwd)
         {
 
-
+            //用帳號密碼去抓該筆會員資料
             string sql = "select * from member where Account=@account and [Password]=@pwd";
             SqlCommand cmd = new SqlCommand(sql, Conn);
             cmd.Parameters.AddWithValue("@account", account);
@@ -39,15 +39,15 @@ namespace PathPlus.Controllers
 
             //var r=db.Member.Where(m => m.Account == account && m.Password == pwd).FirstOrDefault();
 
-
+            //判斷是否有資料(表示帳號密碼正確)
             if (rd.Read())
             {
-                //ViewBag.Msg = "登入成功";
+                //把會員ID寫進Session
                 Session["account"] = rd["MemberID"].ToString();
-                //["pwd"] = rd["pwd"].ToString();
 
                 Conn.Close();
-                ViewBag.Msg = "成功";
+
+                //轉回首頁
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -57,14 +57,15 @@ namespace PathPlus.Controllers
 
             Conn.Close();
 
-
+            //如果錯誤回到登入頁
             return View();
         }
         public ActionResult Logout()
         {
+            //清空登入資訊(清除Session)
             Session["account"] = null;
 
-
+            //回到Login頁面
             return RedirectToAction("Index");
         }
 
@@ -72,15 +73,17 @@ namespace PathPlus.Controllers
         {
             return View();
         }
-        public void Registereda()
+
+        public void aaa()
         {
-            Response.Write(DateTime.Now.ToString("yyyy/MM/dd"));
+            Response.Write(DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss.sss"));
+            Response.Write(Convert.ToDateTime(DateTime.Now).ToString("u").Substring(0, 19));
         }
+        
         [HttpPost]
         public ActionResult Registered(string Name, string Mail, string Account, string Password, string address, string gender)
         {
-            String date = DateTime.Now.ToString("yyyy/MM/dd");
-            string sql = "insert into Member values('M02000000000012',@Name,@Mail,@Account,@Password,1,'','','',@address," + date + ",0,0,0,0,0)";
+            string sql = "insert into Member values(@MID,@Name,@Mail,@Account,@Password,@gender,'','','',@address,getdate(),0,0)";
             SqlCommand Cmd = new SqlCommand();
 
             Cmd.Parameters.AddWithValue("@Name", Name);
@@ -90,24 +93,35 @@ namespace PathPlus.Controllers
             Cmd.Parameters.AddWithValue("@gender", gender);
             Cmd.Parameters.AddWithValue("@address", address);
 
+            SelfFeature getMid = new SelfFeature();
+            string MID = getMid.GetID("Member");
+            Cmd.Parameters.AddWithValue("@MID", MID);
+
             Cmd.CommandText = sql;
             Cmd.Connection = Conn;
+            try
+            {
+                Conn.Open();
+                Cmd.ExecuteNonQuery();
 
-            Conn.Open();
-            Cmd.ExecuteNonQuery();
-
-            Conn.Close();
+                Conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
 
             return RedirectToAction("Index");
         }
 
         //[HttpPost]
-        public string RegistCheck(string account)
+        public string accCheck(string AID)
         {
 
             string sql = "select * from member where Account=@account";
             SqlCommand cmd = new SqlCommand(sql, Conn);
-            cmd.Parameters.AddWithValue("@account", account);
+            cmd.Parameters.AddWithValue("@account", AID);
 
 
             SqlDataReader rd;
@@ -117,16 +131,12 @@ namespace PathPlus.Controllers
 
             if (rd.Read())
             {
-
-
                 Conn.Close();
-                ViewBag.Msg = "成功";
+
                 return "已重複";
             }
 
-
             Conn.Close();
-
 
             return "沒有重複";
         }
