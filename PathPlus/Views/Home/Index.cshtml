@@ -142,7 +142,7 @@
         <!---------------↓↓↓↓↓↓↓主頁面右上側↓↓↓↓↓↓↓↓--------------------->
         <div id="contentrightup" class="row form-inline d-flex">
             <div id="" class="p-2">
-                <img class="img-thumbnail personalphoto" src="image/極限運動(about).jpg" />  <!--帶入照片-->
+                <a href="@Url.Action("Index","PersonalHomePage")"><img class="img-thumbnail personalphoto" src="image/極限運動(about).jpg" /></a>   <!--帶入照片-->
             </div>
             <div class="p-2">
                 <div class="h6">ching jen chen</div>       <!--帶入使用者姓名-->
@@ -187,7 +187,7 @@
         </div>
     </div>
 </div>
-
+</div>
     @*---------------以下發文彈窗頁面---------------*@
 
     @using (Html.BeginForm("NewPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))

@@ -79,10 +79,12 @@ namespace PathPlus.Controllers
         [HttpPost]
         public ActionResult Registered(string Name, string Mail, string Account, string Password, string address, string gender)
         {
+            SelfFeature sf = new SelfFeature();
+            string MID = sf.GetID("Member");
             String date = DateTime.Now.ToString("yyyy/MM/dd");
-            string sql = "insert into Member values('M02000000000012',@Name,@Mail,@Account,@Password,1,'','','',@address," + date + ",0,0,0,0,0)";
+            string sql = "insert into Member values('@MID',@Name,@Mail,@Account,@Password,@gender,'','','',@address,getdate(),0,0)";
             SqlCommand Cmd = new SqlCommand();
-
+            Cmd.Parameters.AddWithValue("@MID", MID);
             Cmd.Parameters.AddWithValue("@Name", Name);
             Cmd.Parameters.AddWithValue("@Mail", Mail);
             Cmd.Parameters.AddWithValue("@Account", Account);

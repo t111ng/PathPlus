@@ -162,6 +162,32 @@
       <DependentUpon>PathPlus.edmx</DependentUpon>
       <LastGenOutput>PathPlus.cs</LastGenOutput>
     </Content>
+    <Content Include="Photo\2020620427151.jpg" />
+    <Content Include="Photo\2020621153041.jpg" />
+    <Content Include="Photo\2020621153042.jpg" />
+    <Content Include="Photo\2020621153044.jpg" />
+    <Content Include="Photo\2020621153045.jpg" />
+    <Content Include="Photo\202063101605p.jpg" />
+    <Content Include="Photo\202063101633p.jpg" />
+    <Content Include="Photo\2020640326121.jpg" />
+    <Content Include="Photo\2020640326132.jpg" />
+    <Content Include="Photo\2020640326133.jpg" />
+    <Content Include="Photo\2020640955431.jpg" />
+    <Content Include="Photo\2020640955432.jpg" />
+    <Content Include="Photo\2020640955433.jpg" />
+    <Content Include="Photo\2020641147051.jpg" />
+    <Content Include="Photo\2020651029311.jpg" />
+    <Content Include="Photo\2020651029312.jpg" />
+    <Content Include="Photo\2020651030112.jpg" />
+    <Content Include="Photo\2020651031121.jpg" />
+    <Content Include="Photo\2020651031122.jpg" />
+    <Content Include="Photo\2020651031123.jpg" />
+    <Content Include="Photo\2020651125361.jpg" />
+    <Content Include="Photo\2020651125362.jpg" />
+    <Content Include="Photo\2020651126571.jpg" />
+    <Content Include="Photo\2020651127561.jpg" />
+    <Content Include="Photo\2020651127562.jpg" />
+    <Content Include="Photo\2020651127563.jpg" />
     <Content Include="Photo\2020651140281.jpg" />
     <Content Include="Photo\2020651140282.jpg" />
     <Content Include="Photo\2020651141091.jpg" />
@@ -308,6 +334,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerLoginController.cs" />
+    <Compile Include="Controllers\PersonalHomePageController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\SelfFeature.cs" />
     <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Controllers\VMContractController.cs" />
@@ -471,6 +499,20 @@
     <Content Include="Views\Advertisers\Details.cshtml" />
     <Content Include="Views\Advertisers\Edit.cshtml" />
     <Content Include="Views\Advertisers\Index.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\DupGrp.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\PersonalHomePage\Editpersonal.cshtml" />
+    <Content Include="Views\PersonalHomePage\Index.cshtml" />
+    <Content Include="Views\PersonalHomePage\viewpost.cshtml" />
+    <Content Include="Views\Posts\Create.cshtml" />
+    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Edit.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -480,7 +522,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Photo\" />
     <Folder Include="Selfphoto\" />
     <Folder Include="Views\Contract\" />
   </ItemGroup>
