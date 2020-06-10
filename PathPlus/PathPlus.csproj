@@ -111,25 +111,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\administrator.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\IndexTop.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\MyStyle.css" />
     <Content Include="Content\Registered.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\administrator2.css" />
     <Content Include="Global.asax" />
     <Content Include="image\compass鍵%28navbar%29.jpg" />
+    <Content Include="image\greendust.png" />
     <Content Include="image\heart鍵%28navbar%29.jpg" />
     <Content Include="image\heart鍵%28紅愛心%29.jpg" />
     <Content Include="image\heart鍵%28黑白框%29.jpg" />
     <Content Include="image\home鍵.jpg" />
     <Content Include="image\loginimage.gif" />
+    <Content Include="image\logo4.png" />
     <Content Include="image\messagr鍵%28navbar%29.jpg" />
     <Content Include="image\messagr鍵%28黑白%29.jpg" />
     <Content Include="image\path字.jpg" />
@@ -138,6 +144,7 @@
     <Content Include="image\卡面1%28小%29.jpg" />
     <Content Include="image\大頭.jpeg" />
     <Content Include="image\小logo.jpg" />
+    <Content Include="image\小logo.png" />
     <Content Include="image\小頭.jpg" />
     <Content Include="image\抽卡彈窗背景%28小%29.jpg" />
     <Content Include="image\抽卡彈窗背景.jpg" />
@@ -147,9 +154,12 @@
     <Content Include="image\極限運動%28about%29.jpg" />
     <Content Include="image\留言鍵%28黑白%29.jpg" />
     <Content Include="image\登入頁圖片.gif" />
+    <Content Include="image\登入頁用path+.png" />
     <Content Include="image\登入頁用path.jpg" />
     <Content Include="image\發文鍵.jpg" />
+    <Content Include="image\發文鍵.png" />
     <Content Include="image\註冊頁2-生日.jpg" />
+    <Content Include="image\點點點.png" />
     <Content Include="Models\PathPlus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PathPlus.Context.cs</LastGenOutput>
@@ -160,10 +170,16 @@
       <DependentUpon>PathPlus.edmx</DependentUpon>
       <LastGenOutput>PathPlus.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\administrator.js" />
+    <Content Include="Scripts\administrator2.js" />
+    <Content Include="Scripts\administrator.pre.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chart.demo.pie.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -183,11 +199,13 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\chart.demo.area.js" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -286,6 +304,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministratorHomeController.cs" />
+    <Compile Include="Controllers\AdministratorLoginController.cs" />
     <Compile Include="Controllers\AdvertisementsController.cs" />
     <Compile Include="Controllers\AdvertisersController.cs" />
     <Compile Include="Controllers\AnnouncementsController.cs" />
@@ -374,6 +394,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>PathPlus.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\PairingStatusCategory.cs">
       <DependentUpon>PathPlus.tt</DependentUpon>
     </Compile>
@@ -455,6 +476,12 @@
     <Content Include="Views\Advertisers\Details.cshtml" />
     <Content Include="Views\Advertisers\Edit.cshtml" />
     <Content Include="Views\Advertisers\Index.cshtml" />
+    <Content Include="Views\AdministratorLogin\Login.cshtml" />
+    <Content Include="Views\AdministratorLogin\_Layout.cshtml" />
+    <Content Include="Views\AdministratorHome\Index.cshtml" />
+    <Content Include="Views\AdministratorLogin\checkCaptcha.cshtml" />
+    <Content Include="Views\AdministratorHome\_Layout.cshtml" />
+    <Content Include="Views\AdministratorHome\Admin404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

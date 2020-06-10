@@ -1,0 +1,154 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css');
+
+:root {
+    --font-family-sans-serif: 'Noto Sans TC', Arial, sans-serif, serif, 微軟正黑體;
+}
+
+* {
+    font-family: 'Noto Sans TC';
+    text-decoration: none !important;
+}
+
+bg-login-image {
+    background: no-repeat;
+}
+
+#pms {
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px -8px 66px rgba(75, 191, 195, 0.25);
+    border-radius: 8px;
+    padding: 6px;
+    height: 40px;
+}
+
+    #pms img {
+        width: 73px;
+        height: 20px;
+        vertical-align: bottom;
+    }
+
+#AdminLoginFooter {
+    color: darkseagreen;
+}
+
+input[type="text"]:-moz-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="text"]::-moz-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="text"]:-ms-input-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="password"]:-moz-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="password"]::-moz-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="password"]:-ms-input-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+input[type="password"]::-webkit-input-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+}
+
+.bg-greendust {
+    background-color: none;
+    background-image: url('../image/greendust.png');
+    background-size: cover;
+}
+
+form.user .btn-user {
+    color: #FFF;
+    background-color: #3A7E64;
+    background-position: 112px 18px;
+    box-shadow: inset 0 0 0 0 #CCC;
+    border: none;
+    font-size: 1.1rem;
+}
+
+    form.user .btn-user:hover {
+        color: #FFF;
+        background-color: #39C48E;
+        border-color: #e6e6e6;
+        text-decoration: none;
+        box-shadow: inset 0 0 0 0 #CCC;
+    }
+
+    form.user .btn-user:focus {
+        color: #FFF;
+        background-color: #39C48E;
+        background-position: 112px 18px;
+        text-decoration: none;
+        box-shadow: 0px 0px 20px 0px #6D8C70;
+        transition: all 0.3s;
+    }
+
+.bg-login-image {
+    background: url("../image/logo4.png");
+    background-position: center;
+    background-size: cover;
+    filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.5));
+    background-color: none;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+}
+
+#Captcha + div {
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+    #Captcha + div > i {
+        margin-top: 6px;
+        margin-right: -16px;
+    }
+
+    #Captcha + div > input:focus {
+        border: none;
+        box-shadow:none;
+    }
+
+.fa-log {
+    font-size: 18px;
+}
+
+/*.CaptchaButton {
+    font-weight: 200;
+}*/
+
+.fa-user-circle {
+    font-size: 24px;
+}
+

@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>PATHPLUS Administrator - @ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/administrator.css" rel="stylesheet" />
+    <link href="~/Content/administrator2.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <div id="wrapper">
+        <!-- 側欄 -->
+        <heaader>
+            <ul class="navbar-nav sidebar sidebar-dark accordion bg-gradient-info" id="accordionSidebar">
+
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index")">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">PATH<sup>+</sup> Level 0</div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>控制台</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">管理列表</div>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>內容管理</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">公告:</h6>
+                            <a class="collapse-item" href="#">新增公告</a>
+                            <a class="collapse-item" href="#">現行公告列表</a>
+                            <a class="collapse-item" href="#">歷史公告列表</a>
+                            <h6 class="collapse-header">廣告:</h6>
+                            <a class="collapse-item" href="#">新增廣告</a>
+                            <a class="collapse-item" href="#">廣告列表</a>
+                            <h6 class="collapse-header">更新:</h6>
+                            <a class="collapse-item" href="#">使用條款</a>
+                            <a class="collapse-item" href="#">資料政策</a>
+                            <a class="collapse-item" href="#">服務</a>
+                            <a class="collapse-item" href="#">聲明</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>用戶管理</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">會員:</h6>
+                            <a class="collapse-item" href="#">會員列表</a>
+                            <a class="collapse-item" href="#">停權列表</a>
+                            <h6 class="collapse-header">管理員:</h6>
+                            <a class="collapse-item" href="#">管理員列表</a>
+                            <a class="collapse-item" href="#">新增管理員</a>
+                        </div>
+                    </div>
+                </li>
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">審核列表</div>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>審核檢舉</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">會員:</h6>
+                            <a class="collapse-item" href="#">待審核列表</a>
+                            <a class="collapse-item" href="#">已審核列表</a>
+                            <h6 class="collapse-header">貼文:</h6>
+                            <a class="collapse-item" href="#">待審核列表</a>
+                            <a class="collapse-item" href="#">已審核列表</a>
+                            <h6 class="collapse-header">P卡:</h6>
+                            <a class="collapse-item" href="#">待審核列表</a>
+                            <a class="collapse-item" href="#">已審核列表</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>問題回報</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="#">待審核列表</a>
+                            <a class="collapse-item" href="#">已回覆列表</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>管理員申請</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">其他</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>統計圖表</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+        </heaader>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <contain id="content">
+
+                <!-- 置頂 -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="https://www.google.com.tw/search">
+                        <div class="input-group">
+                            <input type="text" id="q" name="q" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required />
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    歡迎回來 管理員aaaaaa
+                                </span>
+                                <i class="fas fa-user-circle fa-5x"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    個人資料設定
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    活動日誌
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    登出
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                @RenderBody()
+            </contain>
+
+            <!-- 置底 -->
+            <footer class="sticky-footer bg-white" @*bg-transparent" id="AdminLoginFooter"*@>
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>&copy; @DateTime.Now.Year PATHPLUS from KPPTR/MCSDD10901T4</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">要離開了?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">欲"登出"本系統, 請選擇下方確認按鈕以回到登入畫面</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                    <a class="btn btn-primary" href="@Url.Action("Logout", "AdministratorLogin")">確認</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/administrator.pre.js"></script>
+    <script src="~/Scripts/administrator.js"></script>
+    <script src="~/Scripts/administrator2.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/chart.demo.area.js"></script>
+    <script src="~/Scripts/chart.demo.pie.js"></script>
+</body>
+</html>
+
