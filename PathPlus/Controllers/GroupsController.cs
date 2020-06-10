@@ -49,22 +49,25 @@ namespace PathPlus.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupName,Photo,GroupIntroduction,GroupInformation,CreateDate,MemberID,PrivateCategoryID")] Group group)
+        public ActionResult Create([Bind(Include = "GroupID,GroupName,GroupIntroduction,GroupInformation,CreateDate,MemberID,PrivateCategoryID")] Group group, HttpPostedFileBase Photo)
         {
 
-
+            
             group.CreateDate = DateTime.Now;
+            
+            SelfFeature sf = new SelfFeature();
+            string GID = sf.GetID("Group");
 
-            var id = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
-            int nid = int.Parse(id.Substring(4)) + 1;
-            id = "G" + DateTime.Now.Year.ToString().Substring(1, 3);
-            string sid = nid.ToString();
-            for (int i = 0; i < (11 - sid.Length); i++)
-            {
-                id += 0;
-            }
-            id += sid;
-            group.GroupID = id;
+            //var id = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
+            //int nid = int.Parse(id.Substring(4)) + 1;
+            //id = "G" + DateTime.Now.Year.ToString().Substring(1, 3);
+            //string sid = nid.ToString();
+            //for (int i = 0; i < (11 - sid.Length); i++)
+            //{
+            //    id += 0;
+            //}
+            //id += sid;
+            group.GroupID = GID;
 
 
             group.MemberID = Session["account"].ToString();
@@ -75,30 +78,45 @@ namespace PathPlus.Controllers
             if (grp != null) return RedirectToAction("DupGrp");
 
             GroupManagement groupManagement = new GroupManagement();
-            groupManagement.MemberID = Session["accuont"].ToString();
-            groupManagement.GroupID = id;
+            groupManagement.MemberID = Session["account"].ToString();
+            groupManagement.GroupID = GID;
             groupManagement.ManageDate = DateTime.Now;
             groupManagement.AuthorityCategoryID = "0";
 
 
 
-            Post post = new Post();
-            var pid = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
-            int npid = int.Parse(id.Substring(4)) + 1;
-            pid = "P" + DateTime.Now.Year.ToString().Substring(1, 3);
-            string spid = npid.ToString();
-            for (int i = 0; i < (11 - spid.Length); i++)
-            {
-                pid += 0;
-            }
-            pid += spid;
-            post.PostID = pid;
-            post.PostContent = "我新增了一個群組：" + group.GroupName + "。歡迎大家加入～";
-            post.PostDate = DateTime.Now;
-            post.EditDate = DateTime.Now;
-            post.MemberID = Session["account"].ToString();
-            //post.CategoryID = "0";
-            post.StatusCategoryID = group.PrivateCategoryID;
+            //Post post = new Post();
+            //var pid = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
+            //int npid = int.Parse(id.Substring(4)) + 1;
+            //pid = "P" + DateTime.Now.Year.ToString().Substring(1, 3);
+            //string spid = npid.ToString();
+            //for (int i = 0; i < (11 - spid.Length); i++)
+            //{
+            //    pid += 0;
+            //}
+            //pid += spid;
+            //post.PostID = pid;
+            //post.PostContent = "我新增了一個群組：" + group.GroupName + "。歡迎大家加入～";
+            //post.PostDate = DateTime.Now;
+            //post.EditDate = DateTime.Now;
+            //post.MemberID = Session["account"].ToString();
+            ////post.CategoryID = "0";
+            //post.StatusCategoryID = group.PrivateCategoryID;
+
+            string fileName = "";
+            
+                if (Photo != null)
+                {
+                    if (Photo.ContentLength > 0)
+                    {
+
+                        fileName = "group"+ DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "").ToString() + ".jpg";
+                        Photo.SaveAs(Server.MapPath("~/GroupPhoto/" + fileName));
+                        group.Photo = fileName;
+                      
+                    }
+                }
+            
 
 
 
@@ -108,9 +126,9 @@ namespace PathPlus.Controllers
                 db.SaveChanges();
                 db.GroupManagement.Add(groupManagement);
                 db.SaveChanges();
-                db.Post.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //db.Post.Add(post);
+                //db.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.PrivateCategoryID = new SelectList(db.GroupPrivateCategory, "PrivateCategoryID", "PrivateCategoryName", group.PrivateCategoryID);
