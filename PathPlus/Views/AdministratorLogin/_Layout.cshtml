@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>PATHPLUS Administrator - @ViewBag.Title</title>    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/administrator.css" rel="stylesheet" />
+    <link href="~/Content/administrator2.css" rel="stylesheet" />
+</head>
+<body class="bg-greendust">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="sticky-footer bg-transparent" id="AdminLoginFooter">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>&copy; @DateTime.Now.Year PATHPLUS from KPPTR/MCSDD10901T4</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/administrator2.js"></script>
+</body>
+</html>

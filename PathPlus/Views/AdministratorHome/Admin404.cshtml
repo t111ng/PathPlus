@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Admin.404";
+    Layout = "_Layout.cshtml";
+}
+
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <div class="container-fluid">
+
+            <div class="text-center">
+                <div class="error mx-auto" data-text="404">404</div>
+                <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                <p class="text-gray-500 mb-0">系統的小故障似乎被發現囉...</p>
+                <a href="@Url.Action("Index")">&larr; 回到控制台</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+

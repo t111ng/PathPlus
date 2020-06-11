@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-600 mb-4">Welcome Back!</h1>
+                <h5 class="text-gray-800 mb-5" id="pms">
+                    @*<img src="~/image/path字.jpg" id="pathword" />*@
+                    <img src="~/image/登入頁用path.png" id="pathword" />
+                    &nbsp;Management System
+                </h5>
+                <form action="@Url.Action("Login")" method="post" class="form-horizontal user">
+                    <div class="form-group">
+                        <label for="id" class="input-group-prepend">
+                            <i class="fas fa-user fa-log" aria-hidden="true"></i>
+                        </label>
+                        <input id="id" name="id" type="text" class="form-control form-control-user" placeholder="Enter Your Acount..." required />
+                    </div>
+                    <div class="form-group">
+                        <lable for="pwd" class="form-row">
+                            <i class="fas fa-key fa-log" aria-hidden="true"></i>
+                        </lable>
+                        <input id="pwd" name="pwd" type="password" class="form-control form-control-user" placeholder="Enter Your Password...." required />
+                    </div>
+                    <input type="submit" value="登入" class="btn btn-primary btn-user btn-block mt-5 mt-lg-4" />
+                </form>
+                <hr>
+                <div class="text-center">
+                    <a class="small" href="#">忘記密碼?</a>
+                </div>
+                <div class="text-center">
+                    <a class="small" href="#">申請帳號!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
