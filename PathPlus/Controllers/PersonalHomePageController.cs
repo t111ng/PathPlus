@@ -34,7 +34,13 @@ namespace PathPlus.Controllers
             ViewBag.em = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Mail;
             ViewBag.ph = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Photo;
 
-          
+            //--------個人圖片-----------
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == MID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+            //--------個人圖片-----------
+
+
+
             return View(vm);
         }
 

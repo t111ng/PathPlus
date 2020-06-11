@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -14,31 +15,31 @@
     <link href="~/Content/IndexTop.css" rel="stylesheet" />
 </head>
 <body>
-   
-        <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
-        <!--------------------以下logo--------------------->
- 
-        <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
-            <div id="container " class="container">
-                <div class="navbar-brand" href="#">
-                    <a href="@Url.Action("Index","Home")"><img src="image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
-                </div>
-                <!----------------以下searchbar-------------------->
-                <div id="searchbar" class="form-inline">
-                    <form class="form-inline">
-                        <input id="searchbar1" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
-                        <button class="btn btn-sm border-0" type="submit">
-                            <img width="25" src="~/image/查詢鍵(黑白).jpg" />
-                        </button>
-                    </form>
-                </div>
-                @*-------------------以下icon------------------*@
+
+    <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
+    <!--------------------以下logo--------------------->
+
+    <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
+        <div id="container " class="container">
+            <div class="navbar-brand" href="#">
+                <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
+            </div>
+            <!----------------以下searchbar-------------------->
+            <div id="searchbar" class="form-inline">
+                <form class="form-inline">
+                    <input id="searchbar1" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
+                    <button class="btn btn-sm border-0" type="submit">
+                        <img width="25" src="~/image/查詢鍵(黑白).jpg" />
+                    </button>
+                </form>
+            </div>
+            @*-------------------以下icon------------------*@
 
             <div class="row form-inline " id="navbarNavDropdown">
 
                 @*----------home鍵-------------*@
                 <div class="mx-2 col-xs-2">
-                    <a href="@Url.Action("Index","Home")"><img src="~/image/home鍵.jpg" class="width1"/></a>
+                    <a href="@Url.Action("Index","Home")"><img src="~/image/home鍵.jpg" class="width1" /></a>
                 </div>
 
                 @*----------導覽提醒鍵-------------*@
@@ -48,19 +49,19 @@
 
                 @*----------誰點我讚鍵-------------*@
                 <div class="mx-2 col-xs-2">
-                    <img class="width1" src="image/heart鍵(navbar).jpg" />
+                    <img class="width1" src="~/image/heart鍵(navbar).jpg" />
                     <span id="Notifications2" class="badge badge-danger">4</span>     <!------跑計算數值進去------>
                 </div>
 
                 @*----------訊息鍵-------------*@
                 <div class="mx-2 col-xs-2">
-                    <img class="width1" src="image/messagr鍵(navbar).jpg" />
+                    <img class="width1" src="~/image/messagr鍵(navbar).jpg" />
                     <span id="Notifications3" class="badge badge-danger">99+</span>    <!------跑計算數值進去------>
                 </div>
                 @*-----以下功能鍵-----*@
                 <div class="nav-link dropdown mx-0 col-xs-2">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="width1" src="image/小logo.jpg" />
+                        <img class="width1" src="~/image/小logo.jpg" />
                     </a>
 
                     <div class="dropdown-menu caret-off" aria-labelledby="navbarDropdownMenuLink">
@@ -75,7 +76,7 @@
                         <div class="dropdown-submenu ">
                             <a class="dropdown-item dropdown-toggle" href="#">社團</a>
                             <div class="dropdown-menu">
-                                <div><a class="dropdown-item" href="#">新增社團</a></div>
+                                <div><a class="dropdown-item" data-toggle="modal" data-target="#staticBackdropGroup">新增社團</a></div>
                                 <div><a class="dropdown-item" href="#">我的社團</a></div>
                             </div>
                         </div>
@@ -94,8 +95,8 @@
                 <!-----以下個人大頭貼----->
                 <div class="mx-0 col-xs-2 nav-item dropdown ">
                     <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="personalphoto1" class="img-thumbnail width1" src="image/極限運動(about).jpg" /><!--圖片直接丟位址進src-->
-                    </a>
+                        <img id="personalphoto1" class="img-thumbnail width1" src="~/Selfphoto/@ViewBag.personalphoto" /><!--圖片直接丟位址進src-->
+                    </a>                
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="@Url.Action("Edit","Member")">修改會員資料</a>
                         <a class="dropdown-item" href="#">問題回報</a>
@@ -107,58 +108,58 @@
 
 
 
-                <nav class="navbar navbar-expand-lg navbar-light mt-2">
+            <nav class="navbar navbar-expand-lg navbar-light mt-2">
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
-                        <ul class="navbar-nav mr-auto">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
 
-                            <li class="nav-item mr-3  ">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">幽默</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">建築與裝潢</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">旅遊</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">美食</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">藝術</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">自然</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">時尚</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">電影與電視</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">音樂</a>
-                            </li>
-                            <li class="nav-item mr-3">
-                                <a class="nav-link btn btn-sm bg-light text-dark" href="#">動漫</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-
-
+                        <li class="nav-item mr-3  ">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">幽默</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">建築與裝潢</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">旅遊</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">美食</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">藝術</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">自然</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">時尚</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">電影與電視</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">音樂</a>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link btn btn-sm bg-light text-dark" href="#">動漫</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
 
 
-            </div>
-        </nav>
-     
-    
 
-            @RenderBody()
+
+        </div>
+    </nav>
+
+
+
+    @RenderBody()
 
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/MyJS.js"></script>

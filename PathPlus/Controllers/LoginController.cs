@@ -85,7 +85,7 @@ namespace PathPlus.Controllers
         {
             string sql = "insert into Member values(@MID,@Name,@Mail,@Account,@Password,@gender,'','','',@address,getdate(),0,0)";
             SqlCommand Cmd = new SqlCommand();
-            Cmd.Parameters.AddWithValue("@MID", MID);
+            
             Cmd.Parameters.AddWithValue("@Name", Name);
             Cmd.Parameters.AddWithValue("@Mail", Mail);
             Cmd.Parameters.AddWithValue("@Account", Account);

@@ -300,6 +300,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Selfphoto\202065014232p.jpg" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Registered.cshtml" />
     <Content Include="Views\Shared\_AboutLayout.cshtml" />
@@ -513,6 +514,7 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Home\EveryPosts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -522,7 +524,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Selfphoto\" />
     <Folder Include="Views\Contract\" />
   </ItemGroup>
   <ItemGroup>

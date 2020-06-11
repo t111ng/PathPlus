@@ -30,10 +30,8 @@ namespace PathPlus.Controllers
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
-
-
-
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName,m.Photo,p.MemberID});
+           
             string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
             var post2 = (from p in db.Post
                          where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
@@ -41,7 +39,7 @@ namespace PathPlus.Controllers
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName, m.Photo, p.MemberID });
             //var post3 = from p in db.Post
             //            where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
             //            select new { p.PostID };
@@ -57,9 +55,29 @@ namespace PathPlus.Controllers
             var photo3 = photo2.Union(photo1).OrderByDescending(x => x.PostID).ToList();
             ViewBag.post = post.ToList();
             ViewBag.photo = photo3.ToList();
+
             //--------取貼文資料 ---------
 
 
+            //--------取個人帳號---------
+            var PersonalAccount = db.Member.Where(m => m.MemberID == ID).Select(m => m.Account).FirstOrDefault();
+            ViewBag.personalaccount = PersonalAccount;
+            //--------取個人帳號---------
+
+            //--------取個人姓名---------
+            var PersonalName = db.Member.Where(m => m.MemberID == ID).Select(m => m.MemberName).FirstOrDefault();
+            ViewBag.personalname = PersonalName;
+            //--------取個人姓名---------
+
+            //--------個人圖片-----------
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == ID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+            //--------個人圖片-----------
+
+            //-------提取社團資訊----------
+            var group = db.Group.Where(g=>g.PrivateCategoryID == "0").Take(5);
+            ViewBag.group = group.ToList();
+            //-------提取社團資訊----------
 
 
             return View();
@@ -277,6 +295,47 @@ namespace PathPlus.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult EveryPosts(string PostID)
+        {
+            string ID = Session["account"].ToString();
+
+            var comment = from c in db.Comment
+                          join m in db.Member on c.MemberID equals m.MemberID                          
+                          select new {m.MemberName,c.PostID,c.Comment1,m.MemberID };
+             var posts = from p in db.Post
+                        where p.PostID == PostID
+                        join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
+                        join pc in comment on p.PostID equals pc.PostID into pcs
+                        join m in db.Member on p.MemberID equals m.MemberID
+                        select new { p.PostID,p.PostContent,pps,p.PostDate,m.MemberName,pcs,m.Photo,m.Account,m.MemberID};
+ 
+            ViewBag.everyposts = posts.ToList();
+            //---------取得讚數---------
+            var like = db.Comment.Where(c => c.PostID == PostID).Where(c => c.Like == true).Count();
+            ViewBag.like = like;
+            //---------取得讚數---------
+
+           
+          
+            //--------個人圖片-----------
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == ID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+            //--------個人圖片-----------
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EveryPosts()
+        {
+            Comment newcomment = new Comment();
+
+            newcomment.MessageDate = DateTime.Now;
+           
+                
+
+            return View();
+        }
 
     }
 }

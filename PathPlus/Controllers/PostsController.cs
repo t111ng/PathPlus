@@ -71,7 +71,6 @@ namespace PathPlus.Controllers
             var post = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
             ViewBag.post = post.ToList();
 
-
             //sql
             //string sql = "select * from Post where MemberID=@ID";
             //Cmd.Parameters.AddWithValue("@ID", Session["id"].ToString());

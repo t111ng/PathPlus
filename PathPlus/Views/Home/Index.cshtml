@@ -2,7 +2,7 @@
 
     var data = ViewBag.post;
     var data2 = ViewBag.photo;
-
+    var data3 = ViewBag.group;
 }
 
 
@@ -19,43 +19,56 @@
                 {
                     if (postid != @item.GetType().GetProperty("PostID").GetValue(item))
                     {
-
+           
                         <div class="border mb-3">
                             <div class="card border-0  mb-3" style="width:100%;">
                                 <div class="card-header bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex">
-                                    <div class="p2">
-                                        <img id="personalphoto1" class="img-thumbnail" src="image/極限運動(about).jpg" />
-                                    </div>
-                                    <div class="p2">
-                                        <span> @item.GetType().GetProperty("MemberName").GetValue(item)</span>
-                                    </div>
+                                    
+                                        <div class="p2">
+                                            <a href="@Url.Action("EveryPosts", "Home", new {MemberID=item.GetType().GetProperty("MemberID").GetValue(item)})"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
+                                        </div>
+                                    
+                                    
+                                        <div class="p2">
+                                            <span> @item.GetType().GetProperty("MemberName").GetValue(item)</span>
+                                        </div>
+                                    
                                     <div class="p2 ml-auto nav-item dropdown ">
                                         <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdownPersonal" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img width="20" src="~/image/點點點.jpg" />
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownPersonal">
-                                            <a class="dropdown-item" href="@Url.Action("Edit", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">修改貼文</a>
-                                            <a class="dropdown-item" href="@Url.Action("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">刪除</a>
+                                            @{ if (Session["account"].ToString() == item.GetType().GetProperty("MemberID").GetValue(item))
+                                                {
+                                                    <a class="dropdown-item" href="@Url.Action("Edit", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">修改貼文</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">刪除</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="dropdown-item" href="#">檢舉貼文</a>
+                                                }
+
+                                            }
                                         </div>
 
                                     </div>
                                 </div>
 
                                 <div class="card-body text-dark border-bottom">
-                                    @{ 
+                                    @{
                                         string id = "carouselExampleIndicators";
-                                        
+
                                         string newid = id + num;
                                     }
                                     <div id="@newid" class="carousel slide" data-ride="carousel">
                                         <ol class="carousel-indicators">
-                                            <li data-target="#@newid" data-slide-to="0" class=""></li>
+                                            <li data-target="#@newid" data-slide-to="0" class="active"></li>
                                             <li data-target="#@newid" data-slide-to="1"></li>
                                             <li data-target="#@newid" data-slide-to="2"></li>
                                         </ol>
                                         <div class="carousel-inner">
                                             @{
-                                                var count = 0;                                               
+                                                var count = 0;
                                             }
                                             @foreach (var item2 in data2)
                                             {
@@ -89,7 +102,7 @@
                                             <span class="sr-only">Next</span>
                                         </a>
 
-                                        @{ 
+                                        @{
                                             num++;
                                         }
                                     </div>
@@ -105,25 +118,31 @@
                                             <img id="" class="width" src="~/image/留言鍵(黑白).jpg" />
                                         </div>
                                         <div class="mx-2">
-                                            <img id="message" class="width" src="image/messagr鍵(黑白).jpg" />
+                                            <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
                                         </div>
                                     </div>
                                     <div>
                                         讚數
                                     </div>
                                     <div>
-                                        <h5>@item.GetType().GetProperty("MemberName").GetValue(item)</h5><br />
-                                        <h6> @item.GetType().GetProperty("PostContent").GetValue(item)</h6>
+                                        <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span>&nbsp;&nbsp;
+                                        <span class="h6"> @item.GetType().GetProperty("PostContent").GetValue(item)</span>
                                     </div>
                                     <div class="text-secondary">
-                                        查看全部留言
+                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID=item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
                                     </div>
-                                    <div>
-                                        留言區
-                                    </div>
+                                    
+                                    
+                                </div>
+                                <hr />
+                                <div class="border-0 form-group row no-gutters">
+                                    <input class="form-control border-0 col-sm-11 " name="Comment" id="postcomment" type="text" placeholder="留言……" />
+
+                                    <input type="submit" class="form-control border-0 col-sm-1" id="PushCommentButton" value="發怖" />
 
                                 </div>
                             </div>
+                            
                         </div>
                         postid = @item.GetType().GetProperty("PostID").GetValue(item);
                     }
@@ -142,11 +161,14 @@
         <!---------------↓↓↓↓↓↓↓主頁面右上側↓↓↓↓↓↓↓↓--------------------->
         <div id="contentrightup" class="row form-inline d-flex">
             <div id="" class="p-2">
-                <a href="@Url.Action("Index","PersonalHomePage")"><img class="img-thumbnail personalphoto" src="image/極限運動(about).jpg" /></a>   <!--帶入照片-->
+
+                <a href="@Url.Action("Index", "PersonalHomePage")"><img class="img-thumbnail personalphoto" src="/Selfphoto/@ViewBag.personalphoto" /></a> <!--帶入照片-->
+
             </div>
+                
             <div class="p-2">
-                <div class="h6">ching jen chen</div>       <!--帶入使用者姓名-->
-                <div class="h6 text-secondary">refref885645</div>   <!--帶入使用者帳號-->
+                <a href="@Url.Action("Index","PersonalHomePage")"><div class="h6 text-secondary">@ViewBag.personalaccount</div></a>   <!--帶入使用者帳號-->
+                <div class="h6">@ViewBag.personalname</div>       <!--帶入使用者姓名-->
             </div>
             <div class="p-2 ">
                 <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#staticBackdrop">
@@ -158,31 +180,20 @@
         <p class="text-secondary h5">推薦社團</p>
         <div id="contentrightdown">
             <!----↓↓↓↓↓↓↓讀出一些社團資訊1(之後寫For放五筆即可)↓↓↓↓↓↓------>
-            <div class="row col-12 d-flex form-inline">
-                <div class="">
-                    <img id="publicphoto1" class="img-thumbnail publicphoto" src="image/極限運動(about).jpg" />  <!--帶入照片-->
+            @foreach (var g in data3)
+            {
+                <div class="row col-12 d-flex form-inline mb-2">
+                    <div class="">
+                        <img id="publicphoto1" class="img-thumbnail publicphoto" src="/GroupPhoto/@g.GetType().GetProperty("Photo").GetValue(g)" />  <!--帶入照片-->
+                    </div>
+                    <div class="">
+                        <div class="">@g.GetType().GetProperty("GroupName").GetValue(g)</div>       <!--帶入社團姓名-->
+                    </div>
+                    <div class="ml-auto text-primary">
+                        追蹤   <!--建立追蹤功能-->
+                    </div>
                 </div>
-                <div class="">
-                    <div class="">ching jen chen</div>       <!--帶入社團姓名-->
-                    <div class="text-secondary">refref885645</div>   <!--帶入社團帳號-->
-                </div>
-                <div class="ml-auto text-primary">
-                    追蹤   <!--建立追蹤功能-->
-                </div>
-            </div>
-            <!----------讀出一些社團資訊2------------>
-            <div class="row col-12 d-flex form-inline">
-                <div class="">
-                    <img id="publicphoto1" class="img-thumbnail publicphoto" src="image/極限運動(about).jpg" />  <!--帶入照片-->
-                </div>
-                <div class="">
-                    <div class="">ching jen chen</div>       <!--帶入使用者姓名-->
-                    <div class="text-secondary">refref885645</div>   <!--帶入使用者帳號-->
-                </div>
-                <div class="ml-auto text-primary">
-                    追蹤   <!--建立追蹤功能-->
-                </div>
-            </div>
+            }
             <!------↑↑↑↑↑↑↑讀出一些社團資訊↑↑↑↑↑↑↑---------->
         </div>
     </div>
@@ -333,7 +344,7 @@
     @using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdropGroup" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -351,24 +362,53 @@
                                     <div>
 
                                         <div class="row justify-content-center">
-                                            <input id="addFile" type="button" class="form-control col-sm-5 mt-3 " value="增加一個檔案" />
-                                            <input id="PhotoFile" name="photo" type="file" class="form-control col-sm-5 mt-3 " value="點我上傳照片" />
+                                            <input id="PhotoFile" name="Photo" type="file" class="form-control col-sm-5 mt-3 " value="點我上傳照片" />
                                         </div>
 
-                                        <div id="FileUpArea" class="row mt-3 justify-content-center">
+                                    </div>
+                                    @*----放上傳照片的區塊----*@              
 
+                                    <div class="form-group mt-4">  
+                                        <div class="col-md-10">
+                                            <input class="form-control text-box single-line"  id="GroupName" name="GroupName" type="text" placeholder="社團名稱" required/>
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="GroupName" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
-                                    @*----放上傳照片的區塊----*@
 
-                                    <div class="form-group mt-3 col-sm-10">
-                                        <textarea class="form-control " name="Pcontent" id="Text1" type="text" required placeholder="請輸入內容"></textarea>
+
+                                    <div class="form-group">         
+                                        <div class="form-group mt-3 col-sm-10">                                  
+                                            <textarea class="form-control " name="GroupIntroduction" id="TextArea1" type="text" placeholder="請輸入社團簡介" required></textarea>
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="GroupIntroduction" data-valmsg-replace="true"></span>
+                                        </div>
                                     </div>
+
+                                    <div class="form-group">               
+                                        <div class="form-group mt-3 col-sm-10">
+                                            <textarea class="form-control " name="GroupInformation" id="TextArea1" type="text" placeholder="請輸入社團資訊" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="PrivateCategoryID">社團隱私狀態</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" id="PrivateCategoryID" name="PrivateCategoryID">
+                                                <option value="0">開放</option>
+                                                <option value="1">半開放(限追蹤)</option>
+                                                <option value="2">隱私</option>
+                                            </select>
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="PrivateCategoryID" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+
+
+
+
 
                                     <div class="form-group mt-4">
                                         <div class="d-flex">
                                             <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
-                                            <input type="submit" value="張貼" class="btn btn-primary" />
+                                            <input type="submit" value="創辦" class="btn btn-primary" />
                                         </div>
                                     </div>
                                 </div>
