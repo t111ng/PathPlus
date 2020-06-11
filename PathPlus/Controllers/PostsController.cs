@@ -51,24 +51,31 @@ namespace PathPlus.Controllers
 
             var post1 = (from p in db.Post
                          where p.MemberID == ID
-                         join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
 
 
             string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
             var post2 = (from p in db.Post
                          where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
-                         join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, pp.Photo, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
-            var post = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
+            var post3 = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
+
+            var comment = (from c in db.Comment
+                           join m in db.Member on c.MemberID equals m.MemberID
+                           select new { cmn = m.MemberName, c.PostID, c.Comment1 });
+            var post = (from p in post3
+                        join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
+                        join pc in comment on p.PostID equals pc.PostID into pcs
+                        select new { p.PostID, p.PostContent, pps, p.PostDate, p.EditDate, p.MemberName, p.CategoryName, p.StatusCategoryName, pcs });
+
             ViewBag.post = post.ToList();
 
 
