@@ -21,7 +21,7 @@
         <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
             <div id="container " class="container">
                 <div class="navbar-brand" href="#">
-                    <a href="@Url.Action("Index","Home")"><img src="image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
+                    <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
                 </div>
                 <!----------------以下searchbar-------------------->
                 <div id="searchbar" class="form-inline">
@@ -48,19 +48,19 @@
 
                 @*----------誰點我讚鍵-------------*@
                 <div class="mx-2 col-xs-2">
-                    <img class="width1" src="image/heart鍵(navbar).jpg" />
+                    <img class="width1" src="~/image/heart鍵(navbar).jpg" />
                     <span id="Notifications2" class="badge badge-danger">4</span>     <!------跑計算數值進去------>
                 </div>
 
                 @*----------訊息鍵-------------*@
                 <div class="mx-2 col-xs-2">
-                    <img class="width1" src="image/messagr鍵(navbar).jpg" />
+                    <img class="width1" src="~/image/messagr鍵(navbar).jpg" />
                     <span id="Notifications3" class="badge badge-danger">99+</span>    <!------跑計算數值進去------>
                 </div>
                 @*-----以下功能鍵-----*@
                 <div class="nav-link dropdown mx-0 col-xs-2">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="width1" src="image/小logo.jpg" />
+                        <img class="width1" src="~/image/小logo.jpg" />
                     </a>
 
                     <div class="dropdown-menu caret-off" aria-labelledby="navbarDropdownMenuLink">
@@ -75,8 +75,9 @@
                         <div class="dropdown-submenu ">
                             <a class="dropdown-item dropdown-toggle" href="#">社團</a>
                             <div class="dropdown-menu">
-                                <div><a class="dropdown-item" href="#">新增社團</a></div>
-                                <div><a class="dropdown-item" href="#">我的社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("Create","Groups")">新增社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("GroupHome","Groups")">我的社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("AllGroup","Groups")">所有社團</a></div>
                             </div>
                         </div>
 
@@ -94,7 +95,7 @@
                 <!-----以下個人大頭貼----->
                 <div class="mx-0 col-xs-2 nav-item dropdown ">
                     <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="personalphoto1" class="img-thumbnail width1" src="image/極限運動(about).jpg" /><!--圖片直接丟位址進src-->
+                        <img id="personalphoto1" class="img-thumbnail width1" src="~/image/極限運動(about).jpg" /><!--圖片直接丟位址進src-->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="@Url.Action("Edit","Member")">修改會員資料</a>

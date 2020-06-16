@@ -176,6 +176,14 @@
     <Content Include="Photo\2020640955432.jpg" />
     <Content Include="Photo\2020640955433.jpg" />
     <Content Include="Photo\2020641147051.jpg" />
+    <Content Include="Photo\2020650142511.jpg" />
+    <Content Include="Photo\2020650229141.jpg" />
+    <Content Include="Photo\2020650229142.jpg" />
+    <Content Include="Photo\2020650229143.jpg" />
+    <Content Include="Photo\2020650231401.jpg" />
+    <Content Include="Photo\2020650231402.jpg" />
+    <Content Include="Photo\2020650232361.jpg" />
+    <Content Include="Photo\2020650232362.jpg" />
     <Content Include="Photo\2020651029311.jpg" />
     <Content Include="Photo\2020651029312.jpg" />
     <Content Include="Photo\2020651030112.jpg" />
@@ -300,6 +308,12 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Selfphoto\202063111319p.jpg" />
+    <Content Include="Selfphoto\202064031536p.jpg" />
+    <Content Include="Selfphoto\202064083319p.jpg" />
+    <Content Include="Selfphoto\202065014232p.jpg" />
+    <Content Include="Selfphoto\202065023055p.jpg" />
+    <Content Include="Selfphoto\202065102821p.jpg" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Registered.cshtml" />
     <Content Include="Views\Shared\_AboutLayout.cshtml" />
@@ -402,6 +416,7 @@
     <Compile Include="Models\GroupPrivateCategory.cs">
       <DependentUpon>PathPlus.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\JoinGroup.cs">
       <DependentUpon>PathPlus.tt</DependentUpon>
     </Compile>
@@ -507,12 +522,18 @@
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\PersonalHomePage\Editpersonal.cshtml" />
     <Content Include="Views\PersonalHomePage\Index.cshtml" />
-    <Content Include="Views\PersonalHomePage\viewpost.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Delete.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Groups\GroupHome.cshtml" />
+    <Content Include="Views\Groups\GroupOne.cshtml" />
+    <Content Include="Views\Groups\AllGroup.cshtml" />
+    <Content Include="Views\Groups\searchgroupshow.cshtml" />
+    <Content Include="Views\Groups\readpost.cshtml" />
+    <Content Include="Views\PersonalHomePage\readpersonalpost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -522,7 +543,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Selfphoto\" />
+    <Folder Include="Groupphotos\" />
+    <Folder Include="Groupposts\" />
+    <Folder Include="Views\Comment\" />
     <Folder Include="Views\Contract\" />
   </ItemGroup>
   <ItemGroup>
