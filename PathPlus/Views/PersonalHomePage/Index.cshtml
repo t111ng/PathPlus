@@ -104,7 +104,7 @@
         if(postid != m.PostID) { 
 
         <div class="col-sm-6 col-xs-12 col-md-4 p-2 " style="width:250px;height:250px">
-            <a href="@Url.Action("viewpost")"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
+            <a href="@Url.Action("EveryPosts", "Home", new {PostID=m.PostID})"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
         </div>
             postid = m.PostID;
         }

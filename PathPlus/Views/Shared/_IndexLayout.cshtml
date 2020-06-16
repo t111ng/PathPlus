@@ -13,6 +13,7 @@
     <srcipt src="~/Scripts/modernizr-2.8.3.js"></srcipt>
     <script src="https://kit.fontawesome.com/ffa7b6e8e7.js" crossorigin="anonymous"></script>
     <link href="~/Content/IndexTop.css" rel="stylesheet" />
+  
 </head>
 <body>
 
@@ -95,7 +96,7 @@
                 <!-----以下個人大頭貼----->
                 <div class="mx-0 col-xs-2 nav-item dropdown ">
                     <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="personalphoto1" class="img-thumbnail width1" src="~/Selfphoto/@ViewBag.personalphoto" /><!--圖片直接丟位址進src-->
+                        <img id="personalphoto1" class="img-thumbnail width1" src="/Selfphoto/@ViewBag.personalphoto" /><!--圖片直接丟位址進src-->
                     </a>                
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="@Url.Action("Edit","Member")">修改會員資料</a>
@@ -163,6 +164,7 @@
 
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/MyJS.js"></script>
+    
 </body>
 </html>
 

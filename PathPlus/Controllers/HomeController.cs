@@ -29,7 +29,7 @@ namespace PathPlus.Controllers
                          //join pp in db.PostPhoto on p.PostID equals pp.PostID
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
-                         join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
+                         join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID                    
                          select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName,m.Photo,p.MemberID});
            
             string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
@@ -39,7 +39,7 @@ namespace PathPlus.Controllers
                          join m in db.Member on p.MemberID equals m.MemberID
                          join c in db.PostCategory on p.CategoryID equals c.CategoryID
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
-                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName, m.Photo, p.MemberID });
+                         select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName, m.Photo, p.MemberID});
             //var post3 = from p in db.Post
             //            where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
             //            select new { p.PostID };
@@ -53,9 +53,13 @@ namespace PathPlus.Controllers
                          select new { po.PostID, po.Photo };
             var post = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
             var photo3 = photo2.Union(photo1).OrderByDescending(x => x.PostID).ToList();
+
+            
+
+
             ViewBag.post = post.ToList();
             ViewBag.photo = photo3.ToList();
-
+            //ViewBag.comment = comment.ToList();
             //--------取貼文資料 ---------
 
 
@@ -326,16 +330,137 @@ namespace PathPlus.Controllers
         }
 
         [HttpPost]
-        public ActionResult EveryPosts()
+        public ActionResult EveryPosts(string comm, string PostID)
         {
             Comment newcomment = new Comment();
 
+            newcomment.MemberID = Session["account"].ToString();           
+            newcomment.PostID = PostID;
             newcomment.MessageDate = DateTime.Now;
-           
-                
+            newcomment.Comment1 = comm;
+
+
+            if (newcomment.Like != true)
+            {
+                newcomment.Like = false;
+            }
+            else
+            {
+                newcomment.Like = true;
+            }
+
+            db.Comment.Add(newcomment);
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("EveryPosts","Home",new { PostID = PostID });
+        }
+
+        public ActionResult likes(string PostID)
+        {
+            var likes =( from c in db.Comment
+                       where c.PostID == PostID                     
+                       select new {c.Like});
+
+            ViewBag.like = likes;
 
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult likes(Comment newlike)
+        {
+           var likeststus = (from c in db.Comment
+                            where c.PostID == newlike.PostID && c.MemberID == Session["account"].ToString()
+                            select new { c.Like}).FirstOrDefault().ToString();
+    
+
+
+            if (likeststus == null)
+            {
+                newlike.MemberID = Session["account"].ToString();
+                newlike.PostID = newlike.PostID;
+                newlike.Like = newlike.Like;
+                
+            }
+            else if(likeststus == "false")
+            {
+                newlike.Like = true;
+            }
+            else
+            {
+                newlike.Like = false;
+            }
+             
+            db.SaveChanges();            
+
+
+            return RedirectToAction("EveryPosts", "Home", new { PostID = newlike.PostID });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult newcomment(string comm, string PostID)
+        {
+            Comment comment = new Comment();
+
+            //ViewBag.memberid = Session["account"].ToString();
+
+            comment.MemberID = Session["account"].ToString();
+            comment.PostID = PostID;
+            comment.MessageDate = DateTime.Now;
+            comment.Comment1 = comm;
+
+            if (comment.Like != true)
+            {
+                comment.Like = false;
+            }
+            else
+            {
+                comment.Like = true;
+            }
+
+            db.Comment.Add(comment);
+            db.SaveChanges();
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult newlike(Comment newlikecomment,string PostID)
+        //{
+        //    //dynamic comm =( from c in db.Comment
+        //    //           where c.PostID == PostID && c.MemberID == Session["account"].ToString()
+        //    //           select new { c.Like,c.MemberID,c.PostID }).FirstOrDefault();
+
+        //    Comment newlikecomment1 = new Comment();
+            
+                      
+            
+        //       if (newlikecomment.Comment1 == null ) {
+        //         newlikecomment1.MemberID = Session["account"].ToString();
+        //         newlikecomment1.PostID = PostID;
+        //         newlikecomment1.Like = true;
+
+        //         db.Comment.Add(newlikecomment1);
+        //        }
+        //       else if(newlikecomment.Like == false)
+        //       {
+        //        newlikecomment.Like = true;
+
+        //       }
+        //       else
+        //       {
+        //        newlikecomment.Like = false;
+        //       }
+                   
+        //    db.SaveChanges();
+
+        //    return View();
+        //}
     }
 }
