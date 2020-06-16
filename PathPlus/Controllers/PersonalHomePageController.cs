@@ -92,14 +92,65 @@ namespace PathPlus.Controllers
 
 
         }
-    
-      public ActionResult viewpost()
+
+        public ActionResult readpersonalpost(string PostID)//瀏覽單則貼文
+        {
+            string MID = Session["account"].ToString();
+
+            PersonalViewModel PVM = new PersonalViewModel
+            {
+                postPhoto=db.PostPhoto.Where(m=>m.PostID== PostID).OrderBy(m=>m.PostID).ToList(),
+                
+            };
+            ViewBag.pc = db.Post.Where(m => m.PostID == PostID).FirstOrDefault().PostContent;
+            ViewBag.mn = db.Member.Where(m => m.MemberID== MID).FirstOrDefault().MemberName;
+            ViewBag.mp = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Photo;
+            ViewBag.pid = PostID;
+            ViewBag.like = db.Comment.Where(m => m.PostID == PostID && m.Like == true).Count();
+            var post = from a in db.Member
+                        join b in db.Comment
+                        on a.MemberID equals b.MemberID
+                        where b.PostID == PostID
+                        select new { a.MemberName, b.Comment1, };
+
+            ViewBag.postcomment = post.ToList();
+
+
+
+
+            return View(PVM);
+        }
+
+        [HttpPost]
+        public ActionResult readpersonalpost(string comm, string PostID)//此處為留言的ACTION
         {
 
+            Comment newcomment = new Comment();
 
-            return View();
+            newcomment.MemberID = Session["account"].ToString();
+            newcomment.PostID = PostID;
+            newcomment.SaveDate = DateTime.Now;
+            newcomment.MessageDate= DateTime.Now;
+            newcomment.Comment1 = comm;
+
+
+            if (newcomment.Like != true)
+            {
+                newcomment.Like = false;
+            }
+            else
+            {
+                newcomment.Like = true;
+            }
+
+            db.Comment.Add(newcomment);
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("readpersonalpost", "PersonalHomePage", new { PostID = PostID });
         }
-    
+
     }
 
     

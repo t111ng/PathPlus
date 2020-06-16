@@ -1,0 +1,41 @@
+﻿@model PathPlus.Models.GroupViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+}
+
+<div id="HomeContainer" class="container">
+    <div class="row">
+        @foreach (var m in Model.group)
+        {
+        <div class="card mb-3 col-md-8 border-0">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+
+                    <img src="~/Groupphotos/@m.Photo" class="card-img" style="border-radius:50% ;width:250px ;height:250px ;" />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@m.GroupName<strong></strong></h5>
+                        <p class="card-text">@m.GroupIntroduction</p>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 ">
+
+            <div class="mt-2 mr-3" style="margin-left:60%"><a href="@Url.Action("GroupOne","Groups",new { GroupID=m.GroupID})"><input id="Button2" type="button" value="查看社團" class="btn btn-info" /></a></div>
+
+        </div>
+        <br />
+        
+        }
+    </div>
+    </div>
+
+    
+

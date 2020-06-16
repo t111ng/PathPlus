@@ -52,9 +52,9 @@ namespace PathPlus.Controllers
         public ActionResult Create([Bind(Include = "GroupID,GroupName,GroupIntroduction,GroupInformation,CreateDate,MemberID,PrivateCategoryID")] Group group, HttpPostedFileBase Photo)
         {
 
-            
+
             group.CreateDate = DateTime.Now;
-            
+
             SelfFeature sf = new SelfFeature();
             string GID = sf.GetID("Group");
 
@@ -104,19 +104,19 @@ namespace PathPlus.Controllers
             //post.StatusCategoryID = group.PrivateCategoryID;
 
             string fileName = "";
-            
-                if (Photo != null)
-                {
-                    if (Photo.ContentLength > 0)
-                    {
 
-                        fileName = "group"+ DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "").ToString() + ".jpg";
-                        Photo.SaveAs(Server.MapPath("~/GroupPhoto/" + fileName));
-                        group.Photo = fileName;
-                      
-                    }
+            if (Photo != null)
+            {
+                if (Photo.ContentLength > 0)
+                {
+
+                    fileName = "group" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "").ToString() + ".jpg";
+                    Photo.SaveAs(Server.MapPath("~/GroupPhoto/" + fileName));
+                    group.Photo = fileName;
+
                 }
-            
+            }
+
 
 
 
@@ -128,7 +128,7 @@ namespace PathPlus.Controllers
                 db.SaveChanges();
                 //db.Post.Add(post);
                 //db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.PrivateCategoryID = new SelectList(db.GroupPrivateCategory, "PrivateCategoryID", "PrivateCategoryName", group.PrivateCategoryID);
@@ -212,5 +212,287 @@ namespace PathPlus.Controllers
 
             return View();
         }
+
+        public ActionResult GroupHome()//社團主頁面 顯示所有加入過的社團及社團貼文
+        {
+            string MID = Session["account"].ToString();
+            string[] selfgroup = db.GroupManagement.Where(p => p.MemberID == MID).Select(p => p.GroupID).ToList().ToArray();
+
+            //from m in db.GroupManagement.Where(m=>m.MemberID==MID)
+            var grouppost = from p in db.GroupPost.Where(p => selfgroup.Contains(p.GroupID))
+                            join c in db.GroupPostPhoto
+                            on p.GroupPostID equals c.GroupPostID
+                            select new
+                            {
+                                c.GroupPostID,
+                                c.Photo,
+                            };
+            ViewBag.gpp = grouppost.OrderByDescending(c => c.GroupPostID).ToList();
+
+
+            GroupViewModel groupviewmodel = new GroupViewModel()
+            {
+                group = db.Group.Where(p => selfgroup.Contains(p.GroupID)).OrderByDescending(p => p.GroupID).ToList(),
+                grouppost = db.GroupPost.Where(p => selfgroup.Contains(p.GroupID)).OrderByDescending(p => p.GroupID).ToList(),
+
+            };
+            return View(groupviewmodel);
+        }
+        public ActionResult GroupOne(string GroupID)
+        {
+            if (GroupID == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           string MID= Session["account"].ToString();
+            string[] getgroupid = db.GroupManagement.Where(p => p.MemberID == MID).Select(p => p.GroupID).ToList().ToArray();
+            string[] grouppost = db.GroupPost.Where(p => p.GroupID == GroupID).Select(p => p.GroupPostID).ToList().ToArray();
+            GroupViewModel groupviewmodel = new GroupViewModel()
+            {
+                grouppostphotos = db.GroupPostPhoto.Where(p => grouppost.Contains(p.GroupPostID)).OrderByDescending(p => p.GroupPostID).ToList(),
+                
+            };
+
+            
+            var getgpid = db.GroupManagement.Where(m => getgroupid.Contains(GroupID)).Count();
+            if (getgpid == 0) { 
+                ViewBag.tf = 1;
+                }
+            else
+            {
+                ViewBag.tf = 2;
+            }
+                ViewBag.gn = db.Group.Where(m => m.GroupID == GroupID).FirstOrDefault().GroupName;
+                ViewBag.gi = db.Group.Where(m => m.GroupID == GroupID).FirstOrDefault().GroupIntroduction;
+                ViewBag.gp = db.Group.Where(m => m.GroupID == GroupID).FirstOrDefault().Photo;
+                ViewBag.GroupID = GroupID;
+                ViewBag.gpid = db.Group.Where(m => m.GroupID == GroupID).FirstOrDefault().MemberID;
+                ViewBag.session = Session["account"].ToString();
+                return View(groupviewmodel);
+
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GroupNewPost(GroupPost grouppost, HttpPostedFileBase[] photo, string GroupID)
+        {
+            //抓取grouppostid
+
+            string MID = Session["account"].ToString();
+            SelfFeature getgpid = new SelfFeature();
+            string gpid = getgpid.GetID("GroupPost");
+
+            GroupPostPhoto gpp = new GroupPostPhoto();
+            GroupPost gp = new GroupPost();
+
+            gp.GroupPostID = gpid;
+            gp.Content = grouppost.Content;
+            gp.PostDate = DateTime.Now;
+            gp.EditDate = DateTime.Now;
+            gp.GroupID = GroupID;
+            gp.StatusCategoryID = grouppost.StatusCategoryID;
+            gp.MemberID = MID;
+            try
+            {
+                db.GroupPost.Add(gp);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            gpp.GroupPostID = gpid;
+
+            string fileName = "";
+
+
+            for (int i = 0; i < photo.Length; i++)
+            {
+                if (photo[i] != null)
+                {
+                    if (photo[i].ContentLength > 0)
+                    {
+
+                        fileName = "grouppost" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "") + (i + 1).ToString() + ".jpg";
+                        photo[i].SaveAs(Server.MapPath("~/Groupposts/" + fileName));
+                        gpp.Photo = fileName;
+
+
+                        db.GroupPostPhoto.Add(gpp);
+                        db.SaveChanges();
+                    }
+                }
+            }
+
+            return RedirectToAction("GroupOne", "Groups", new { GroupID = GroupID });
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editgroup(Group group, string GroupID)
+        {
+            string a = GroupID;
+            var m = db.Group.Where(o => o.GroupID == a).FirstOrDefault();
+
+            m.GroupName = group.GroupName == null ? m.GroupName : group.GroupName;
+            m.GroupIntroduction = group.GroupIntroduction == null? m.GroupIntroduction: group.GroupIntroduction;
+            m.PrivateCategoryID = group.PrivateCategoryID == null? m.PrivateCategoryID:group.PrivateCategoryID;
+            
+            db.SaveChanges();
+
+            return RedirectToAction("GroupOne", "Groups", new { GroupID = GroupID });
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Groupphoto(HttpPostedFileBase photo, string GroupID)
+        {
+            string a = GroupID;
+            var m = db.Group.Where(o => o.GroupID == a).FirstOrDefault();
+
+            if (photo.ContentLength > 0)
+            {
+                string fileName = "";
+                fileName = "group" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "").ToString() + "p.jpg";
+                photo.SaveAs(Server.MapPath("~/Groupphotos/" + fileName));
+                m.Photo = fileName;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("GroupOne", "Groups", new { GroupID = GroupID });
+
+
+        }
+        public ActionResult AllGroup()
+        {
+            string[] gpid = db.GroupPost.Where(p => p.StatusCategoryID != "2").Select(p => p.GroupPostID).ToList().ToArray();
+
+            GroupViewModel GVM = new GroupViewModel()
+            {
+                group = db.Group.Where(m => m.PrivateCategoryID != "2").ToList(),
+
+                grouppostphotos = db.GroupPostPhoto.Where(m => gpid.Contains(m.GroupPostID)).OrderByDescending(m => m.GroupPostID).ToList()
+            };
+
+
+
+
+            return View(GVM);
+        }
+
+        
+        [HttpPost]
+        public ActionResult searchgroupshow(string GroupName)
+        {
+            try
+            {
+
+                GroupViewModel gvm = new GroupViewModel
+                {
+                    group = db.Group.Where(m => m.GroupName.Contains(GroupName)).OrderByDescending(m => m.GroupID).ToList()
+                };
+                ViewBag.session = Session["account"].ToString();
+                return View(gvm);
+            }
+
+
+
+            catch
+            {
+                return RedirectToAction("AllGroup", "Groups");
+            }
+
+        }
+
+        public ActionResult joingroup(string GroupID)
+        {
+            string MID = Session["account"].ToString();
+            GroupManagement GM = new GroupManagement();
+
+            GM.MemberID = MID;
+            GM.GroupID = GroupID;
+            GM.ManageDate = DateTime.Now;
+            GM.AuthorityCategoryID = "2";
+
+            db.GroupManagement.Add(GM);
+            db.SaveChanges();
+
+            return RedirectToAction("GroupOne", "Groups", new { GroupID = GroupID });
+        }
+
+        public ActionResult deletegroup(string GroupID)
+        {
+            GroupManagement GMn = new GroupManagement();
+            string MID = Session["account"].ToString();
+            GMn = db.GroupManagement.Where(m => m.MemberID == MID && m.GroupID == GroupID).SingleOrDefault();
+            db.GroupManagement.Remove(GMn);
+            db.SaveChanges();
+            return RedirectToAction("AllGroup");
+        }
+
+        public ActionResult readpost(string GroupPostID)//瀏覽單則貼文
+        {
+
+            string[] getgroupID = db.GroupPost.Where(p => p.GroupPostID == GroupPostID).Select(p => p.GroupID).ToList().ToArray();
+            GroupViewModel GVM = new GroupViewModel
+            {
+               grouppostphotos=db.GroupPostPhoto.Where(m=>m.GroupPostID== GroupPostID).OrderBy(m=>m.GroupPostID).ToList(),
+             
+            };
+            ViewBag.gpc = db.GroupPost.Where(m => m.GroupPostID == GroupPostID).FirstOrDefault().Content;
+            ViewBag.gn = db.Group.Where(m => getgroupID.Contains(m.GroupID)).FirstOrDefault().GroupName;
+            ViewBag.gp = db.Group.Where(m => getgroupID.Contains(m.GroupID)).FirstOrDefault().Photo;
+            ViewBag.gpid = GroupPostID;
+            ViewBag.like = db.CommentGroupPost.Where(m => m.GroupPostID == GroupPostID &&m.Like==true).Count();
+            var group = from a in db.Member
+                        join b in db.CommentGroupPost
+                        on a.MemberID equals b.MemberID
+                        where b.GroupPostID == GroupPostID
+                        select new { a.MemberName, b.Comment, };
+
+            ViewBag.postcomment = group.ToList();
+
+
+            return View(GVM);
+        }
+
+        [HttpPost]
+        public ActionResult readpost(string comm, string GroupPostID)//此處為留言的ACTION
+        {
+            
+           CommentGroupPost  newcomment = new CommentGroupPost();
+
+            newcomment.MemberID = Session["account"].ToString();
+            newcomment.GroupPostID = GroupPostID;
+            newcomment.SaveDate = DateTime.Now;
+            newcomment.CommentDate = DateTime.Now;
+            newcomment.Comment = comm;
+
+
+            if (newcomment.Like != true)
+            {
+                newcomment.Like = false;
+            }
+            else
+            {
+                newcomment.Like = true;
+            }
+
+            db.CommentGroupPost.Add(newcomment);
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("readpost", "Groups", new { GroupPostID = GroupPostID });
+        }
+
+        
+
+
+
     }
 }

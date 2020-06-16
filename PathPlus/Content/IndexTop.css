@@ -235,3 +235,44 @@
     overflow-x: scroll;
 }
 
+/*---------限制照片大小(社團主頁)------------*/
+
+
+ @media (min-width: 1180px) and (max-width: 2000px) {
+    .Xlarge {
+        width: 70%;
+        height: 400px;
+        margin-left: 160px
+    }  
+ }
+@media (min-width: 990px) and (max-width: 1179px) {
+    .large {
+        width: 70%;
+        height: 400px;
+        margin-left: 130px
+    }
+}
+@media (min-width: 500px) and (max-width: 989px) {
+    .medium {
+        width: 70%;
+        height: 300px;
+        margin-left: 90px
+    }
+}
+@media (min-width:400px) and (max-width: 499px) {
+    .smedium {
+        width: 70%;
+        height: 260px;
+        margin-left: 60px
+    }
+}
+@media (min-width: 200px) and (max-width: 399px) {
+    .smalll {
+        width: 50%;
+        height: 100px;
+        margin-left: 40px
+    }
+}
+
+
+/*---------限制照片大小(社團主頁)------------*/

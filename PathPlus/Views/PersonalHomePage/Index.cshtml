@@ -104,7 +104,7 @@
         if(postid != m.PostID) { 
 
         <div class="col-sm-6 col-xs-12 col-md-4 p-2 " style="width:250px;height:250px">
-            <a href="@Url.Action("viewpost")"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
+            <a href="@Url.Action("readpersonalpost","PersonalHomePage",new {PostID=m.PostID })"><img src="~/Photo/@m.Photo" class="rounded img-thumbnail w-100 h-100" /></a>
         </div>
             postid = m.PostID;
         }
@@ -328,89 +328,7 @@
 
 }
 
-@*---------------以下彈窗瀏覽單則貼文---------------*@
 
-@using (Html.BeginForm("NewPost", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">分享你的生活</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="dialog" class="none">
-                        <div id="dialog-wrapper">
-                            <div class="dialog-content">
-                                @*----放上傳照片的區塊----*@
-
-                                <div>
-                                    <div id="FileUpArea" class="row mt-3">
-
-                                    </div>
-                                    <div class="row">
-                                        <input id="addFile" type="button" class="form-control col-sm-6 mt-3 " value="增加一個檔案" />
-                                        <input id="PhotoFile" name="photo" type="file" class="form-control col-sm-6 mt-3 " value="點我上傳照片" />
-                                    </div>
-
-                                </div>
-
-                                @*----放上傳照片的區塊----*@
-                                <div class="form-group mt-3">
-                                    <textarea class="form-control " name="Pcontent" id="Text1" type="text" required placeholder="請輸入內容"></textarea>
-                                </div>
-                                <div class="">
-                                    <div class="row form-inline mt-1">
-                                        <div class="h5">貼文類別</div>
-                                        <div class="form-group col-6">
-                                            <select id="CID" name="CID" class="form-control">
-                                                <option value="0">幽默</option>
-                                                <option value="1">建築與裝潢</option>
-                                                <option value="2">旅遊</option>
-                                                <option value="3">美食</option>
-                                                <option value="4">藝術</option>
-                                                <option value="5">大自然</option>
-                                                <option value="6">時尚</option>
-                                                <option value="7">電視與電影</option>
-                                                <option value="8">音樂</option>
-                                                <option value="9">動畫</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-inline mt-1">
-                                        <div class="h5">隱私狀態</div>
-                                        <div class="form-group col-6">
-                                            <select id="SCID" name="SCID" class="form-control">
-                                                <option value="0">開放</option>
-                                                <option value="1">半開放(限粉絲可看到)</option>
-                                                <option value="2">隱藏</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-4">
-                                    <div class="d-flex">
-                                        <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
-                                        <input type="submit" value="張貼" class="btn btn-primary " />
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-}
-@*---------------以上彈窗瀏覽單則貼文---------------*@
 
 
 

@@ -15,25 +15,25 @@
     <link href="~/Content/IndexTop.css" rel="stylesheet" />
 </head>
 <body>
-
-    <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
-    <!--------------------以下logo--------------------->
-
-    <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
-        <div id="container " class="container">
-            <div class="navbar-brand" href="#">
-                <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
-            </div>
-            <!----------------以下searchbar-------------------->
-            <div id="searchbar" class="form-inline">
-                <form class="form-inline">
-                    <input id="searchbar1" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
-                    <button class="btn btn-sm border-0" type="submit">
-                        <img width="25" src="~/image/查詢鍵(黑白).jpg" />
-                    </button>
-                </form>
-            </div>
-            @*-------------------以下icon------------------*@
+   
+        <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
+        <!--------------------以下logo--------------------->
+ 
+        <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
+            <div id="container " class="container">
+                <div class="navbar-brand" href="#">
+                    <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
+                </div>
+                <!----------------以下searchbar-------------------->
+                <div id="searchbar" class="form-inline">
+                    <form class="form-inline">
+                        <input id="searchbar1" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
+                        <button class="btn btn-sm border-0" type="submit">
+                            <img width="25" src="~/image/查詢鍵(黑白).jpg" />
+                        </button>
+                    </form>
+                </div>
+                @*-------------------以下icon------------------*@
 
             <div class="row form-inline " id="navbarNavDropdown">
 
@@ -76,8 +76,9 @@
                         <div class="dropdown-submenu ">
                             <a class="dropdown-item dropdown-toggle" href="#">社團</a>
                             <div class="dropdown-menu">
-                                <div><a class="dropdown-item" data-toggle="modal" data-target="#staticBackdropGroup">新增社團</a></div>
-                                <div><a class="dropdown-item" href="#">我的社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("Create","Groups")" data-toggle="modal" data-target="#staticBackdropGroup">新增社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("GroupHome","Groups")">我的社團</a></div>
+                                <div><a class="dropdown-item" href="@Url.Action("AllGroup","Groups")">所有社團</a></div>
                             </div>
                         </div>
 
