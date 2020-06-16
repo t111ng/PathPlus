@@ -1,0 +1,26 @@
+﻿@*@model PathPlus.Models.Comment*@
+
+@model IEnumerable<PathPlus.Models.Comment>
+
+
+
+    <div id="@ViewBag.postid">
+
+        @foreach (var item in Model)
+        {
+            <div>
+                <span class="h5"><strong>@Html.DisplayFor(modelItem => item.Member.MemberName)</strong></span>
+                <span class="h6">@item.Comment1</span>
+            </div>
+        }
+
+    </div>
+        
+        @*<hr />
+        <form action="/Comment/_CreateForPost?PostID=@ViewBag.postid" data-target="#@ViewBag.postid" data-ajax="true" data-ajax-method="Post" data-ajax-mode="replace" data-ajax-update="#@ViewBag.postid" id="" method="post">
+            <input type="hidden" name="PostID" id="PostID" value="@ViewBag.postid" />
+            @Html.Action("_CreateForPost", "Comment", new { PostID = ViewBag.postid })
+
+        </form>*@
+
+   

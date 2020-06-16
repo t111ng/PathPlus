@@ -3,6 +3,8 @@
     var data = ViewBag.post;
     var data2 = ViewBag.photo;
     var data3 = ViewBag.group;
+    var data4 = ViewBag.comment;
+    
 }
 
 
@@ -19,20 +21,20 @@
                 {
                     if (postid != @item.GetType().GetProperty("PostID").GetValue(item))
                     {
-           
+
                         <div class="border mb-3">
                             <div class="card border-0  mb-3" style="width:100%;">
                                 <div class="card-header bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex">
-                                    
-                                        <div class="p2">
-                                            <a href="@Url.Action("EveryPosts", "Home", new {MemberID=item.GetType().GetProperty("MemberID").GetValue(item)})"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
-                                        </div>
-                                    
-                                    
-                                        <div class="p2">
-                                            <span> @item.GetType().GetProperty("MemberName").GetValue(item)</span>
-                                        </div>
-                                    
+
+                                    <div class="p2">
+                                        <a href="@Url.Action("EveryPosts", "Home", new { MemberID = item.GetType().GetProperty("MemberID").GetValue(item) })"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
+                                    </div>
+
+
+                                    <div class="p2">
+                                        <span> @item.GetType().GetProperty("MemberName").GetValue(item)</span>
+                                    </div>
+
                                     <div class="p2 ml-auto nav-item dropdown ">
                                         <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdownPersonal" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img width="20" src="~/image/點點點.jpg" />
@@ -122,28 +124,47 @@
                                         </div>
                                     </div>
                                     <div>
-                                        讚數
+
                                     </div>
                                     <div>
-                                        <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span>&nbsp;&nbsp;
-                                        <span class="h6"> @item.GetType().GetProperty("PostContent").GetValue(item)</span>
+                                        <p>
+                                            <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span>&nbsp;&nbsp;
+                                            <span class="h6"> @item.GetType().GetProperty("PostContent").GetValue(item)</span>
+                                        </p>
+
+                                        @*@foreach (var item3 in data4)
+                                        {
+                                            <blockquote>
+                                                <span class="h5"><strong>@item3.GetType().GetProperty("MemberName").GetValue(item)</strong></span>
+                                                <span class="h6">@item3.GetType().GetProperty("Comment1").GetValue(item)</span>
+                                            </blockquote>
+
+                                        }*@
+                                        @Html.Action("_CommentsForPost", "Comment", new { PostID = item.GetType().GetProperty("PostID").GetValue(item) })
                                     </div>
+
+
                                     <div class="text-secondary">
-                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID=item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
+                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <hr />
-                                <div class="border-0 form-group row no-gutters">
-                                    <input class="form-control border-0 col-sm-11 " name="Comment" id="postcomment" type="text" placeholder="留言……" />
+                                @using (Html.BeginForm("newcomment", "Home", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                            <div class="border-0 form-group row no-gutters">
+                                <input class="form-control border-0 col-sm-11 " name="Comm" id="comm" type="text" placeholder="留言……" />
+                                <input name="PostID" id="PostID" type="hidden" value="@item.GetType().GetProperty("PostID").GetValue(item)" placeholder="留言……" />
+                                <input type="submit" class="form-control border-0 col-sm-1" id="PushCommentButton" value="發怖" />
 
-                                    <input type="submit" class="form-control border-0 col-sm-1" id="PushCommentButton" value="發怖" />
-
-                                </div>
                             </div>
+                                }
+                                </div>
                             
                         </div>
+
                         postid = @item.GetType().GetProperty("PostID").GetValue(item);
                     }
                     else
@@ -287,11 +308,11 @@
                                     </div>
 
                                     @*----放上傳照片的區塊----*@
-                                    <div class="form-group mt-3 col-sm-10">
-                                        <textarea class="form-control " name="Pcontent" id="Text1" type="text" required placeholder="請輸入內容"></textarea>
+                                    <div class="form-group mt-3 col-sm-10 ml-2">
+                                        <textarea class="form-control ml-5" name="Pcontent" id="Text1" type="text" required placeholder="請輸入內容"></textarea>
                                     </div>
-                                    <div class="mr-5">
-                                        <div class="row form-inline mt-1 mr-3">
+                                    <div class="ml-2">
+                                        <div class="row form-inline mt-1 ml-5">
                                             <div class="h5">貼文類別</div>
                                             <div class="form-group col-6">
                                                 <select id="CID" name="CID" class="form-control">
@@ -309,7 +330,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row form-inline mt-1 mr-3">
+                                        <div class="row form-inline mt-1 ml-5">
                                             <div class="h5">隱私狀態</div>
                                             <div class="form-group col-6">
                                                 <select id="SCID" name="SCID" class="form-control">
@@ -433,6 +454,7 @@
 
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
         //--------停止內文照片每五秒一動一次----------
         $('.carousel').carousel({

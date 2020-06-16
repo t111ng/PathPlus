@@ -254,6 +254,8 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyJS.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -365,6 +367,7 @@
     <Compile Include="Controllers\AdvertisementsController.cs" />
     <Compile Include="Controllers\AdvertisersController.cs" />
     <Compile Include="Controllers\AnnouncementsController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DrawController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -565,6 +568,10 @@
     <Content Include="Views\Groups\searchgroupshow.cshtml" />
     <Content Include="Views\Groups\readpost.cshtml" />
     <Content Include="Views\PersonalHomePage\readpersonalpost.cshtml" />
+    <Content Include="Views\Shared\_CommentsForPost.cshtml" />
+    <Content Include="Views\Comment\CommentsForPost.cshtml" />
+    <Content Include="Views\Shared\_ShowLikeForPost.cshtml" />
+    <Content Include="Views\Shared\_CreateAComment.cshtml" />
     
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

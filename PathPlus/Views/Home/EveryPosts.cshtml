@@ -13,7 +13,7 @@
             <div class="col-sm-8">
                 <div class="border mb-3">
                     <div class="card border-0  mb-3" style="width:100%;">
-                        <div class="bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex">
+                        <div class="bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex mt-3 ml-3">
 
                             <div class="p2">
                                 <img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" />
@@ -43,6 +43,7 @@
 
                             </div>
                         </div>
+                        <hr />
 
                         <div class="card-body text-dark border-bottom">
 
@@ -113,25 +114,30 @@
 
                     <div class="card-footer bg-transparent border-secondary border-top-0">
                         <div class="form-inline">
-                            <div class="mx-2">
-                                <img id="like" class="width" src="~/image/heart鍵(黑白框).jpg" />
-                                <img id="like1" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                            
+                                <div class="mx-2">
+                                    <img id="like"  name="Like" value="true" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                    <img id="like1"  name="Like" value="false" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                </div>
+                            
+                                <div class="mx-2">
+                                    <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
+                                </div>
                             </div>
-                            <div class="mx-2">
-                                <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
-                            </div>
-                        </div>
                         <div>
                             <span> @ViewBag.like 個讚</span>
                         </div>
                         <hr />
-                        <div class=" border-0 form-group row no-gutters">
-                            <input class="form-control border-0 col-sm-10 " name="Comment" id="postcomment" type="text" placeholder="留言……" />
+                        @using (Html.BeginForm("EveryPosts", "Home", FormMethod.Post))
+                        {
+                    <div class=" border-0 form-group row no-gutters">
+                        <input class="form-control border-0 col-sm-10 " name="Comm" id="postcomment" type="text" placeholder="留言……" />
 
-                            <input type="submit" class="form-control border-0 col-sm-2" id="PushCommentButton" value="發怖" />
-
-                        </div>
+                        <input type="submit" class="form-control border-0 col-sm-2" id="PushCommentButton" value="發怖" />
+                        <input type="hidden" name="PostID" id="PushCommentButton" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
                     </div>
+                        }
+                        </div>
                 </div>
             </div>
 
@@ -145,4 +151,21 @@
     $('.carousel').carousel({
         interval: false
     })
+
+        //抓取點讚
+        $('#like').click(function () {
+            $('#like').css("display", "none");
+            $('#like1').css("display", "block");
+            var like = $('#like').val();
+            var dataJSON = {}
+            dataJSON["Like"]="true"
+
+        });
+
+         $('#like1').click(function () {
+            $('#like1').css("display", "none");
+            $('#like').css("display", "block");
+
+        });
+
     </script>
