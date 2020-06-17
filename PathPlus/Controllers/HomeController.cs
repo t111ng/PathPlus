@@ -15,6 +15,7 @@ namespace PathPlus.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //起始頁，如果Session["account"]空的表示沒有登入，轉到登入頁面
             if (Session["account"] == null)
             {
                 return RedirectToAction("Index", "Login");
@@ -78,8 +79,10 @@ namespace PathPlus.Controllers
             ViewBag.personalphoto = PersonalPhoto;
             //--------個人圖片-----------
 
-            //-------提取社團資訊----------
-            var group = db.Group.Where(g=>g.PrivateCategoryID == "0").Take(5);
+            //-------提取社團資訊----------(Session["account"].ToString()
+            
+            var jp = db.JoinGroup.Where(j => j.MemberID == ID).Select(j => j.GroupID).ToList().ToArray();
+            var group = db.Group.Where(g=>g.PrivateCategoryID == "0").Where(g=> !jp.Contains(g.GroupID)).Take(5);
             ViewBag.group = group.ToList();
             //-------提取社團資訊----------
 

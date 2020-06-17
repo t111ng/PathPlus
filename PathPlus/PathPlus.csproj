@@ -128,6 +128,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\administrator2.css" />
     <Content Include="Global.asax" />
+    <Content Include="GroupPhoto\group202069041026.jpg" />
+    <Content Include="GroupPhoto\group202069042309.jpg" />
     <Content Include="image\compass鍵%28navbar%29.jpg" />
     <Content Include="image\greendust.png" />
     <Content Include="image\heart鍵%28navbar%29.jpg" />
@@ -153,14 +155,17 @@
     <Content Include="image\新增相片.jpg" />
     <Content Include="image\查詢鍵%28黑白%29.jpg" />
     <Content Include="image\極限運動%28about%29.jpg" />
+    <Content Include="image\沒有頭貼.png" />
     <Content Include="image\留言鍵%28黑白%29.jpg" />
     <Content Include="image\登入頁圖片.gif" />
     <Content Include="image\登入頁用path+.png" />
     <Content Include="image\登入頁用path.jpg" />
+    <Content Include="image\登入頁用path.png" />
     <Content Include="image\發文鍵.jpg" />
     <Content Include="image\發文鍵.png" />
     <Content Include="image\註冊頁2-生日.jpg" />
     <Content Include="image\點點點.jpg" />
+    <Content Include="image\點點點.png" />
     <Content Include="Models\PathPlus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PathPlus.Context.cs</LastGenOutput>
@@ -185,6 +190,8 @@
     <Content Include="Photo\2020640955432.jpg" />
     <Content Include="Photo\2020640955433.jpg" />
     <Content Include="Photo\2020641147051.jpg" />
+    <Content Include="Photo\2020650113391.jpg" />
+    <Content Include="Photo\2020650113392.jpg" />
     <Content Include="Photo\2020650142511.jpg" />
     <Content Include="Photo\2020650229141.jpg" />
     <Content Include="Photo\2020650229142.jpg" />
@@ -216,11 +223,9 @@
     <Content Include="Photo\2020651144321.jpg" />
     <Content Include="Photo\2020651144322.jpg" />
     <Content Include="Photo\2020651146361.jpg" />
-
     <Content Include="Scripts\administrator.js" />
     <Content Include="Scripts\administrator2.js" />
     <Content Include="Scripts\administrator.pre.js" />
-    
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -254,6 +259,11 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -329,6 +339,14 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Selfphoto\2020610080819p.jpg" />
+    <Content Include="Selfphoto\2020610081419p.jpg" />
+    <Content Include="Selfphoto\2020610081432p.jpg" />
+    <Content Include="Selfphoto\2020610082729p.jpg" />
+    <Content Include="Selfphoto\2020610082830p.jpg" />
+    <Content Include="Selfphoto\202063111319p.jpg" />
+    <Content Include="Selfphoto\202064031536p.jpg" />
+    <Content Include="Selfphoto\202064083319p.jpg" />
     <Content Include="Selfphoto\202065014232p.jpg" />
     <Content Include="Selfphoto\202063111319p.jpg" />
     <Content Include="Selfphoto\202064031536p.jpg" />
@@ -375,6 +393,7 @@
     <Compile Include="Controllers\ManagerLoginController.cs" />
     <Compile Include="Controllers\PersonalHomePageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\RelationshipController.cs" />
     <Compile Include="Controllers\SelfFeature.cs" />
     <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Controllers\VMContractController.cs" />
@@ -554,7 +573,6 @@
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Home\EveryPosts.cshtml" />
-
     <Content Include="Views\AdministratorLogin\Login.cshtml" />
     <Content Include="Views\AdministratorLogin\_Layout.cshtml" />
     <Content Include="Views\AdministratorHome\Index.cshtml" />
@@ -586,6 +604,7 @@
     <Folder Include="Groupposts\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\Contract\" />
+    <Folder Include="Views\Relationship\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

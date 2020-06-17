@@ -211,7 +211,8 @@
                         <div class="">@g.GetType().GetProperty("GroupName").GetValue(g)</div>       <!--帶入社團姓名-->
                     </div>
                     <div class="ml-auto text-primary">
-                        追蹤   <!--建立追蹤功能-->
+                        <!--建立追蹤功能-->
+                        <a href="@Url.Action("JoinGroup", "Groups", new {GID=g.GetType().GetProperty("GroupID").GetValue(g)})">追蹤</a>
                     </div>
                 </div>
             }
