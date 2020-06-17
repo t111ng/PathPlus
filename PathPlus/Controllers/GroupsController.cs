@@ -116,6 +116,10 @@ namespace PathPlus.Controllers
                       
                     }
                 }
+            else
+            {                              
+                group.Photo = "沒有頭貼.png";
+            }
             
 
 

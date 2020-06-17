@@ -105,13 +105,11 @@
 }
 
 #like {
-    display: block;
     cursor: pointer;
     z-index: 50;
 }
 
 #like1 {
-    display: none;
     cursor: pointer;
     z-index: 10;
 }

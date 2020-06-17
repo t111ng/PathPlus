@@ -307,13 +307,23 @@ namespace PathPlus.Controllers
                           join m in db.Member on c.MemberID equals m.MemberID                          
                           select new {m.MemberName,c.PostID,c.Comment1,m.MemberID };
              var posts = from p in db.Post
-                        where p.PostID == PostID
-                        join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
-                        join pc in comment on p.PostID equals pc.PostID into pcs
-                        join m in db.Member on p.MemberID equals m.MemberID
-                        select new { p.PostID,p.PostContent,pps,p.PostDate,m.MemberName,pcs,m.Photo,m.Account,m.MemberID};
- 
+                         where p.PostID == PostID
+                         join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
+                         join pc in comment on p.PostID equals pc.PostID into pcs
+                         join m in db.Member on p.MemberID equals m.MemberID
+                         select new { p.PostID,p.PostContent,pps,p.PostDate,m.MemberName,pcs,m.Photo,m.Account,m.MemberID};
+
+            var commentlike = (db.Comment.Where(c => c.PostID == PostID && c.MemberID == ID));
+            
+                              
+              if(commentlike.Any() == false)
+            {
+                ViewBag.nocomment = "true";
+            }
+
+
             ViewBag.everyposts = posts.ToList();
+            ViewBag.commentlike = commentlike.ToList();
             //---------取得讚數---------
             var like = db.Comment.Where(c => c.PostID == PostID).Where(c => c.Like == true).Count();
             ViewBag.like = like;
@@ -438,9 +448,9 @@ namespace PathPlus.Controllers
         //    //           select new { c.Like,c.MemberID,c.PostID }).FirstOrDefault();
 
         //    Comment newlikecomment1 = new Comment();
-            
-                      
-            
+
+
+
         //       if (newlikecomment.Comment1 == null ) {
         //         newlikecomment1.MemberID = Session["account"].ToString();
         //         newlikecomment1.PostID = PostID;
@@ -457,10 +467,44 @@ namespace PathPlus.Controllers
         //       {
         //        newlikecomment.Like = false;
         //       }
-                   
+
         //    db.SaveChanges();
 
         //    return View();
         //}
+
+        [HttpPost]
+        public ActionResult newlike(string PostID,string postid, string likestatus) {
+         
+
+            var comm = db.Comment.Where(o => o.PostID == postid && o.MemberID == Session["account"].ToString()).FirstOrDefault();
+
+            Comment newlikecomment1 = new Comment();
+
+
+
+                   if (comm == null ) {
+                     newlikecomment1.MemberID = Session["account"].ToString();
+                     newlikecomment1.PostID = postid;
+                     newlikecomment1.Like = true;
+
+                     db.Comment.Add(newlikecomment1);
+                    }
+            else if (likestatus == "false")
+            {
+                comm.Like = false;
+
+            }
+            else
+            {
+                comm.Like = true;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("EveryPosts", "Home", new { PostID = postid });
+
+        }
+
     }
 }

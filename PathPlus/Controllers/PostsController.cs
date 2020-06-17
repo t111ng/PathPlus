@@ -186,10 +186,25 @@ namespace PathPlus.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            var member = (from p in db.Post
+                          where p.PostID == id
+                          select new { p.MemberID });
+
+            var comment = db.Comment.Where(c => c.PostID == id);
+            
+            db.Comment.RemoveRange(comment);
+            db.SaveChanges();
+
+
+            var postphoto = db.PostPhoto.Where(p => p.PostID == id);
+
+            db.PostPhoto.RemoveRange(postphoto);
+            db.SaveChanges();
+
             Post post = db.Post.Find(id);
             db.Post.Remove(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)
