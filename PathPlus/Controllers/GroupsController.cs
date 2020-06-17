@@ -17,17 +17,21 @@ namespace PathPlus.Controllers
         // GET: Groups
         public ActionResult Index()
         {
+            //join社群類別的意思，拉關聯
             var group = db.Group.Include(g => g.GroupPrivateCategory).Include(g => g.Member);
+
             return View(group.ToList());
         }
 
-        // GET: Groups/Details/5
+        //查看該社團詳細資料
         public ActionResult Details(string id)
         {
             if (id == null)
             {
+                //回傳錯誤請求
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //搜尋該筆社團詳細資料如果沒有該筆資料回傳找不到
             Group group = db.Group.Find(id);
             if (group == null)
             {
@@ -37,8 +41,10 @@ namespace PathPlus.Controllers
         }
 
         // GET: Groups/Create
+        
         public ActionResult Create()
         {
+
             ViewBag.PrivateCategoryID = new SelectList(db.GroupPrivateCategory, "PrivateCategoryID", "PrivateCategoryName");
             ViewBag.MemberID = new SelectList(db.Member, "MemberID", "MemberName");
             return View();
@@ -52,12 +58,12 @@ namespace PathPlus.Controllers
         public ActionResult Create([Bind(Include = "GroupID,GroupName,GroupIntroduction,GroupInformation,CreateDate,MemberID,PrivateCategoryID")] Group group, HttpPostedFileBase Photo)
         {
 
-
+            //新增時間
             group.CreateDate = DateTime.Now;
-
+            //找最新ID
             SelfFeature sf = new SelfFeature();
             string GID = sf.GetID("Group");
-
+            group.GroupID = GID;
             //var id = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
             //int nid = int.Parse(id.Substring(4)) + 1;
             //id = "G" + DateTime.Now.Year.ToString().Substring(1, 3);
@@ -67,8 +73,6 @@ namespace PathPlus.Controllers
             //    id += 0;
             //}
             //id += sid;
-            group.GroupID = GID;
-
 
             group.MemberID = Session["account"].ToString();
 
@@ -215,12 +219,15 @@ namespace PathPlus.Controllers
 
             return View();
         }
-
-        public ActionResult GroupHome()//社團主頁面 顯示所有加入過的社團及社團貼文
+        //---------
+        //社團主頁面，顯示所有加入過的社團及社團貼文
+        public ActionResult GroupHome()
         {
+            //存放會員ID
             string MID = Session["account"].ToString();
+            //抓取加入過的社團 要改joingroup
             string[] selfgroup = db.GroupManagement.Where(p => p.MemberID == MID).Select(p => p.GroupID).ToList().ToArray();
-
+            //抓已參加社團所有的貼文 要改
             //from m in db.GroupManagement.Where(m=>m.MemberID==MID)
             var grouppost = from p in db.GroupPost.Where(p => selfgroup.Contains(p.GroupID))
                             join c in db.GroupPostPhoto
@@ -230,6 +237,7 @@ namespace PathPlus.Controllers
                                 c.GroupPostID,
                                 c.Photo,
                             };
+            //倒序(排序新到舊)抓到的社團貼文
             ViewBag.gpp = grouppost.OrderByDescending(c => c.GroupPostID).ToList();
 
 
