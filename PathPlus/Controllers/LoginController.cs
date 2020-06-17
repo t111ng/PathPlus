@@ -83,7 +83,7 @@ namespace PathPlus.Controllers
         [HttpPost]
         public ActionResult Registered(string Name, string Mail, string Account, string Password, string address, string gender)
         {
-            string sql = "insert into Member values(@MID,@Name,@Mail,@Account,@Password,@gender,'','','',@address,getdate(),0,0)";
+            string sql = "insert into Member values(@MID,@Name,@Mail,@Account,@Password,@gender,'','',@photo,@address,getdate(),0,0)";
             SqlCommand Cmd = new SqlCommand();
             
             Cmd.Parameters.AddWithValue("@Name", Name);
@@ -91,6 +91,7 @@ namespace PathPlus.Controllers
             Cmd.Parameters.AddWithValue("@Account", Account);
             Cmd.Parameters.AddWithValue("@Password", Password);
             Cmd.Parameters.AddWithValue("@gender", gender);
+            Cmd.Parameters.AddWithValue("@photo", "沒有頭貼.png");
             Cmd.Parameters.AddWithValue("@address", address);
 
             SelfFeature getMid = new SelfFeature();

@@ -1,6 +1,7 @@
 ﻿
 @{
     var data = ViewBag.everyposts;
+    var data2 = ViewBag.commentlike;
 }
 
 <div id="HomeContainer" class="container">
@@ -9,6 +10,7 @@
 
         @foreach (var item in data)
         {
+             string newdeleteid = "deletepostcheck";
 
             <div class="col-sm-8">
                 <div class="border mb-3">
@@ -31,7 +33,7 @@
                                     @{ if (Session["account"].ToString() == item.GetType().GetProperty("MemberID").GetValue(item))
                                         {
                                             <a class="dropdown-item" href="@Url.Action("Edit", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">修改貼文</a>
-                                            <a class="dropdown-item" href="@Url.Action("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) })">刪除</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#@newdeleteid">刪除</a>
                                         }
                                         else
                                         {
@@ -114,32 +116,86 @@
 
                     <div class="card-footer bg-transparent border-secondary border-top-0">
                         <div class="form-inline">
-                            
+
+
+                            @foreach (var item2 in data2)
+                            {
+                                if (item2.GetType().GetProperty("Like").GetValue(item2) == false)
+                                {
+                                    <div class="mx-2">
+                                        <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:block" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                        <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:none" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                        <input id="postid" type="hidden" name="postid" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mx-2">
+                                        <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:none" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                        <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:block" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                        <input id="postid" type="hidden" name="postid" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
+                                    </div>
+                                }
+                            }
+                            @if (ViewBag.nocomment == "true")
+                            {
                                 <div class="mx-2">
-                                    <img id="like"  name="Like" value="true" class="width" src="~/image/heart鍵(黑白框).jpg" />
-                                    <img id="like1"  name="Like" value="false" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                    <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:block" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                    <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:none" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                    <input id="postid" type="hidden" name="postid" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
                                 </div>
-                            
-                                <div class="mx-2">
-                                    <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
-                                </div>
+
+                            }
+
+                            <div class="mx-2">
+                                <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
                             </div>
+                        </div>
                         <div>
                             <span> @ViewBag.like 個讚</span>
                         </div>
                         <hr />
                         @using (Html.BeginForm("EveryPosts", "Home", FormMethod.Post))
                         {
-                    <div class=" border-0 form-group row no-gutters">
-                        <input class="form-control border-0 col-sm-10 " name="Comm" id="postcomment" type="text" placeholder="留言……" />
+                            <div class=" border-0 form-group row no-gutters">
+                                <input class="form-control border-0 col-sm-10 " name="Comm" id="postcomment" type="text" placeholder="留言……" />
 
-                        <input type="submit" class="form-control border-0 col-sm-2" id="PushCommentButton" value="發怖" />
-                        <input type="hidden" name="PostID" id="PushCommentButton" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
-                    </div>
+                                <input type="submit" class="form-control border-0 col-sm-2" id="PushCommentButton" value="發怖" />
+                                <input type="hidden" name="PostID" id="PushCommentButton" value="@item.GetType().GetProperty("PostID").GetValue(item)" />
+                            </div>
                         }
-                        </div>
+                    </div>
                 </div>
             </div>
+                  ////---------------以下刪文彈窗頁面---------------
+
+                using (Html.BeginForm("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) }, FormMethod.Post, ""))
+                    {
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal fade" id="@newdeleteid" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">刪除貼文</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">確認要刪文嗎?</h5>
+                                    <p class="card-text">刪除後不能復原，請確認是否刪除。</p>
+                                    <input type="submit" value="刪除貼文" class="btn btn-primary " />
+                                    <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+        
+            }
+            @*//---------------以上刪文彈窗頁面---------------*@
 
         }
     </div>
@@ -153,18 +209,43 @@
     })
 
         //抓取點讚
-        $('#like').click(function () {
-            $('#like').css("display", "none");
-            $('#like1').css("display", "block");
-            var like = $('#like').val();
-            var dataJSON = {}
-            dataJSON["Like"]="true"
+        $('#like').click(function () {  
+
+            var datajson = {};
+            datajson["likestatus"] = $('#Like').val();
+            datajson["postid"] = $('#postid').val();
+
+            $.ajax({
+                type:'post',
+                url: '/Home/newlike',
+                data: JSON.stringify(datajson),
+                dataType: 'json',
+                async : false,
+                success: function () {
+                $('#like').css("display", "none");
+                $('#like1').css("display", "block");
+                },
+                error: function () { alert('傳送失敗') }
+            });
 
         });
 
-         $('#like1').click(function () {
-            $('#like1').css("display", "none");
-            $('#like').css("display", "block");
+        $('#like1').click(function () {
+
+            $.ajax({
+                type: 'POST',
+                url: "/Home/newlike",
+                data: {
+                    likestatus: $('#Like1').val(),
+                    postid: $('#postid').val()
+                },
+                dataType: "json",
+                success: function () {
+                $('#like').css("display", "block");
+                $('#like1').css("display", "none");
+                },
+                error: function () { alert('傳送出錯') }
+            });
 
         });
 
