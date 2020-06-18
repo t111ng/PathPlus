@@ -23,8 +23,8 @@
             {
                 if (postid != @item.GetType().GetProperty("PostID").GetValue(item))
                 {
-                       
-                   string newdeleteid = "deletepostcheck" + countdelete;
+
+                    string newdeleteid = "deletepostcheck" + countdelete;
 
                     <div class="border mb-3">
                         <div class="card border-0  mb-3" style="width:100%;">
@@ -129,9 +129,9 @@
                                 </div>
                                 <div>
 
-                                <div class="text-secondary">
-                                    <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
-                                </div>
+                                    <div class="text-secondary">
+                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
+                                    </div>
                                 </div>
                                 <div>
                                     <p>
@@ -140,18 +140,18 @@
                                     </p>
 
                                     @*@foreach (var item3 in data4)
-                                {
-                                    <blockquote>
-                                        <span class="h5"><strong>@item3.GetType().GetProperty("MemberName").GetValue(item)</strong></span>
-                                        <span class="h6">@item3.GetType().GetProperty("Comment1").GetValue(item)</span>
-                                    </blockquote>
+                                        {
+                                            <blockquote>
+                                                <span class="h5"><strong>@item3.GetType().GetProperty("MemberName").GetValue(item)</strong></span>
+                                                <span class="h6">@item3.GetType().GetProperty("Comment1").GetValue(item)</span>
+                                            </blockquote>
 
-                                }*@
+                                        }*@
                                     @Html.Action("_CommentsForPost", "Comment", new { PostID = item.GetType().GetProperty("PostID").GetValue(item) })
                                 </div>
 
-                
-            }
+
+                                }
 
                                 <div class="text-secondary">
                                     <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
@@ -173,61 +173,61 @@
                         </div>
 
                     </div>
-                                        //---------------以下刪文彈窗頁面---------------
-                     if (Session["account"].ToString() == item.GetType().GetProperty("MemberID").GetValue(item))
+                    //---------------以下刪文彈窗頁面---------------
+                    if (Session["account"].ToString() == item.GetType().GetProperty("MemberID").GetValue(item))
+                    {
+
+                        using (Html.BeginForm("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) }, FormMethod.Post, ""))
                         {
+                            @Html.AntiForgeryToken()
 
-                            using (Html.BeginForm("Delete", "Posts", new { id = item.GetType().GetProperty("PostID").GetValue(item) }, FormMethod.Post, ""))
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <div class="modal fade" id="@newdeleteid" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">刪除貼文</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title">確認要刪文嗎?</h5>
-                                                <p class="card-text">刪除後不能復原，請確認是否刪除。</p>
-                                                <input type="submit" value="刪除貼文" class="btn btn-primary " />
-                                                <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
-                                            </div>
-
+                            <div class="modal fade" id="@newdeleteid" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">刪除貼文</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">確認要刪文嗎?</h5>
+                                            <p class="card-text">刪除後不能復原，請確認是否刪除。</p>
+                                            <input type="submit" value="刪除貼文" class="btn btn-primary " />
+                                            <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
+                                        </div>
+
                                     </div>
                                 </div>
-                                }
-                                countdelete++;
-                            }
-                            //---------------以上刪文彈窗頁面---------------
-                            postid = @item.GetType().GetProperty("PostID").GetValue(item);
-
-                            
-
-
+                            </div>
                         }
-                        else
-                        {
-
-                        }
-
-
-
-
-
-
-
-
-
+                        countdelete++;
                     }
+                    //---------------以上刪文彈窗頁面---------------
+                    postid = @item.GetType().GetProperty("PostID").GetValue(item);
 
 
 
-                </div>
+
+                }
+                else
+                {
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+        </div>
         <!-------------↑↑↑↑↑↑↑主頁面貼文的部分↑↑↑↑↑↑↑------------->
 
         <div id="contentright" class="col-lg-3 col-xl-3 ">
@@ -448,15 +448,23 @@
                                             <select id="CardGender" name="CardGender" class="form-control">
                                                 <option value="true">男</option>
                                                 <option value="false">女</option>
-                                                <div class="row form-inline mt-1">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-inline mt-1">
                                         <div class="h5">卡片狀態</div>
                                         <div class="form-group col-6">
                                             <select id="CardStatus" name="CardStatus" class="form-control">
                                                 <option value="0">開放</option>
                                                 <option value="1">關閉</option>
-                                                 </div>
+                                            </select>
+                                        </div>
                                     </div>
+
                                 </div>
+
+
                                 <div class="form-group mt-4">
                                     <div class="d-flex">
                                         <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
@@ -698,7 +706,7 @@
         return false;
     });
 
-        
+
 
 
 </script>
