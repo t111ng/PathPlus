@@ -15,8 +15,6 @@ namespace PathPlus.Controllers
 
         public ActionResult Autologout()
         {
-            Session["id"] = null;
-            Session["Name"] = null;
             Session.Clear();
             Session.Abandon();
             return RedirectToAction("Login", "AdministratorLogin");

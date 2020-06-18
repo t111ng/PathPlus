@@ -38,16 +38,21 @@ namespace PathPlus.Controllers
         // GET: Advertisers/Create
         public ActionResult Create()
         {
-            return View();
+            Advertisers advertisers = new Advertisers();
+            SelfFeature sfe = new SelfFeature();
+            advertisers.CompanyID = sfe.GetID("Advertisers");
+            return View(advertisers);
         }
 
         // POST: Advertisers/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需b
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CompanyID,CompanyName,ContactName,Phone,Address,Mail")] Advertisers advertisers)
         {
+            SelfFeature sfe = new SelfFeature();
+            advertisers.CompanyID = sfe.GetID("Advertisers");
             if (ModelState.IsValid)
             {
                 db.Advertisers.Add(advertisers);

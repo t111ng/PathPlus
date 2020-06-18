@@ -4,54 +4,53 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<session class="container">
+    <div class="ml-4 mr-5">
+        <h2>廣告商列表</h2>
+        <div class="mb-3"><a href="@Url.Action("Create")">新增廣告商 <i class="far fa-clone"></i></a></div>
+        <div class="container-fluid">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mail)
-        </th>
-        <th></th>
-    </tr>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-6">
+                        <div class="card container-fluid mb-3 shadow">
+                            <div class="row mt-4 p-3 bg-gray-200">
+                                <div class="card-text col-md-9 col-lg-10 col-xl-9 shadow pt-3 pr-3 pl-3 pb-1">
+                                    <p class="card bg-info text-white shadow text-center text-truncate">
+                                        <span class="card-body">
+                                            @Html.DisplayFor(modelItem => item.CompanyName)
+                                        </span>
+                                    </p>
+                                    <p class="font-weight-light small pl-2 text-truncate">
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </p>
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-3 ml-auto">
+                                    @Html.ActionLink("詳細", "Details", new { id = item.CompanyID }, new { @class = "btn btn-secondary btn-block btn-secondary-success" })
+                                    @Html.ActionLink("編輯", "Edit", new { id = item.CompanyID }, new { @class = "btn btn-secondary btn-block btn-secondary-warning" })
+                                    @Html.ActionLink("刪除", "Delete", new { id = item.CompanyID }, new { @class = "btn btn-secondary btn-block btn-secondary-danger" })
+                                </div>
+                            </div>
+                            <div class="text-xs">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayNameFor(model => model.ContactName)
+                                            @Html.DisplayFor(modelItem => item.ContactName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayNameFor(model => model.Phone)
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</session>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mail)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
-        </td>
-    </tr>
-}
-
-</table>

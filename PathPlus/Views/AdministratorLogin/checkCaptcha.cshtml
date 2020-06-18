@@ -10,7 +10,7 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-600 mb-4">Welcome Back!</h1>
                 <h5 class="text-gray-800 mb-5" id="pms">
-                    <img src="~/image/path字.jpg" id="pathword" />
+                    <img src="~/image/登入頁用path.png" id="pathword" />
                     &nbsp;Management System
                 </h5>
                 @using (Html.BeginForm("checkCaptcha", "AdministratorLogin", FormMethod.Post, new { id = "CaptchaForm", title = "Be Case Sensitive", @class = "form-horizontal user" }))
@@ -25,7 +25,7 @@
                         <input id="ValidationCode" name="ValidationCode" type="text" maxlength="6" class="form-control form-control-user" placeholder="Type the word above...." autofocus autocomplete="off" required />
                         <span style="color:red">@ViewBag.CodeErr</span>
                     </div>
-                    <input type="submit" value="繼續" class="btn btn-primary btn-user btn-block mt-5 mt-lg-4" />
+                    <input type="submit" value="繼續" class="btn btn-info btn-user btn-block mt-5 mt-lg-4" />
                 }
                 <hr>
                 <div class="text-center small">

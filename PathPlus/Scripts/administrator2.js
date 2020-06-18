@@ -14,7 +14,7 @@ function inactivityTime() {
     window.onscroll = resetTimer;
 
     function logout() {
-        alert("已逾30分鐘未操作, 請重新登入")
+        alert("畫面逾時, 請重新登入")
         window.location = "/AdministratorHome/Autologout";
     }
 

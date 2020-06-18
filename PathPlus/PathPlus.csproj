@@ -591,6 +591,7 @@
     <Content Include="Views\Shared\_ShowLikeForPost.cshtml" />
     <Content Include="Views\Shared\_CreateAComment.cshtml" />
     <Content Include="Views\Home\SearchBar.cshtml" />
+    <Content Include="Views\Shared\_AdminSystemLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

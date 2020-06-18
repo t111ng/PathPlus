@@ -1,6 +1,5 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "_Layout.cshtml";
 }
 
 <section class="container-fluid">
@@ -11,152 +10,156 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
-
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">管理事項</h6>
+                    <h6 class="m-0 font-weight-bold text-info">站務資訊管理中心</h6>
                 </div>
 
                 <div class="card-body">
-                    @*<div class="container-fluid">*@
-                        <div class="row">
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">公告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">瀏覽列表</div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg text-center font-weight-bold text-info text-uppercase mb-4">公告管理</div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-4">
+                                                    <div class="card bg-success text-center shadow">
+                                                        <a href="@Url.Action("Create", "Announcements")">
+                                                            <div class="card-body text-white">
+                                                                新增公告 &nbsp;<i class="fas fa-plus text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">公告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">編輯公告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-4">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Index", "Announcements")">
+                                                            <div class="card-body text-white">
+                                                                公告管理 &nbsp;<i class="fas fa-pen text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">公告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">新增公告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">公告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">撤下公告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">廣告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">瀏覽列表</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">廣告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">編輯廣告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">廣告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">新增廣告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-xl-3 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">廣告</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">撤下廣告</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+
+                                </div>
                             </div>
                         </div>
-                    @*</div>*@
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg text-center font-weight-bold text-info text-uppercase mb-4">廣告</div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-4">
+                                                    <div class="card bg-success text-center shadow">
+                                                        <a href="@Url.Action("Create", "Advertisements")">
+                                                            <div class="card-body text-white">
+                                                                加入廣告 &nbsp;<i class="fas fa-plus text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-4">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Index", "Advertisements")">
+                                                            <div class="card-body text-white">
+                                                                廣告管理 &nbsp;<i class="fas fa-list-ul text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-lg text-center font-weight-bold text-info text-uppercase mb-4">廣告商</div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-4">
+                                                    <div class="card bg-success text-center shadow">
+                                                        <a href="@Url.Action("Create", "Advertisers")">
+                                                            <div class="card-body text-white">
+                                                                新廣告商 &nbsp;<i class="fas fa-plus text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-12 col-lg-12 mb-3">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Index", "Advertisers")">
+                                                            <div class="card-body text-white">
+                                                                廣告商管理 &nbsp;<i class="fas fa-list-ul text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-4 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg text-center font-weight-bold text-info text-uppercase mb-4">使用條款更新</div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xl-12 mb-4">
+                                                    <div class="card bg-success text-center shadow">
+                                                        <a href="@Url.Action("Create", "Terms")">
+                                                            <div class="card-body text-white">
+                                                                新增使用條款 &nbsp;<i class="fas fa-plus text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xl-12 mb-4">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Edit", "Terms", new { id = "T02000000000002" })">
+                                                            <div class="card-body text-white">
+                                                                Path+ 服務 &nbsp;<i class="fas fa-pen text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xl-12 mb-4">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Edit", "Terms", new { id = "T02000000000003" })">
+                                                            <div class="card-body text-white">
+                                                                資料政策 &nbsp;<i class="fas fa-pen text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xl-12 mb-4">
+                                                    <div class="card bg-info text-center shadow">
+                                                        <a href="@Url.Action("Edit", "Terms", new { id = "T02000000000004" })">
+                                                            <div class="card-body text-white">
+                                                                聲明 &nbsp;<i class="fas fa-pen text-white-50"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,42 +167,24 @@
         <div class="col-lg-4">
             <div class="card shadow mb-4">
 
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">用戶管理</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">新增公告</a>
-                            <a class="dropdown-item" href="#">公告列表</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">新增廣告</a>
-                            <a class="dropdown-item" href="#">廣告列表</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">更新使用條款</a>
-                            <a class="dropdown-item" href="#">更新資料政策</a>
-                            <a class="dropdown-item" href="#">更新服務說明</a>
-                            <a class="dropdown-item" href="#">更新聲明</a>
-                        </div>
-                    </div>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between mb-3">
+                    <h6 class="m-0 font-weight-bold text-primary">用戶管理中心</h6>
                 </div>
 
                 <div class="card-body">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-lg-12 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
+                                <a href="#">
                                     <div class="card border-left-primary shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">會員</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">會員列表</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-600">會員管理</div>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                    <i class="fas fa-file-alt fa-2x text-gray-300"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,16 +193,34 @@
                             </div>
 
                             <div class="col-md-6 col-lg-12 mb-4">
-                                <a href="@Url.Action("Index", "Announcements")">
+                                <a href="#">
                                     <div class="card border-left-primary shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">管理員</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">管理員列表</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-600">管理員管理</div>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                    <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-12 mb-4">
+                                <a href="#">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">管理員</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-600">管理員申請區</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-file-alt fa-2x text-gray-300"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,101 +233,82 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row">
 
-        <div class="row">
+        <div class="col-lg-6 mb-4">
 
-            <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">審核中心</h6>
+                </div>
+                <div class="card-body">
 
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">審核中心</h6>
-                    </div>
-                    <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-primary text-white shadow">
-                                    <div class="card-body">
-                                        primary
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-success text-white shadow">
-                                    <div class="card-body">
-                                        success
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-info text-white shadow">
-                                    <div class="card-body">
-                                        info
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-warning text-white shadow">
-                                    <div class="card-body">
-                                        warning
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-danger text-white shadow">
-                                    <div class="card-body">
-                                        danger
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-secondary text-white shadow">
-                                    <div class="card-body">
-                                        secondary
-                                        <div class="text-white-50 small">測試</div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-primary text-white shadow">
+                                <div class="card-body">
+                                    會員檢舉區
+                                    <div class="text-white-50 small">系統施工中</div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-primary text-white shadow">
+                                <div class="card-body">
+                                    貼文檢舉區
+                                    <div class="text-white-50 small">系統施工中</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-danger text-white shadow">
+                                <div class="card-body">
+                                    問題回報區
+                                    <div class="text-white-50 small">系統施工中</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card bg-primary text-white shadow">
+                                <div class="card-body">
+                                    P卡檢舉區
+                                    <div class="text-white-50 small">系統施工中</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
 
-            <div class="col-lg-6 mb-4">
-
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">使用條款</h6>
-                    </div>
-                    <div class="card-body">
-                        <p>使用說明包含以下各項說明內容：</p>
-                        <p>資料政策</p>
-                        <p>Path+ 服務</p>
-                        <p>聲明</p>
-                        <a target="_blank" rel="nofollow" href="#">編輯並更新使用條款 &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">隱私與安全中心</h6>
-                    </div>
-                    <div class="card-body">
-                        <p>建置中</p>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">疑難埋解中心</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4"><a target="_blank" rel="nofollow" href="#">Q & A &rarr;</a><br /></div>
+                    <div class="mb-4"><a target="_blank" rel="nofollow" href="#">聯絡維修中心 &rarr;</a></div>
+                    </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">隱私與安全中心</h6>
+                </div>
+                <div class="card-body">
+                    <p>建置中</p>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
 </section>
 

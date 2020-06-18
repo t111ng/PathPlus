@@ -152,3 +152,88 @@ form.user .btn-user {
     font-size: 24px;
 }
 
+.btn-secondary-success:hover {
+    color: #FFF;
+    background-color: var(--success);
+    border-color: #e6e6e6;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #CCC;
+}
+
+.btn-secondary-success:focus {
+    color: #FFF;
+    background-color: var(--success);
+    background-position: 112px 18px;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px 0px #E0E0E0;
+    transition: all 0.3s;
+}
+
+.btn-secondary-warning:hover {
+    color: #FFF;
+    background-color: var(--warning);
+    border-color: #e6e6e6;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #CCC;
+}
+
+.btn-secondary-warning:focus {
+    color: #FFF;
+    background-color: var(--warning);
+    background-position: 112px 18px;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px 0px #E0E0E0;
+    transition: all 0.3s;
+}
+
+.btn-secondary-danger:hover {
+    color: #FFF;
+    background-color: var(--danger);
+    border-color: #e6e6e6;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #CCC;
+}
+
+.btn-secondary-danger:focus {
+    color: #FFF;
+    background-color: var(--danger);
+    background-position: 112px 18px;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px 0px #E0E0E0;
+    transition: all 0.3s;
+}
+
+.btn-secondary-primary:hover {
+    color: #FFF;
+    background-color: var(--primary);
+    border-color: #e6e6e6;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #CCC;
+}
+
+.btn-secondary-primary:focus {
+    color: #FFF;
+    background-color: var(--primary);
+    background-position: 112px 18px;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px 0px #E0E0E0;
+    transition: all 0.3s;
+}
+
+.btn-secondary-info:hover {
+    color: #FFF;
+    background-color: var(--info);
+    border-color: #e6e6e6;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 0 #CCC;
+}
+
+.btn-secondary-info:focus {
+    color: #FFF;
+    background-color: var(--info);
+    background-position: 112px 18px;
+    text-decoration: none;
+    box-shadow: 0px 0px 20px 0px #E0E0E0;
+    transition: all 0.3s;
+}
+

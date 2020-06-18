@@ -20,6 +20,7 @@ namespace PathPlus.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string id, string pwd)
         {
             string sql = "select * from Administrator where Account=@id and password=@pwd";
@@ -35,8 +36,9 @@ namespace PathPlus.Controllers
 
             if (rd.Read())
             {
-                Session["id"] = rd["Account"].ToString();
+                Session["Account"] = rd["Account"].ToString();
                 Session["Name"] = rd["Name"].ToString();
+                Session["ID"] = rd["AdministratorID"].ToString();
 
                 Conn.Close();
                 return RedirectToAction("checkCaptcha", "AdministratorLogin");
@@ -53,8 +55,10 @@ namespace PathPlus.Controllers
 
         public ActionResult Logout()
         {
-            Session["id"] = null;
+            Session["Account"] = null;
             Session["Name"] = null;
+            Session["ID"] = null;
+            Session.Clear();
 
             return RedirectToAction("Login");
         }

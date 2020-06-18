@@ -4,63 +4,69 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <section class="container">
+        <h2>使用條款詳細資料</h2>
 
-<div>
-    <h4>Term</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Content)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Content)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PostDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PostDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EditDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EditDate)
-        </dd>
+                <dd>
+                    @ViewBag.EditDate
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RevokeDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RevokeDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RevokeDate)
-        </dd>
+                <dd>
+                    @ViewBag.RevokeDate
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Editor)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Editor)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Editor)
-        </dd>
+                <dd>
+                    @ViewBag.Editor
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TermStatusCategory.StatusCategoryName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TermStatusCategory.StatusCategoryName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TermStatusCategory.StatusCategoryName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TermStatusCategory.StatusCategoryName)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TermID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xl-4 ">
+                @Html.ActionLink("編輯此公告", "Edit", new { id = Model.TermID }, new { @class = "btn btn-secondary btn-block btn-secondary-warning" })
+            </div>
+
+        </div>
+        <div class="mt-4">
+            <a href="@Url.Action("Index")">返回列表 <i class="far fa-file-alt"></i></a>
+        </div>
+    </section>

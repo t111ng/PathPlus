@@ -17,6 +17,7 @@ namespace PathPlus.Controllers
         // GET: Announcements
         public ActionResult Index()
         {
+            ViewBag.StatusCategory = db.AnnouncementStatusCategory.ToList();
             var announcement = db.Announcement.Include(a => a.AnnouncementStatusCategory);
             return View(announcement.ToList());
         }
@@ -33,14 +34,27 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EditDate = announcement.EditDate < announcement.PostDate ? "未曾修改" : announcement.EditDate.ToString();
+            ViewBag.RevokeDate = announcement.RevokeDate < announcement.PostDate ? "未曾撤銷" : announcement.RevokeDate.ToString();
+            announcement.EditDate = DateTime.Now;
+            string editor = announcement.Editor;
+            Administrator administrator = db.Administrator.Find(editor);
+            ViewBag.Editor = administrator.Name;
+
             return View(announcement);
         }
 
         // GET: Announcements/Create
         public ActionResult Create()
         {
+            Announcement announcement = new Announcement();
+            SelfFeature sfe = new SelfFeature();
+            announcement.AnnouncementID = sfe.GetID("Announcement");
+            announcement.PostDate = DateTime.Now;
+            announcement.Editor = Session["Name"].ToString();
+
             ViewBag.StatusCategoryID = new SelectList(db.AnnouncementStatusCategory, "StatusCategoryID", "StatusCategoryName");
-            return View();
+            return View(announcement);
         }
 
         // POST: Announcements/Create
@@ -50,6 +64,11 @@ namespace PathPlus.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AnnouncementID,Content,PostDate,EditDate,RevokeDate,Editor,StatusCategoryID")] Announcement announcement)
         {
+            SelfFeature sfe = new SelfFeature();
+            announcement.AnnouncementID = sfe.GetID("Announcement");
+            announcement.PostDate = DateTime.Now;
+            announcement.Editor = Session["ID"].ToString();
+
             if (ModelState.IsValid)
             {
                 db.Announcement.Add(announcement);
@@ -73,6 +92,8 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            announcement.Editor = Session["Name"].ToString();
+            announcement.EditDate = DateTime.Now;
             ViewBag.StatusCategoryID = new SelectList(db.AnnouncementStatusCategory, "StatusCategoryID", "StatusCategoryName", announcement.StatusCategoryID);
             return View(announcement);
         }
@@ -87,6 +108,7 @@ namespace PathPlus.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(announcement).State = EntityState.Modified;
+                announcement.Editor = Session["ID"].ToString();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -106,6 +128,12 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EditDate = announcement.EditDate < announcement.PostDate ? "未曾修改" : announcement.EditDate.ToString();
+            ViewBag.RevokeDate = announcement.RevokeDate < announcement.PostDate ? "未曾撤銷" : announcement.RevokeDate.ToString();
+            announcement.EditDate = DateTime.Now;
+            string editor = announcement.Editor;
+            Administrator administrator = db.Administrator.Find(editor);
+            ViewBag.Editor = administrator.Name;
             return View(announcement);
         }
 

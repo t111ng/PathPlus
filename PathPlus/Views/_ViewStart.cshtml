@@ -32,11 +32,14 @@
     switch (ControllerName.ToUpper())
     {
         case "MANAGERLOGIN":
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+            break;
         case "TERMS":
         case "ANNOUNCEMENTS":
         case "ADVERTISEMENTS":
         case "ADVERTISERS":
-            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        case "ADMINISTRATORHOME":
+            Layout = "~/Views/Shared/_AdminSystemLayout.cshtml";
             break;
     }
 

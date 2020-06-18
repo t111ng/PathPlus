@@ -54,7 +54,7 @@ namespace Main.Models
 
         [DisplayName("登錄日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime CreateDate { get; set; }
     }
     public partial class MetaAdministratorAuthorityCategory
@@ -74,7 +74,7 @@ namespace Main.Models
         [Required]
         public string AdStatusCategoryID { get; set; }
 
-        [DisplayName("狀態內容")]
+        [DisplayName("狀態")]
         [Required]
         [StringLength(20, ErrorMessage = "長度限制20個字")]
         public string AdStatusCategoryName { get; set; }
@@ -125,7 +125,7 @@ namespace Main.Models
         [Required]
         public string CompanyID { get; set; }
 
-        [DisplayName("狀態編號")]
+        [DisplayName("狀態")]
         [Required]
         [DefaultValue("1")]
         public string AdStatusCategoryID { get; set; }
@@ -179,7 +179,6 @@ namespace Main.Models
     {
         [DisplayName("公告編號")]
         [Required]
-        [RegularExpression("[A-Za-z0-9]{15}")]
         public string AnnouncementID { get; set; }
 
         [DisplayName("內容")]
@@ -188,20 +187,20 @@ namespace Main.Models
 
         [DisplayName("發佈日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public System.DateTime PostDate { get; set; }
 
         [DisplayName("修改日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public System.DateTime EditDate { get; set; }
 
         [DisplayName("撤銷日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public System.DateTime RevokeDate { get; set; }
 
-        [DisplayName("最後動作者")]
+        [DisplayName("最後編輯者")]
         [Required]
         public string Editor { get; set; }
 
@@ -216,7 +215,7 @@ namespace Main.Models
         [Required]
         public string StatusCategoryID { get; set; }
 
-        [DisplayName("狀態內容")]
+        [DisplayName("狀態")]
         [Required(ErrorMessage = "請輸入狀態內容")]
         [StringLength(20, ErrorMessage = "長度限制20個字")]
         public string StatusCategoryName { get; set; }
@@ -277,17 +276,17 @@ namespace Main.Models
 
         [DisplayName("收藏日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime SaveDate { get; set; }
 
         [DisplayName("分享日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ShareDate { get; set; }
 
         [DisplayName("檢舉日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ReportDate { get; set; }
 
         [DisplayName("檢舉原因")]
@@ -320,17 +319,17 @@ namespace Main.Models
 
         [DisplayName("收藏日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime SaveDate { get; set; }
 
         [DisplayName("分享日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ShareDate { get; set; }
 
         [DisplayName("檢舉日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ReportDate { get; set; }
 
         [DisplayName("檢舉原因")]
@@ -358,7 +357,7 @@ namespace Main.Models
 
         [DisplayName("抽卡日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
         [DisplayName("已抽")]
@@ -397,7 +396,7 @@ namespace Main.Models
 
         [DisplayName("創建日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime CreateDate { get; set; }
 
         [DisplayName("會員")]
@@ -431,7 +430,7 @@ namespace Main.Models
 
         [DisplayName("加入管理日")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ManageDate { get; set; }
 
         [DisplayName("權限")]
@@ -521,7 +520,7 @@ namespace Main.Models
 
         [DisplayName("加入日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime JoinDate { get; set; }
     }
     public partial class MetaMember
@@ -579,7 +578,7 @@ namespace Main.Models
 
         [DisplayName("註冊日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime RegisteredDate { get; set; }
 
         [DisplayName("貼文數")]
@@ -650,7 +649,7 @@ namespace Main.Models
 
         [DisplayName("日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime MessageDate { get; set; }
     }
     public partial class MetaPost
@@ -739,7 +738,7 @@ namespace Main.Models
 
         [DisplayName("處理日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ProcessingDate { get; set; }
 
         [DisplayName("回覆訊息")]
@@ -754,7 +753,7 @@ namespace Main.Models
 
         [DisplayName("追蹤")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime FollowDate { get; set; }
 
         [DisplayName("封鎖")]
@@ -779,7 +778,6 @@ namespace Main.Models
     {
         [DisplayName("條款編號")]
         [Required]
-        [RegularExpression("[A-Za-z0-9]{15}")]
         public string TermID { get; set; }
 
         [DisplayName("內容")]
@@ -788,24 +786,24 @@ namespace Main.Models
 
         [DisplayName("發佈日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime PostDate { get; set; }
 
         [DisplayName("修改日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime EditDate { get; set; }
 
         [DisplayName("撤銷日期")]
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime RevokeDate { get; set; }
 
-        [DisplayName("最後動作者")]
+        [DisplayName("最後編輯者")]
         [Required]
         public string Editor { get; set; }
 
-        [DisplayName("狀態編號")]
+        [DisplayName("狀態")]
         [Required]
         [DefaultValue("0")]
         public string StatusCategoryID { get; set; }
@@ -816,7 +814,7 @@ namespace Main.Models
         [Required]
         public string StatusCategoryID { get; set; }
 
-        [DisplayName("狀態內容")]
+        [DisplayName("狀態")]
         [Required(ErrorMessage = "請輸入狀態內容")]
         [StringLength(20, ErrorMessage = "長度限制20個字")]
         public string StatusCategoryName { get; set; }
