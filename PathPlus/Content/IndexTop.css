@@ -24,6 +24,8 @@
     width: 80%;
 }
 
+
+
 @media (min-width: 992px) and (max-width: 1197px) {
     #searchbar1 {
         width: 60%;
@@ -276,3 +278,19 @@
 
 
 /*---------限制照片大小(社團主頁)------------*/
+
+#searchbar2 {
+    width: 70%;
+    position: absolute;
+    margin-left: 15%;
+    margin-top:-60px;
+}
+#keyword2{
+    width:200px;
+}
+
+/*#searchbody{
+    position:absolute;
+    width:60%;
+    margin-top:60px;
+}*/

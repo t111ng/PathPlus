@@ -216,11 +216,9 @@
     <Content Include="Photo\2020651144321.jpg" />
     <Content Include="Photo\2020651144322.jpg" />
     <Content Include="Photo\2020651146361.jpg" />
-
     <Content Include="Scripts\administrator.js" />
     <Content Include="Scripts\administrator2.js" />
     <Content Include="Scripts\administrator.pre.js" />
-    
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -554,7 +552,6 @@
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Home\EveryPosts.cshtml" />
-
     <Content Include="Views\AdministratorLogin\Login.cshtml" />
     <Content Include="Views\AdministratorLogin\_Layout.cshtml" />
     <Content Include="Views\AdministratorHome\Index.cshtml" />
@@ -572,7 +569,7 @@
     <Content Include="Views\Comment\CommentsForPost.cshtml" />
     <Content Include="Views\Shared\_ShowLikeForPost.cshtml" />
     <Content Include="Views\Shared\_CreateAComment.cshtml" />
-    
+    <Content Include="Views\Home\SearchBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -584,7 +581,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Groupphotos\" />
     <Folder Include="Groupposts\" />
-    <Folder Include="Views\Comment\" />
     <Folder Include="Views\Contract\" />
   </ItemGroup>
   <ItemGroup>
