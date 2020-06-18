@@ -129,6 +129,9 @@
                                 </div>
                                 <div>
 
+                                <div class="text-secondary">
+                                    <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
+                                </div>
                                 </div>
                                 <div>
                                     <p>
@@ -147,6 +150,8 @@
                                     @Html.Action("_CommentsForPost", "Comment", new { PostID = item.GetType().GetProperty("PostID").GetValue(item) })
                                 </div>
 
+                
+            }
 
                                 <div class="text-secondary">
                                     <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
@@ -405,124 +410,297 @@
     </div>
 
 }
+@*---------------以下開卡彈窗頁面---------------*@
+@using (Html.BeginForm("Card", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">開啟卡片</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="dialog" class="none">
+                        <div id="dialog-wrapper">
+                            <div class="dialog-content">
+                                @*----放上傳照片的區塊----*@
+
+                                <div>
+
+                                    <div class="row">
+                                        <input id="PhotoFile" name="CPhoto" type="file" class="form-control col-sm-6 mt-3 " value="點我上傳照片" />
+                                    </div>
+
+                                </div>
+
+                                @*----放上傳照片的區塊----*@
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control " name="CInt" id="Text1" type="text" required placeholder="Hello,做個自我介紹吧!"></textarea>
+                                </div>
+                                <div class="">
+                                    <div class="row form-inline mt-1">
+                                        <div class="h5">性別</div>
+                                        <div class="form-group col-6">
+                                            <select id="CardGender" name="CardGender" class="form-control">
+                                                <option value="true">男</option>
+                                                <option value="false">女</option>
+                                                <div class="row form-inline mt-1">
+                                        <div class="h5">卡片狀態</div>
+                                        <div class="form-group col-6">
+                                            <select id="CardStatus" name="CardStatus" class="form-control">
+                                                <option value="0">開放</option>
+                                                <option value="1">關閉</option>
+                                                 </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
+                                        <input type="submit" value="張貼" class="btn btn-primary " />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@*---------------以上開卡彈窗頁面---------------*@
+
+@*---------------以下新增社團彈窗頁面---------------*@
+
+@using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="staticBackdropGroup" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">創建一個屬於你的社團</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="dialog" class="none">
+                        <div id="dialog-wrapper">
+                            <div class="dialog-content">
+
+
+                                @*----放上傳照片的區塊----*@
+                                <div>
+
+                                    <div class="row justify-content-center">
+                                        <input id="PhotoFile" name="Photo" type="file" class="form-control col-sm-5 mt-3 " value="點我上傳照片" />
+                                    </div>
+
+                                </div>
+                                @*----放上傳照片的區塊----*@
+
+                                <div class="form-group mt-4">
+                                    <div class="col-md-10">
+                                        <input class="form-control text-box single-line" id="GroupName" name="GroupName" type="text" placeholder="社團名稱" required />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="GroupName" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="form-group mt-3 col-sm-10">
+                                        <textarea class="form-control " name="GroupIntroduction" id="TextArea1" type="text" placeholder="請輸入社團簡介" required></textarea>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="GroupIntroduction" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group mt-3 col-sm-10">
+                                        <textarea class="form-control " name="GroupInformation" id="TextArea1" type="text" placeholder="請輸入社團資訊" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2" for="PrivateCategoryID">社團隱私狀態</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" id="PrivateCategoryID" name="PrivateCategoryID">
+                                            <option value="0">開放</option>
+                                            <option value="1">半開放(限追蹤)</option>
+                                            <option value="2">隱私</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="PrivateCategoryID" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-group mt-4">
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-secondary mr-2 ml-auto" data-dismiss="modal">取消</button>
+                                        <input type="submit" value="創辦" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@*---------------以上新增社團彈窗頁面---------------*@
+
+
 
 @*---------------以上發文彈窗頁面---------------*@
 
 
-    @*--------發文部分jquery--------*@
+@*--------發文部分jquery--------*@
 
-    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
-        //--------停止內文照片每五秒一動一次----------
-        $('.carousel').carousel({
-            interval: false
-        })
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    //--------停止內文照片每五秒一動一次----------
+    $('.carousel').carousel({
+        interval: false
+    })
 
-        //--------限制頂多只能新增五張照片&新增上傳照片欄位-------
-        var x = 1;
-        $('#addFile').click(function () {
-            if (x <= 4) {
-                $('#FileUpArea').append('<input id="PhotoFile' + x + '" name="photo" type="file" class="form-control mt-0 col-5 p-1" value="點我上傳照片" /><br />');
-                x++;
-            } else if (x == 5) {
-                $('#FileUpArea').append('<span class="text-danger">最多只能上傳5張照片</span><br />');
-                x++;
-            } else if (x == 6) {
-                broken;
-            }
-        });
+    //--------限制頂多只能新增五張照片&新增上傳照片欄位-------
+    var x = 1;
+    $('#addFile').click(function () {
+        if (x <= 4) {
+            $('#FileUpArea').append('<input id="PhotoFile' + x + '" name="photo" type="file" class="form-control mt-0 col-5 p-1" value="點我上傳照片" /><br />');
+            x++;
+        } else if (x == 5) {
+            $('#FileUpArea').append('<span class="text-danger">最多只能上傳5張照片</span><br />');
+            x++;
+        } else if (x == 6) {
+            broken;
+        }
+    });
 
-        //-------------------製作圖片預覽-------------------
-        var uploadphoto = document.getElementById("uploadphoto");//宣告物件uploadphoto
+    //-------------------製作圖片預覽-------------------
+    var uploadphoto = document.getElementById("uploadphoto");//宣告物件uploadphoto
 
-        uploadphoto.addEventListener("click", preview);//監聽uploadphoto
+    uploadphoto.addEventListener("click", preview);//監聽uploadphoto
 
-        function preview(evt) {
-            previewphoto = evt.target;
-            console.log(previewphoto.id);
+    function preview(evt) {
+        previewphoto = evt.target;
+        console.log(previewphoto.id);
 
-            var cross = "", prephoto = "", prelabel = "";
+        var cross = "", prephoto = "", prelabel = "";
 
 
-            switch (previewphoto.id) {
-                case "PhotoFile1":
-                    cross = "cross1";
-                    prephoto = "prephoto1";
-                    prelabel = "prelabel1";
-                    break;
-                case "PhotoFile2":
-                    cross = "cross2";
-                    prephoto = "prephoto2";
-                    prelabel = "prelabel2";
-                    break;
-                case "PhotoFile3":
-                    cross = "cross3";
-                    prephoto = "prephoto3";
-                    prelabel = "prelabel3";
-                    break;
-                case "PhotoFile4":
-                    cross = "cross4";
-                    prephoto = "prephoto4";
-                    prelabel = "prelabel4";
-                    break;
-                case "PhotoFile5":
-                    cross = "cross5";
-                    prephoto = "prephoto5";
-                    prelabel = "prelabel5";
-                    break;
-            }
-
-            /* $("#" + previewphoto.id).next(img).remove();*/ // 清除預覽
-            $("#" + previewphoto.id).change(function () {
-                readURL(this);
-            });
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $("#" + prelabel).css("display", "none");
-                        $("#" + cross).css("display", "block");
-                        $("#" + prephoto).css("display", "block").attr('src', e.target.result);
-                        //var img = $("<img class='img-thumbnail' width='140' height='140'>").attr('src', e.target.result);
-                        //$("#" + previewphoto.id).parent().append(img);
-
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            $('#cross1').click(function () {
-                $('#prelabel1').css("display", "block");
-                $('#PreviewPhoto1>img').remove();
-                $('#cross1').css("display", "none");
-
-            });
-
-            $('#cross2').click(function () {
-                $('#prelabel2').css("display", "block");
-                $('#PreviewPhoto2>img').remove();
-                $('#cross2').css("display", "none");
-            });
-            $('#cross3').click(function () {
-                $('#prelabel3').css("display", "block");
-                $('#PreviewPhoto3>img').remove();
-                $('#cross3').css("display", "none");
-            });
-            $('#cross4').click(function () {
-                $('#prelabel4').css("display", "block");
-                $('#PreviewPhoto4>img').remove();
-                $('#cross4').css("display", "none");
-            });
-            $('#cross5').click(function () {
-                $('#prelabel5').css("display", "block");
-                $('#PreviewPhoto5>img').remove();
-                $('#cross5').css("display", "none");
-            });
-
+        switch (previewphoto.id) {
+            case "PhotoFile1":
+                cross = "cross1";
+                prephoto = "prephoto1";
+                prelabel = "prelabel1";
+                break;
+            case "PhotoFile2":
+                cross = "cross2";
+                prephoto = "prephoto2";
+                prelabel = "prelabel2";
+                break;
+            case "PhotoFile3":
+                cross = "cross3";
+                prephoto = "prephoto3";
+                prelabel = "prelabel3";
+                break;
+            case "PhotoFile4":
+                cross = "cross4";
+                prephoto = "prephoto4";
+                prelabel = "prelabel4";
+                break;
+            case "PhotoFile5":
+                cross = "cross5";
+                prephoto = "prephoto5";
+                prelabel = "prelabel5";
+                break;
         }
 
+        /* $("#" + previewphoto.id).next(img).remove();*/ // 清除預覽
+        $("#" + previewphoto.id).change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#" + prelabel).css("display", "none");
+                    $("#" + cross).css("display", "block");
+                    $("#" + prephoto).css("display", "block").attr('src', e.target.result);
+                    //var img = $("<img class='img-thumbnail' width='140' height='140'>").attr('src', e.target.result);
+                    //$("#" + previewphoto.id).parent().append(img);
 
-    </script>
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#cross1').click(function () {
+            $('#prelabel1').css("display", "block");
+            $('#PreviewPhoto1>img').remove();
+            $('#cross1').css("display", "none");
+
+        });
+
+        $('#cross2').click(function () {
+            $('#prelabel2').css("display", "block");
+            $('#PreviewPhoto2>img').remove();
+            $('#cross2').css("display", "none");
+        });
+        $('#cross3').click(function () {
+            $('#prelabel3').css("display", "block");
+            $('#PreviewPhoto3>img').remove();
+            $('#cross3').css("display", "none");
+        });
+        $('#cross4').click(function () {
+            $('#prelabel4').css("display", "block");
+            $('#PreviewPhoto4>img').remove();
+            $('#cross4').css("display", "none");
+        });
+        $('#cross5').click(function () {
+            $('#prelabel5').css("display", "block");
+            $('#PreviewPhoto5>img').remove();
+            $('#cross5').css("display", "none");
+        });
+
+    }
+    //開卡的
+    $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        var $subMenu = $(this).next(".dropdown-menu");
+        $subMenu.toggleClass('show');
+
+
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+            $('.dropdown-submenu .show').removeClass("show");
+        });
+
+
+        return false;
+    });
+
+        
+
+
+</script>
 
 

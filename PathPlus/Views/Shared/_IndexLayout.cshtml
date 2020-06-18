@@ -27,13 +27,14 @@
                 </div>
                 <!----------------以下searchbar-------------------->
                 <div id="searchbar" class="form-inline">
-                    <form class="form-inline">
-                        <input id="searchbar1" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
+                    <form class="form-inline" action="@Url.Action("SearchBar")" method="post">
+                        <input id="keyword" name="keyword" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
                         <button class="btn btn-sm border-0" type="submit">
                             <img width="25" src="~/image/查詢鍵(黑白).jpg" />
                         </button>
                     </form>
                 </div>
+
                 @*-------------------以下icon------------------*@
 
             <div class="row form-inline " id="navbarNavDropdown">
@@ -69,7 +70,7 @@
                         <div class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle " href="#">卡片</a>
                             <div class="dropdown-menu ">
-                                <div><a class="dropdown-item" href="#">開卡</a></div>
+                                <div><a class="dropdown-item" data-toggle="modal" data-target="#staticBackdrop1">開卡</a></div>
                                 <div><a class="dropdown-item" href="@Url.Action("Index","Draw")">抽卡</a></div>
                             </div>
                         </div>
@@ -86,7 +87,7 @@
                         <div class="dropdown-item" href="#"></div>
 
 
-                        <div class="dropdown-item" href="#">查詢</div>
+                        <div class="dropdown-item" href="">查詢</div>
                         <div class="dropdown-item text-danger" href="#">新增中...</div>
                         </>
 

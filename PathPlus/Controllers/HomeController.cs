@@ -91,7 +91,72 @@ namespace PathPlus.Controllers
 
 
         }
-        
+        public ActionResult SearchBar()
+        {
+
+
+            return View(db.Member.Where(m => m.Account == "jdfkdjsfksjdf").ToList());
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult SearchBar(string keyword)
+        {
+            string ID = Session["account"].ToString();
+
+            var Result = db.Member.Where(a => a.Account.Contains(keyword)).OrderBy(a => a.MemberID);
+            //ViewBag.mm = Result.ToList();
+            var checkfriends = db.Relationship.Where(r => r.MemberID == ID && r.FollowDate.Year > 1991).ToList();
+
+            if (checkfriends.Count > 0) { 
+            ViewBag.checkfriend = checkfriends;
+            }
+            else
+            {
+                ViewBag.checkfriend = "false";
+            }
+            return View(Result);
+        }
+
+
+        //開卡
+        public ActionResult Card()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Card(Card card, string CInt, HttpPostedFileBase CPhoto, bool CardGender, string CardStatus)
+        {
+            Card newCard = new Card();
+            SelfFeature sf = new SelfFeature();
+            string CID = sf.GetID("Card");
+            string fileName = "";
+
+            newCard.CardID = CID;
+            newCard.Interests = CInt;
+
+            newCard.Gender = CardGender;
+            newCard.MemberID = Session["account"].ToString();
+            newCard.CardStatusID = CardStatus;
+
+
+            if (CPhoto != null)
+            {
+                if (CPhoto.ContentLength > 0)
+                {
+                    fileName = "card" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "") + ".jpg";
+                    CPhoto.SaveAs(Server.MapPath("~/CardPhotos/" + fileName));
+                    newCard.Photo = fileName;
+                }
+            }
+
+            db.Card.Add(newCard);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
             return View();

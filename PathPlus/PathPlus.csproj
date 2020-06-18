@@ -590,7 +590,7 @@
     <Content Include="Views\Comment\CommentsForPost.cshtml" />
     <Content Include="Views\Shared\_ShowLikeForPost.cshtml" />
     <Content Include="Views\Shared\_CreateAComment.cshtml" />
-    
+    <Content Include="Views\Home\SearchBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -602,7 +602,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Groupphotos\" />
     <Folder Include="Groupposts\" />
-    <Folder Include="Views\Comment\" />
     <Folder Include="Views\Contract\" />
     <Folder Include="Views\Relationship\" />
   </ItemGroup>
