@@ -5,19 +5,42 @@
 
     <div class="row form-inline">
         <div class="col-md-4">
-            <img src="~/Selfphoto/@ViewBag.ph" style="border-radius:50% ;width:250px ;height:250px ;"/>
+            <img src="~/Selfphoto/@ViewBag.ph" style="border-radius:50% ;width:250px ;height:250px ;" />
         </div>
-        <div class="col-md-2 ">
-            <div class=" mt-2 mr-3">
-                <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="編輯個人檔案" data-toggle="modal" data-target="#Editpersonal" />
+        @if (ViewBag.check == 1)
+        {
+            <div class="col-md-2 ">
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="編輯個人檔案" data-toggle="modal" data-target="#Editpersonal" />
+                </div>
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md " id="Button2" type="button" value="更換大頭照" data-toggle="modal" data-target="#selfphoto" />
+                </div>
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md " id="Button3" type="button" value="發文" data-toggle="modal" data-target="#staticBackdrop" />
+                </div>
             </div>
-            <div class=" mt-2 mr-3">
-                <input class="btn btn-info align-self-end col-md " id="Button2" type="button" value="更換大頭照" data-toggle="modal" data-target="#selfphoto" />
+        }
+        else if (ViewBag.check == 0 && ViewBag.relationship == "friend") 
+        {
+            <div class="col-md-2 ">
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="取消追蹤" data-toggle="modal" data-target="#Editpersonal" />
+                </div>
+
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="聊天" data-toggle="modal" data-target="#Editpersonal" />
+                </div>
             </div>
-            <div class=" mt-2 mr-3">
-                <input class="btn btn-info align-self-end col-md " id="Button3" type="button" value="發文" data-toggle="modal" data-target="#staticBackdrop" />
+        }else if(ViewBag.check == 0 && ViewBag.relationship == "notfriend")
+        {
+            <div class="col-md-2">
+                <div class=" mt-2 mr-3">
+                    <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="追蹤" data-toggle="modal" data-target="#Editpersonal" />
+                </div>
             </div>
-        </div>
+        }
+
         <div class="card-deck col-md-6">
             <div class="card border-0 mx-1" style="max-width: 18rem;">
                 <div class="card-header h2 bg-white">
@@ -30,7 +53,7 @@
                 </div>
                 <div class="card-body text-secondary ">
                     <p class="card-text">
-                        <strong>粉絲人數</strong>   
+                        <strong>粉絲人數</strong>
                     </p>
 
                 </div>
@@ -69,7 +92,7 @@
                     </p>
                 </div>
             </div>
-           
+
         </div>
     </div>
     <hr />

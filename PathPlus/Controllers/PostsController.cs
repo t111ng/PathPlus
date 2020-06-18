@@ -159,18 +159,19 @@ namespace PathPlus.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,PostContent,PostDate,EditDate,MemberID,CategoryID,StatusCategoryID")] Post post)
+        public ActionResult Edit(Post post)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.MemberID = new SelectList(db.Member, "MemberID", "MemberName", post.MemberID);
-            ViewBag.StatusCategoryID = new SelectList(db.PostStatusCategory, "StatusCategoryID", "StatusCategoryName", post.StatusCategoryID);
-            ViewBag.CategoryID = new SelectList(db.PostCategory, "CategoryID", "CategoryName", post.CategoryID);
-            return View(post);
+            string ID = Session["account"].ToString();
+            var m = db.Post.Where(p => p.MemberID == ID && p.PostID == post.PostID).FirstOrDefault();
+
+            m.PostContent = post.PostContent == null ? m.PostContent : post.PostContent;
+            m.CategoryID = post.CategoryID == null ? m.CategoryID : post.CategoryID;
+            m.StatusCategoryID = post.StatusCategoryID == null ? m.StatusCategoryID : post.StatusCategoryID;
+            m.EditDate = DateTime.Now;
+
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+
         }
 
         // GET: Posts/Delete/5

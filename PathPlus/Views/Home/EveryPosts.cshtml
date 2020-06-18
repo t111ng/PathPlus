@@ -208,7 +208,7 @@
         interval: false
     })
 
-        //抓取點讚
+        抓取點讚
         $('#like').click(function () {  
 
             var datajson = {};
@@ -217,7 +217,7 @@
 
             $.ajax({
                 type:'post',
-                url: '/Home/newlike',
+                url: 'http://localhost:59556/Home/newlike',
                 data: JSON.stringify(datajson),
                 dataType: 'json',
                 async : false,
@@ -228,13 +228,13 @@
                 error: function () { alert('傳送失敗') }
             });
 
-        });
-
+       
+    })
         $('#like1').click(function () {
 
             $.ajax({
                 type: 'POST',
-                url: "/Home/newlike",
+                url: "http://localhost:59556/Home/newlike",
                 data: {
                     likestatus: $('#Like1').val(),
                     postid: $('#postid').val()

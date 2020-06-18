@@ -13,11 +13,40 @@ namespace PathPlus.Controllers
         // GET: PersonalHomePage
         PathPlusEntities db = new PathPlusEntities();
 
-        // GET: Post
-        public ActionResult Index()
+        public string checkrelationship()
         {
+
+            return "aa";
+        }
+
+        // GET: Post
+        public ActionResult Index(string MemberID)
+        {
+            string SessionMID = Session["account"].ToString();
+            string MID;
+            
             //抓取會員ID
-            string MID = Session["account"].ToString();
+            if (MemberID==null)
+            {
+                 MID= SessionMID;
+                ViewBag.check = 1;
+            }
+            else
+            {
+                MID = MemberID;
+                if (MID == SessionMID)
+                {
+                    ViewBag.check = 1;
+                }
+                else
+                {
+                    var relatioship = db.Relationship.Where(r => r.MemberID == SessionMID && r.RSMemberID == MID && r.FollowDate.Year > 1991 && r.BlockDate.Year < 1992 && r.ReportDate.Year < 1992).FirstOrDefault();
+                    ViewBag.check = 0;
+                    ViewBag.relationship = relatioship == null ? "notfriend" : "friend";
+                }
+            }
+            
+
             //篩選自己Post表裡的貼文
             string[] selfpost = db.Post.Where(p => p.MemberID == MID).Select(p => p.PostID).ToList().ToArray();
             //ViewModle
@@ -35,7 +64,7 @@ namespace PathPlus.Controllers
             ViewBag.pp = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().PersonalProfile;
             ViewBag.mn = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().MemberName;
             ViewBag.em = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Mail;
-            ViewBag.ph = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Photo;
+            ViewBag.ph = db.Member.Where(m => m.MemberID == SessionMID).FirstOrDefault().Photo;
 
             return View(vm);
         }

@@ -31,7 +31,7 @@
                             <div class="card-header bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex">
 
                                 <div class="p2">
-                                    <a href="@Url.Action("EveryPosts", "Home", new { MemberID = item.GetType().GetProperty("MemberID").GetValue(item) })"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
+                                    <a href="@Url.Action("Index", "PersonalHomePage", new { MemberID = item.GetType().GetProperty("MemberID").GetValue(item) })"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
                                 </div>
 
 

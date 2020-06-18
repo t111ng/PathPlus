@@ -476,23 +476,22 @@ namespace PathPlus.Controllers
         //    return View();
         //}
 
-        [HttpPost]
-        public ActionResult newlike(string PostID,string postid, string likestatus) {
-         
+        //[HttpPost]
+        public ActionResult newlike(string postid, string likestatus) {
 
-            var comm = db.Comment.Where(o => o.PostID == postid && o.MemberID == Session["account"].ToString()).FirstOrDefault();
-
+            string MID = Session["account"].ToString();
+            var comm = db.Comment.Where(o => o.PostID == postid && o.MemberID == MID).FirstOrDefault();
+            
             Comment newlikecomment1 = new Comment();
 
+            if (comm == null )
+            {
+                newlikecomment1.MemberID = Session["account"].ToString();
+                newlikecomment1.PostID = postid;
+                newlikecomment1.Like = true;
 
-
-                   if (comm == null ) {
-                     newlikecomment1.MemberID = Session["account"].ToString();
-                     newlikecomment1.PostID = postid;
-                     newlikecomment1.Like = true;
-
-                     db.Comment.Add(newlikecomment1);
-                    }
+                db.Comment.Add(newlikecomment1);
+            }
             else if (likestatus == "false")
             {
                 comm.Like = false;
@@ -506,8 +505,6 @@ namespace PathPlus.Controllers
             db.SaveChanges();
 
             return RedirectToAction("EveryPosts", "Home", new { PostID = postid });
-
         }
-
     }
 }
