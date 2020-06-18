@@ -2,62 +2,81 @@
 
 @{
     ViewBag.Title = "Index";
+    var active = "";
+    var show = "";
 }
 
-<h2>Index</h2>
+<session class="container">
+    <div class="ml-4 mr-5">
+        <h2>公告列表</h2>
+        <div class="mb-3"><a href="@Url.Action("Create")">新增公告 <i class="far fa-clone"></i></a></div>
+        <div class="container-fluid">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EditDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RevokeDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Editor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnnouncementStatusCategory.StatusCategoryName)
-        </th>
-        <th></th>
-    </tr>
+            <ul class="nav nav-fill nav-tabs" role="tablist">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RevokeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Editor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnouncementStatusCategory.StatusCategoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AnnouncementID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AnnouncementID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AnnouncementID })
-        </td>
-    </tr>
-}
+                @foreach (var item in ViewBag.StatusCategory)
+                {
+                    active = item.StatusCategoryID == "0" ? "active" : "";
 
-</table>
+                    <li class="nav-item">
+                        <a class="nav-link @active" role="tab" data-toggle="tab" href="#tabs-@item.StatusCategoryID">@item.StatusCategoryName</a>
+                    </li>
+                }
+            </ul>
+
+            <div class="tab-content">
+
+                @foreach (var items in ViewBag.StatusCategory)
+                {
+                    active = items.StatusCategoryID == "0" ? "active" : "";
+                    show = items.StatusCategoryID == "0" ? "show" : "";
+
+                    <div class="tab-pane fade bg-white shadow container-fluid py-4 @active @show" id="tabs-@items.StatusCategoryID">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                if (item.StatusCategoryID == items.StatusCategoryID)
+                                {
+                                    <div class="col-xl-6">
+                                        <div class="card container-fluid mb-3 shadow">
+                                            @*<tr>*@
+                                            <div class="row mt-4 p-3 bg-gray-200">
+                                                <p class="card-text col-md-9 col-lg-10 col-xl-9 shadow p-3 text-truncate">
+                                                    @Html.DisplayFor(modelItem => item.Content)
+                                                </p>
+                                                <div class="col-md-3 col-lg-2 col-xl-3 ml-auto">
+                                                    @Html.ActionLink("詳細", "Details", new { id = item.AnnouncementID }, new { @class = "btn btn-secondary btn-block btn-secondary-success" })
+                                                    @Html.ActionLink("編輯", "Edit", new { id = item.AnnouncementID }, new { @class = "btn btn-secondary btn-block btn-secondary-warning" })
+                                                    @Html.ActionLink("刪除", "Delete", new { id = item.AnnouncementID }, new { @class = "btn btn-secondary btn-block btn-secondary-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="text-xs">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayNameFor(model => model.PostDate)
+                                                            @Html.DisplayFor(modelItem => item.PostDate)
+                                                        </td>
+                                                        <td>
+                                                                @*@Html.DisplayNameFor(model => model.EditDate)
+                                                                @Html.DisplayFor(modelItem => item.EditDate)
+                                                            </td>
+                                                        <td>
+                                                            @Html.DisplayNameFor(model => model.AnnouncementStatusCategory.StatusCategoryName)
+                                                            @Html.DisplayFor(modelItem => item.AnnouncementStatusCategory.StatusCategoryName)*@
+                                                        </td>
+                                                    </tr>
+                                                    @*</tr>*@
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>@*</table>*@
+        </div>
+    </div>
+</session>

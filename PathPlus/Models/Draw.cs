@@ -9,9 +9,12 @@
 
 namespace PathPlus.Models
 {
+    using Main.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(MetaDraw))]
     public partial class Draw
     {
         public string MemberID { get; set; }

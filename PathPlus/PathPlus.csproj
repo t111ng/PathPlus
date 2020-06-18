@@ -480,8 +480,7 @@
     <Content Include="Views\AdministratorLogin\_Layout.cshtml" />
     <Content Include="Views\AdministratorHome\Index.cshtml" />
     <Content Include="Views\AdministratorLogin\checkCaptcha.cshtml" />
-    <Content Include="Views\AdministratorHome\_Layout.cshtml" />
-    <Content Include="Views\AdministratorHome\Admin404.cshtml" />
+    <Content Include="Views\Shared\_AdminSystemLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

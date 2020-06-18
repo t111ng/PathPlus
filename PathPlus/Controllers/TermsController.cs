@@ -17,6 +17,7 @@ namespace PathPlus.Controllers
         // GET: Terms
         public ActionResult Index()
         {
+            ViewBag.StatusCategory = db.TermStatusCategory.ToList();
             var term = db.Term.Include(t => t.TermStatusCategory);
             return View(term.ToList());
         }
@@ -33,32 +34,45 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EditDate = term.EditDate < term.PostDate? "未曾修改" : term.EditDate.ToString();
+            ViewBag.RevokeDate = term.RevokeDate < term.PostDate ? "未曾撤銷" : term.RevokeDate.ToString();
+            term.EditDate = DateTime.Now;
+            string editor = term.Editor;
+            Administrator administrator = db.Administrator.Find(editor);
+            ViewBag.Editor = administrator.Name;
             return View(term);
         }
 
-        // GET: Terms/Create
+        // POST: Terms/Create
         public ActionResult Create()
         {
+            Term term = new Term();
+            SelfFeature sfe = new SelfFeature();
+            term.TermID = sfe.GetID("Term");
+            term.PostDate = DateTime.Now;
+            term.Editor = Session["Name"].ToString();
             ViewBag.StatusCategoryID = new SelectList(db.TermStatusCategory, "StatusCategoryID", "StatusCategoryName");
-            return View();
+            return View(term);
         }
 
-        // POST: Terms/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TermID,Content,PostDate,EditDate,RevokeDate,Editor,StatusCategoryID")] Term term)
+        public ActionResult Create(string content,string statuscategoryid)
         {
+            Term term = new Term();          
+            SelfFeature sfe = new SelfFeature();
+            term.TermID = sfe.GetID("Term");
+            term.Content = content;
+            term.PostDate = DateTime.Now;
+            term.Editor = Session["ID"].ToString();
+            term.StatusCategoryID = statuscategoryid;
+
             if (ModelState.IsValid)
             {
                 db.Term.Add(term);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            ViewBag.StatusCategoryID = new SelectList(db.TermStatusCategory, "StatusCategoryID", "StatusCategoryName", term.StatusCategoryID);
-            return View(term);
+            return RedirectToAction("Index");
         }
 
         // GET: Terms/Edit/5
@@ -73,6 +87,8 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            term.Editor = Session["Name"].ToString();
+            term.EditDate = DateTime.Now;
             ViewBag.StatusCategoryID = new SelectList(db.TermStatusCategory, "StatusCategoryID", "StatusCategoryName", term.StatusCategoryID);
             return View(term);
         }
@@ -87,6 +103,7 @@ namespace PathPlus.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(term).State = EntityState.Modified;
+                term.Editor = Session["ID"].ToString();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -106,6 +123,12 @@ namespace PathPlus.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EditDate = term.EditDate < term.PostDate ? "未曾修改" : term.EditDate.ToString();
+            ViewBag.RevokeDate = term.RevokeDate < term.PostDate ? "未曾撤銷" : term.RevokeDate.ToString();
+            term.EditDate = DateTime.Now;
+            string editor = term.Editor;
+            Administrator administrator = db.Administrator.Find(editor);
+            ViewBag.Editor = administrator.Name;
             return View(term);
         }
 

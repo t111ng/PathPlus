@@ -9,9 +9,12 @@
 
 namespace PathPlus.Models
 {
+    using Main.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(MetaPostStatusCategory))]
     public partial class PostStatusCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

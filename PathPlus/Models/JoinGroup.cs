@@ -9,9 +9,12 @@
 
 namespace PathPlus.Models
 {
+    using Main.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(MetaJoinGroup))]
     public partial class JoinGroup
     {
         public string MemberID { get; set; }

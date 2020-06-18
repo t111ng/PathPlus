@@ -9,9 +9,12 @@
 
 namespace PathPlus.Models
 {
+    using Main.Models;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(MetaAdvertisement))]
     public partial class Advertisement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

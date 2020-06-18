@@ -4,95 +4,101 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <section class="container">
+        <h2>廣告詳細資料</h2>
 
-<div>
-    <h4>Advertisement</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdText)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AdText)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdText)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AdText)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AgeRange)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AgeRange)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AgeRange)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AgeRange)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Money)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Money)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Money)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Money)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Limitation)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Limitation)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Limitation)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Limitation)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpireDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ExpireDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpireDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ExpireDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AdvertisemenStatusCategory.AdStatusCategoryName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Advertisers.CompanyName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Advertisers.CompanyName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Advertisers.CompanyName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Advertisers.CompanyName)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AdvertisementID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xl-4 ">
+                @Html.ActionLink("編輯此廣告", "Edit", new { id = Model.AdvertisementID }, new { @class = "btn btn-secondary btn-block btn-secondary-warning" })
+            </div>
+
+        </div>
+        <div class="mt-4">
+            <a href="@Url.Action("Index")">返回列表 <i class="far fa-file-alt"></i></a>
+        </div>
+    </section>

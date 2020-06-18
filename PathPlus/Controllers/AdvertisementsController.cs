@@ -17,6 +17,7 @@ namespace PathPlus.Controllers
         // GET: Advertisements
         public ActionResult Index()
         {
+            ViewBag.StatusCategory = db.AdvertisemenStatusCategory.ToList();
             var advertisement = db.Advertisement.Include(a => a.AdvertisemenStatusCategory).Include(a => a.Advertisers);
             return View(advertisement.ToList());
         }
@@ -39,9 +40,12 @@ namespace PathPlus.Controllers
         // GET: Advertisements/Create
         public ActionResult Create()
         {
+            Advertisement advertisement = new Advertisement();
+            SelfFeature sfe = new SelfFeature();
+            advertisement.AdvertisementID = sfe.GetID("Advertisement");
             ViewBag.AdStatusCategoryID = new SelectList(db.AdvertisemenStatusCategory, "AdStatusCategoryID", "AdStatusCategoryName");
             ViewBag.CompanyID = new SelectList(db.Advertisers, "CompanyID", "CompanyName");
-            return View();
+            return View(advertisement);
         }
 
         // POST: Advertisements/Create
@@ -51,6 +55,8 @@ namespace PathPlus.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AdvertisementID,AdText,City,AgeRange,Gender,Money,StartDate,Limitation,ExpireDate,CompanyID,AdStatusCategoryID")] Advertisement advertisement)
         {
+            SelfFeature sfe = new SelfFeature();
+            advertisement.AdvertisementID = sfe.GetID("Advertisement");
             if (ModelState.IsValid)
             {
                 db.Advertisement.Add(advertisement);
