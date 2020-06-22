@@ -16,26 +16,26 @@
   
 </head>
 <body>
-   
-        <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
-        <!--------------------以下logo--------------------->
- 
-        <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
-            <div id="container " class="container">
-                <div class="navbar-brand" href="#">
-                    <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
-                </div>
-                <!----------------以下searchbar-------------------->
-                <div id="searchbar" class="form-inline">
-                    <form class="form-inline" action="@Url.Action("SearchBar","Home")" method="post">
-                        <input id="keyword" name="keyword" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
-                        <button class="btn btn-sm border-0" type="submit">
-                            <img width="25" src="~/image/查詢鍵(黑白).jpg" />
-                        </button>
-                    </form>
-                </div>
 
-                @*-------------------以下icon------------------*@
+    <!-----------------↓↓↓↓↓↓↓↓以下navbar↓↓↓↓↓↓↓↓------------>
+    <!--------------------以下logo--------------------->
+
+    <nav id="navbarbrand" class="row navbar border-bottom fixed-top">
+        <div id="container " class="container">
+            <div class="navbar-brand" href="#">
+                <a href="@Url.Action("Index","Home")"><img src="/image/登入頁用path.jpg" height="70" class="d-inline-block align-top" alt="" loading="lazy" /></a>
+            </div>
+            <!----------------以下searchbar-------------------->
+            <div id="searchbar" class="form-inline">
+                <form class="form-inline" action="@Url.Action("SearchBar","Home")" method="post">
+                    <input id="keyword" name="keyword" class="form-control-sm border" type="search" placeholder="搜尋" aria-label="Search">
+                    <button class="btn btn-sm border-0" type="submit">
+                        <img width="25" src="~/image/查詢鍵(黑白).jpg" />
+                    </button>
+                </form>
+            </div>
+
+            @*-------------------以下icon------------------*@
 
             <div class="row form-inline " id="navbarNavDropdown">
 
@@ -250,6 +250,7 @@
     @*---------------以上新增社團彈窗頁面---------------*@
 
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/MyJS.js"></script>
 
 </body>

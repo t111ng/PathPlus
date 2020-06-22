@@ -208,45 +208,47 @@
         interval: false
     })
 
-        抓取點讚
-        $('#like').click(function () {  
+        
+        $('#like').click(function () {
 
             var datajson = {};
             datajson["likestatus"] = $('#Like').val();
             datajson["postid"] = $('#postid').val();
 
             $.ajax({
-                type:'post',
+                type: 'post',
                 url: 'http://localhost:59556/Home/newlike',
                 data: JSON.stringify(datajson),
                 dataType: 'json',
-                async : false,
-                success: function () {
-                $('#like').css("display", "none");
-                $('#like1').css("display", "block");
+                async: false,
+                success: function (msg) {
+                    console.log(msg);
+                    $('#like').css("display", "none");
+                    $('#like1').css("display", "block");
                 },
                 error: function () { alert('傳送失敗') }
             });
+        });
 
-       
-    })
         $('#like1').click(function () {
 
-            $.ajax({
-                type: 'POST',
-                url: "http://localhost:59556/Home/newlike",
-                data: {
-                    likestatus: $('#Like1').val(),
-                    postid: $('#postid').val()
-                },
-                dataType: "json",
-                success: function () {
-                $('#like').css("display", "block");
-                $('#like1').css("display", "none");
-                },
-                error: function () { alert('傳送出錯') }
-            });
+            var datajson = {};
+            datajson["likestatus"] = $('#Like1').val();
+            datajson["postid"] = $('#postid').val();
 
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:59556/Home/newlike',
+                data: JSON.stringify(datajson),
+                dataType: 'json',
+                async: false,
+                success: function (msg) {
+                    console.log(msg);
+                    $('#like').css("display", "block");
+                    $('#like1').css("display", "none");
+                },
+                error: function () { alert('傳送失敗') }
+            });
         });
 
     </script>

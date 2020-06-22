@@ -16,6 +16,7 @@ namespace PathPlus.Controllers
             return View();
         }
 
+        //管理者登入
         [HttpPost]
         public ActionResult Index(string account, string pwd)
         {

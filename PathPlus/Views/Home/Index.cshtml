@@ -257,13 +257,13 @@
                 {
                     <div class="row col-12 d-flex form-inline mb-2">
                         <div class="">
-                            <img id="publicphoto1" class="img-thumbnail publicphoto" src="/GroupPhoto/@g.GetType().GetProperty("Photo").GetValue(g)" />  <!--帶入照片-->
+                            <img id="publicphoto1" class="img-thumbnail publicphoto" src="/GroupPhotos/@g.GetType().GetProperty("Photo").GetValue(g)" />  <!--帶入照片-->
                         </div>
                         <div class="">
                             <div class="">@g.GetType().GetProperty("GroupName").GetValue(g)</div>       <!--帶入社團姓名-->
                         </div>
                         <div class="ml-auto text-primary">
-                            追蹤   <!--建立追蹤功能-->
+                            <a href="@Url.Action("JoinGroup", "Groups", new {GroupID=g.GetType().GetProperty("GroupID").GetValue(g)})">追蹤</a>   <!--建立追蹤功能-->
                         </div>
                     </div>
                 }
@@ -579,9 +579,9 @@
 
 @*--------發文部分jquery--------*@
 
-<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+@*<script src="~/Scripts/jquery-3.5.1.min.js"></script>
 <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
 <script>
     //--------停止內文照片每五秒一動一次----------
     $('.carousel').carousel({

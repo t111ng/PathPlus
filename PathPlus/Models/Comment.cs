@@ -14,7 +14,7 @@ namespace PathPlus.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(MetaComment))]
+    [MetadataType(typeof(Comment))]
     public partial class Comment
     {
         public string MemberID { get; set; }

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "_RelationshipForDetailPage";
+}
+<div class="row form-inline">
+    <div class="col-md-4">
+        <img src="~/Selfphoto/@ViewBag.photo" style="border-radius:50% ;width:250px ;height:250px ;" />
+    </div>
+    @if (ViewBag.check == 1)
+    {
+        <div class="col-md-2 ">
+            <div class=" mt-2 mr-3">
+                <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="編輯個人檔案" data-toggle="modal" data-target="#Editpersonal" />
+            </div>
+            <div class=" mt-2 mr-3">
+                <input class="btn btn-info align-self-end col-md " id="Button2" type="button" value="更換大頭照" data-toggle="modal" data-target="#selfphoto" />
+            </div>
+            <div class=" mt-2 mr-3">
+                <input class="btn btn-info align-self-end col-md " id="Button3" type="button" value="發文" data-toggle="modal" data-target="#staticBackdrop" />
+            </div>
+        </div>
+    }
+    else if (ViewBag.check == 0 && ViewBag.relationship == "friend")
+    {
+        <div class="col-md-2 ">
+            <div class=" mt-2 mr-3">
+                <a href="@Url.Action("FollowForRelationship", "Relationship", new {RSMID=ViewBag.RSID,flage=false})" class="btn btn-info align-self-end col-md">退追蹤</a>
+                @*<input class="btn btn-info align-self-end col-md" id="follow" type="button" value="取消追蹤" />*@
+            </div>
+
+            <div class=" mt-2 mr-3">
+                <input class="btn btn-info align-self-end col-md" id="Button1" type="button" value="聊天" data-toggle="modal" data-target="#Editpersonal" />
+            </div>
+        </div>
+    }
+    else if (ViewBag.check == 0 && ViewBag.relationship == "notfriend")
+    {
+        <div class="col-md-2">
+            <div class=" mt-2 mr-3">
+                <a href="@Url.Action("FollowForRelationship", "Relationship", new {RSMID=ViewBag.RSID,flage=true})" class="btn btn-info align-self-end col-md">追蹤</a>
+                @*<input class="btn btn-info align-self-end col-md" id="notfollow" type="button" value="追蹤" />*@
+            </div>
+        </div>
+    }
+
+    <div class="card-deck col-md-6">
+        <div class="card border-0 mx-1" style="max-width: 18rem;">
+            <div class="card-header h2 bg-white">
+                <strong>
+                    @*@foreach (var item in Model.member)
+                        {
+                            @item.Fans
+                        }*@
+                    @ViewBag.Fans
+                </strong>
+            </div>
+            <div class="card-body text-secondary ">
+                <p class="card-text">
+                    <strong>粉絲人數</strong>
+                </p>
+
+            </div>
+        </div>
+
+        <div class="card border-0 mx-1" style="max-width: 18rem; ">
+            <div class="card-header h2 bg-white">
+                <strong>
+                    @*@foreach (var item in Model.member)
+                        {
+                            @item.Follower
+                        }*@
+                    @ViewBag.Follower
+                </strong>
+            </div>
+            <div class="card-body text-secondary">
+                <p class="card-text">
+                    <strong>追蹤人數</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-0 mx-1" style="max-width: 18rem;">
+            <div class="card-header h2 bg-white">
+                <strong>
+                    @*@foreach (var item in Model.member)
+                        {
+
+                            @item.PostCount
+
+                        }*@
+                    @ViewBag.PostCount
+                </strong>
+            </div>
+            <div class="card-body text-secondary">
+                <p class="card-text">
+                    <strong>貼文數</strong>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr />

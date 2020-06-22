@@ -592,6 +592,7 @@
     <Content Include="Views\Shared\_CreateAComment.cshtml" />
     <Content Include="Views\Home\SearchBar.cshtml" />
     <Content Include="Views\Shared\_AdminSystemLayout.cshtml" />
+    <Content Include="Views\Relationship\_RelationshipForDetailPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -604,7 +605,6 @@
     <Folder Include="Groupphotos\" />
     <Folder Include="Groupposts\" />
     <Folder Include="Views\Contract\" />
-    <Folder Include="Views\Relationship\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

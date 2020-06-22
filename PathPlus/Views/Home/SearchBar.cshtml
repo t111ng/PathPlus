@@ -4,34 +4,36 @@
     ViewBag.Title = "SearchBar";
     var data = ViewBag.checkfriend;
     Layout = "~/Views/Shared/_IndexLayout.cshtml";
+    int count = 0;
 
 }
 
-    @*<div>
-        <form class="form-inline my-2 my-lg-0" action="@Url.Action("SearchBar")" method="post" id="searchbar">
-            <input id="keyword" type="text" name="keyword" />
-            <input type="submit" value="查詢" class="btn btn-primary" />
-        </form>
-        <br />*@
+@*<div>
+    <form class="form-inline my-2 my-lg-0" action="@Url.Action("SearchBar")" method="post" id="searchbar">
+        <input id="keyword" type="text" name="keyword" />
+        <input type="submit" value="查詢" class="btn btn-primary" />
+    </form>
+    <br />*@
 
-    <div id="HomeContainer" class="container">
-        <div>
-            <div id="searchbar2">
-                <form  class="form-inline" action="@Url.Action("SearchBar")" method="post">
-                    <div class="form-group">
-                        <input id="keyword2" name="keyword" type="search" class="form-control" placeholder="Search" />
-                    </div>
-                    <button class="btn btn-sm border-0" type="submit">
-                        <img width="25" src="~/image/查詢鍵(黑白).jpg" />
-                    </button>
-                </form>
-            </div>
-            <div id="searchbody">
-                @if (Model.Count() > 0)
-                {
-                    <div>
-                        @foreach (var item in Model)
-                        {
+<div id="HomeContainer" class="container">
+    <div>
+        <div id="searchbar2">
+            <form class="form-inline" action="@Url.Action("SearchBar")" method="post">
+                <div class="form-group">
+                    <input id="keyword2" name="keyword" type="search" class="form-control" placeholder="Search" />
+                </div>
+                <button class="btn btn-sm border-0" type="submit">
+                    <img width="25" src="~/image/查詢鍵(黑白).jpg" />
+                </button>
+            </form>
+        </div>
+        <div id="searchbody">
+            @if (Model.Count() > 0)
+            {
+                <div>
+                    @foreach (var item in Model)
+                    {
+                        count=0;
                         <div class="row form-inline mt-5 align-content-center">
 
                             <div class="col-sm-3 d-flex justify-content-end">
@@ -47,41 +49,52 @@
                             </div>
                             @foreach (var r in data)
                             {
-                            if (@r.GetType().GetProperty("RSMemberID").GetValue(r) == item.MemberID)
-                            {
-                                <div class="col-sm-6  d-flex justify-content-center">
-                                    <div class="btn btn-secondary">取消追蹤</div>
-                                </div>
+                                if ( ViewBag.checkfriend == "false" && count == 0)
+                                {
+                                    <div class="col-sm-6  d-flex justify-content-center">
+                                        <div class="btn btn-info">+追蹤</div>
+                                    </div>
+                                    count++;
+                                }
+                                else if (@r.GetType().GetProperty("RSMemberID").GetValue(r) == item.MemberID && count == 0) 
+                                {
+                                    <div class="col-sm-6  d-flex justify-content-center">
+                                        <div class="btn btn-secondary">取消追蹤</div>
+                                    </div>
+                                    count++;
+                                }
+                                else if (@r.GetType().GetProperty("RSMemberID").GetValue(r) != item.MemberID && count == 0)
+                                {
+                                    <div class="col-sm-6  d-flex justify-content-center">
+                                        <div class="btn btn-info">+追蹤</div>
+                                    </div>
+                                    count++;
+                                }
+                                
                             }
-                            else
-                            {
-                                <div class="col-sm-6  d-flex justify-content-center">
-                                    <div class="btn btn-info">+追蹤</div>
-                                </div>
-                            }
-                        }
+                            
                         </div>
-                        }
-                    </div>
-                }
-
-            </div>
-
-
+                    }
+                </div>
+            }
 
         </div>
-    </div>
 
-            <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-            <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-            <script>
+
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script>
     // Filter table
 
-                $(document).ready(function () {
-                    $("#keyword").on("keyup", function () {
-                        var value = $(this).val().toLowerCase();
-                        $("#mykeyword tr").filter(function () {
-                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                        });
-                    });
-                });</script>
+    $(document).ready(function () {
+        $("#keyword").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#mykeyword tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });</script>

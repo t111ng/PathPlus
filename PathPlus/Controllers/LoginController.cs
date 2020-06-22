@@ -34,11 +34,6 @@ namespace PathPlus.Controllers
             Conn.Open();
             rd = cmd.ExecuteReader();
 
-            //PathPlus5Entities db = new PathPlus5Entities();
-            //db.Member.Where(m => m.Account == account && m.Password == pwd).FirstOrDefault().MemberName != null
-
-            //var r=db.Member.Where(m => m.Account == account && m.Password == pwd).FirstOrDefault();
-
             //判斷是否有資料(表示帳號密碼正確)
             if (rd.Read())
             {
@@ -74,7 +69,8 @@ namespace PathPlus.Controllers
             return View();
         }
 
-        public void aaa()
+        //用來測試顯示樣式
+        public void lookDatetype()
         {
             Response.Write(DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss.sss"));
             Response.Write(Convert.ToDateTime(DateTime.Now).ToString("u").Substring(0, 19));
@@ -157,16 +153,12 @@ namespace PathPlus.Controllers
 
             if (rd.Read())
             {
-
-
                 Conn.Close();
                 ViewBag.Msg = "成功";
                 return "已重複";
             }
 
-
             Conn.Close();
-
 
             return "沒有重複";
         }

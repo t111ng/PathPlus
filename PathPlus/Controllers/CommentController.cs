@@ -10,65 +10,24 @@ namespace PathPlus.Controllers
     public class CommentController : Controller
     {
         PathPlusEntities db = new PathPlusEntities();
-        
-        
-       
+
+        //留言顯示做成PartialView
         [ChildActionOnly]
         public PartialViewResult _CommentsForPost(string PostID)
         {            
+            //抓取發文的留言以儲存時間做排序
             var comments = db.Comment.Where(m => m.PostID == PostID).OrderByDescending(m => m.SaveDate).Take(2).ToList();
+            //給View做使用
             ViewBag.postid = PostID;
             return PartialView(comments);
-            
         }
 
+        //喜歡該貼文人數，做成PartialView
         public PartialViewResult _ShowLikeForPost(string PostID)
         {
+            //找出該貼文喜歡的人，使用count找出人數
             var showlike = db.Comment.Where(m => m.PostID == PostID).Where(m => m.Like == true).Count().ToString() ;
             return PartialView(showlike);
         }
-
-
-
-        //public PartialViewResult _CreateForPost(string PostID)
-        //{
-        //    Comment newcomment = new Comment();
-
-        //    newcomment.MemberID = Session["account"].ToString();
-        //    newcomment.PostID = PostID;
-
-
-        //    return PartialView("_CreateAComment");
-        //}
-
-        //[HttpPost]
-        //public PartialViewResult _CreateForPost(string comm,string PostID)
-        //{
-        //    Comment comment = new Comment();
-
-        //    //ViewBag.memberid = Session["account"].ToString();
-
-        //    comment.MemberID = Session["account"].ToString();
-        //    comment.PostID = PostID;          
-        //    comment.MessageDate = DateTime.Now;
-        //    comment.Comment1 = comm;
-
-
-        //    if (comment.Like != true)
-        //    {
-        //        comment.Like = false;
-        //    }
-        //    else
-        //    {
-        //        comment.Like = true;
-        //    }
-            
-        //    db.Comment.Add(comment);
-        //    db.SaveChanges();
-
-        //    var comments = db.Comment.Where(m => m.PostID == PostID).OrderByDescending(m => m.SaveDate).ToList();
-        //    return PartialView("_CreateForPost",comments);
-        //}
-
     }
 }

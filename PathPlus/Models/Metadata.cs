@@ -259,7 +259,7 @@ namespace Main.Models
         [StringLength(20, ErrorMessage = "長度限制20個字")]
         public string CardStatusName { get; set; }
     }
-    public partial class MetaComment
+    public partial class Comment
     {
         [DisplayName("會員")]
         [Required]
@@ -298,9 +298,9 @@ namespace Main.Models
         [DataType(DataType.DateTime)]
         public DateTime MessageDate { get; set; }
 
-        [DisplayName("留言內容")]
-        [DataType(DataType.MultilineText)]
-        public string Comment { get; set; }
+        //[DisplayName("留言內容")]
+        //[DataType(DataType.MultilineText)]
+        //public string Comment { get; set; }
     }
     public partial class MetaCommentGroupPost
     {
@@ -584,21 +584,21 @@ namespace Main.Models
         [DisplayName("貼文數")]
         [Required]
         [DefaultValue(0)]
-        public int Postcount { get; set; }
+        //public int Postcount { get; set; }
 
-        [DisplayName("粉絲數")]
-        [Required]
-        [DefaultValue(0)]
-        public int Fans { get; set; }
+        //[DisplayName("粉絲數")]
+        //[Required]
+        //[DefaultValue(0)]
+        //public int Fans { get; set; }
 
-        [DisplayName("追蹤數")]
-        [Required]
-        [DefaultValue(0)]
-        public int Follower { get; set; }
+        //[DisplayName("追蹤數")]
+        //[Required]
+        //[DefaultValue(0)]
+        //public int Follower { get; set; }
 
-        [DisplayName("隱私狀態")]
-        [Required]
-        [DefaultValue("0")]
+        //[DisplayName("隱私狀態")]
+        //[Required]
+        //[DefaultValue("0")]
         public string PrivateCategoryID { get; set; }
 
         [DisplayName("帳號狀態")]
@@ -772,7 +772,7 @@ namespace Main.Models
 
         [DisplayName("被檢舉會員")]
         [Required]
-        public string ReportMemberID { get; set; }
+        public string RSMemberID { get; set; }
     }
     public partial class MetaTerm
     {

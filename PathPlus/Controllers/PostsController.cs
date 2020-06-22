@@ -17,38 +17,12 @@ namespace PathPlus.Controllers
     {
         private PathPlusEntities db = new PathPlusEntities();
 
-
-
-
-        //SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-        //SqlCommand Cmd = new SqlCommand();
-        //SqlDataAdapter adp = new SqlDataAdapter();
-
-        //private DataTable querySql(string sql)
-        //{
-        //    Cmd.CommandText = sql;
-        //    Cmd.Connection = Conn;
-        //    adp.SelectCommand = Cmd;
-        //    DataSet ds = new DataSet();
-        //    adp.Fill(ds);
-        //    return ds.Tables[0];
-        //}
-
-
-
-
-        // GET: Posts
+        //主頁顯示所需資料
         public ActionResult Index()
         {
-            //string ID = Session["id"].ToString();
-            //var post = db.Post.Where(p => p.MemberID == @ID).Include(p => p.Member).Include(p => p.PostStatusCategory).Include(p => p.PostCategory);
-
-
-
-            //var post = (from p in db.Post select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, p.MemberID, p.CategoryID, p.StatusCategoryID });
-
             string ID = Session["account"].ToString();
 
+            //篩選出自己的貼文，join需要內容的表，選取所需欄位
             var post1 = (from p in db.Post
                          where p.MemberID == ID
                          join m in db.Member on p.MemberID equals m.MemberID
@@ -56,9 +30,10 @@ namespace PathPlus.Controllers
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
                          select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
+            //Relationship表利用大於1991判斷，把是自己好友的ID找出來
+            string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1991).Select(m => m.RSMemberID).ToList().ToArray();
 
-
-            string[] rid = db.Relationship.Where(m => m.MemberID == ID && m.FollowDate.Year > 1773).Select(m => m.RSMemberID).ToList().ToArray();
+            //利用上面rid找出的好友，使用contains方法，篩選出是自己好友並且狀態不等於2(2表示不公開)的貼文
             var post2 = (from p in db.Post
                          where rid.Contains(p.MemberID) && p.StatusCategoryID != "2"
                          join m in db.Member on p.MemberID equals m.MemberID
@@ -66,33 +41,28 @@ namespace PathPlus.Controllers
                          join s in db.PostStatusCategory on p.StatusCategoryID equals s.StatusCategoryID
                          select new { p.PostID, p.PostContent, p.PostDate, p.EditDate, m.MemberName, c.CategoryName, s.StatusCategoryName });
 
+            //將上面post1、post2、找出的發文合併和做發文時間的排序
             var post3 = post1.Union(post2).OrderByDescending(x => x.PostDate).ToList();
 
+            //找出所有留言資料並join會員表(對貼文留言的會員資料)
             var comment = (from c in db.Comment
                            join m in db.Member on c.MemberID equals m.MemberID
                            select new { cmn = m.MemberName, c.PostID, c.Comment1 });
+
+            //找出上面post3(自己與好友發過的文並且排序)每個貼文所對應發表的圖片放進去pps，留言也做相同事情(留言是透過上面commetn所抓取的)
+            //join後面的into是使用Groupjoin的方法，是一種left join概念的作法
             var post = (from p in post3
                         join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
                         join pc in comment on p.PostID equals pc.PostID into pcs
                         select new { p.PostID, p.PostContent, pps, p.PostDate, p.EditDate, p.MemberName, p.CategoryName, p.StatusCategoryName, pcs });
 
+            //將post篩選過會員主頁應該顯示，所抓取資料丟進ViewNag給View做顯示頁面資料
             ViewBag.post = post.ToList();
 
-            //sql
-            //string sql = "select * from Post where MemberID=@ID";
-            //Cmd.Parameters.AddWithValue("@ID", Session["id"].ToString());
-            //string sql = "select p.PostContent, p.PostDate, p.EditDate, m.MemberName, s.StatusCategoryName, c.CategoryName from Post as p inner join Member as m inner join StatusCategory as s inner join CategoryID as c";
-            //DataTable dt = querySql(sql);
-            //return View(dt);
-
-
-            //linq
             return View();
-
-            //return View(post.ToList());
         }
 
-        // GET: Posts/Details/5
+        // 
         public ActionResult Details(string id)
         {
             if (id == null)

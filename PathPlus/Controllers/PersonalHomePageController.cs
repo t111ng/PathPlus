@@ -13,19 +13,18 @@ namespace PathPlus.Controllers
         // GET: PersonalHomePage
         PathPlusEntities db = new PathPlusEntities();
 
-        public string checkrelationship()
-        {
-
-            return "aa";
-        }
-
-        // GET: Post
+        //個人頁顯示資料
         public ActionResult Index(string MemberID)
         {
+            //Session的會員ID放進變數
             string SessionMID = Session["account"].ToString();
+
             string MID;
-            
-            //抓取會員ID
+
+            //對傳進來的會員ID，判斷個人主頁應該顯示的相對應按紐
+            //check:1(表示顯示可編輯資料、換大頭貼、發文)
+            //check:0 && relationship:friend(顯示退追蹤、聊天)
+            //check:0 && relationship:notfriend(顯示追蹤)
             if (MemberID==null)
             {
                  MID= SessionMID;
@@ -46,7 +45,6 @@ namespace PathPlus.Controllers
                 }
             }
             
-
             //篩選自己Post表裡的貼文
             string[] selfpost = db.Post.Where(p => p.MemberID == MID).Select(p => p.PostID).ToList().ToArray();
             //ViewModle
@@ -56,25 +54,21 @@ namespace PathPlus.Controllers
                 member = db.Member.Where(m => m.MemberID == MID).ToList(),
                 //查自己的貼文並且排序最新的在前面
                 post = db.Post.Where(p => p.MemberID == MID).OrderByDescending(m => m.PostDate).ToList(),
-                //抓取自己發文的所有照片，selfpost該篩選過的貼文
+                //抓取自己發文的所有照片，透過selfpost來篩選
                 postPhoto = db.PostPhoto.Where(p => selfpost.Contains(p.PostID)).OrderByDescending(p=>p.PostID).ToList()
 
             };
-            //抓取pp簡介、mn會員名稱、em信箱、ph大頭貼
+
+            //View所需資料，pp簡介、mn會員名稱、em信箱、ph大頭貼
             ViewBag.pp = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().PersonalProfile;
             ViewBag.mn = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().MemberName;
             ViewBag.em = db.Member.Where(m => m.MemberID == MID).FirstOrDefault().Mail;
             ViewBag.ph = db.Member.Where(m => m.MemberID == SessionMID).FirstOrDefault().Photo;
 
+            //View在追蹤與退追蹤按鈕所需的會員ID
+            ViewBag.RSID = MID;
+            ViewBag.MID = MemberID;
             return View(vm);
-        }
-
-        //該action沒用到
-        public ActionResult Editpersonal(string id)
-        {
-            var member = db.Member.Where(m => m.MemberID == id).ToList();
-
-            return View();
         }
 
         //修改個人資料
@@ -96,7 +90,7 @@ namespace PathPlus.Controllers
             
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PersonalHomePage", new { MemberID = MID });
         }
 
         //修改大頭貼
