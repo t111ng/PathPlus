@@ -127,31 +127,19 @@
                                         <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
                                     </div>
                                 </div>
-                                <div>
-
-                                    <div class="text-secondary">
-                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
-                                    </div>
-                                </div>
+                               
                                 <div>
                                     <p>
                                         <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span>&nbsp;&nbsp;
                                         <span class="h6"> @item.GetType().GetProperty("PostContent").GetValue(item)</span>
                                     </p>
 
-                                    @*@foreach (var item3 in data4)
-                                        {
-                                            <blockquote>
-                                                <span class="h5"><strong>@item3.GetType().GetProperty("MemberName").GetValue(item)</strong></span>
-                                                <span class="h6">@item3.GetType().GetProperty("Comment1").GetValue(item)</span>
-                                            </blockquote>
-
-                                        }*@
+                                   
                                     @Html.Action("_CommentsForPost", "Comment", new { PostID = item.GetType().GetProperty("PostID").GetValue(item) })
                                 </div>
 
 
-                                }
+                                
 
                                 <div class="text-secondary">
                                     <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
