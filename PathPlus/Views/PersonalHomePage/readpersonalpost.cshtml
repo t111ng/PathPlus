@@ -4,6 +4,7 @@
 
     var post = ViewBag.postcomment;
     Layout = "~/Views/Shared/_IndexLayout.cshtml";
+    var data2 = ViewBag.commentlike;
 
 }
 <div id="HomeContainer" class="container">
@@ -111,13 +112,34 @@
 
                 <div class="card-footer bg-transparent border-secondary border-top-0">
                     <div class="form-inline">
-                        <div class="mx-2">
-                            <img id="like" class="width" src="~/image/heart鍵(黑白框).jpg" />
-                            <img id="like1" class="width" src="~/image/heart鍵(紅愛心).jpg" />
-                        </div>
-                        <div class="mx-2">
-                            <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
-                        </div>
+                        @foreach (var item2 in data2)
+                        {
+                            if (item2.GetType().GetProperty("Like").GetValue(item2) == false)
+                            {
+                                <div class="mx-2">
+                                    <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:block" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                    <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:none" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                    <input id="postid" type="hidden" name="postid" value=@ViewBag.pid />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mx-2">
+                                    <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:none" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                    <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:block" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                    <input id="postid" type="hidden" name="postid" value=@ViewBag.pid />
+                                </div>
+                            }
+                        }
+                        @if (ViewBag.nocomment == "true")
+                        {
+                            <div class="mx-2">
+                                <input type="hidden" id="Like" name="Like" value="true" /><img id="like" style="display:block" class="width" src="~/image/heart鍵(黑白框).jpg" />
+                                <input type="hidden" id="Like1" name="Like" value="false" /><img id="like1" style="display:none" class="width" src="~/image/heart鍵(紅愛心).jpg" />
+                                <input id="postid" type="hidden" name="postid" value=@ViewBag.pid />
+                            </div>
+
+                        }
                     </div>
                     <div>
                         <span> @ViewBag.like 個讚</span>
@@ -146,4 +168,46 @@
     $('.carousel').carousel({
         interval: false
     })
+
+    $('#like').click(function () {
+
+            var datajson = {};
+            datajson["likestatus"] = $('#Like').val();
+            datajson["postid"] = $('#postid').val();
+
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:59556/Home/newlike',
+                data: JSON.stringify(datajson),
+                dataType: 'json',
+                async: false,
+                success: function (msg) {
+                    console.log(msg);
+                    $('#like').css("display", "none");
+                    $('#like1').css("display", "block");
+                },
+                error: function () { alert('傳送失敗') }
+            });
+        });
+
+        $('#like1').click(function () {
+
+            var datajson = {};
+            datajson["likestatus"] = $('#Like1').val();
+            datajson["postid"] = $('#postid').val();
+
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:59556/Home/newlike',
+                data: JSON.stringify(datajson),
+                dataType: 'json',
+                async: false,
+                success: function (msg) {
+                    console.log(msg);
+                    $('#like').css("display", "block");
+                    $('#like1').css("display", "none");
+                },
+                error: function () { alert('傳送失敗') }
+            });
+        });
 </script>

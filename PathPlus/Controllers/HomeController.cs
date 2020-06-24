@@ -25,7 +25,6 @@ namespace PathPlus.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-
             //將會員ID放進變數
             string ID = Session["account"].ToString();
             //篩選出自己的貼文，join需要的內容的表，選擇所需欄位
@@ -89,29 +88,27 @@ namespace PathPlus.Controllers
             var jp = db.JoinGroup.Where(j => j.MemberID == ID).Select(j => j.GroupID).ToList().ToArray();
             var group = db.Group.Where(g=>g.PrivateCategoryID == "0").Where(g=> !jp.Contains(g.GroupID)).Take(5);
             ViewBag.group = group.ToList();
+            ViewBag.MID = Session["account"].ToString();
 
             return View();
         }
 
         //頁面搜尋別人帳號功能
-        [HttpPost]
+        //[HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult SearchBar(string keyword)
         {
             //宣告會員ID變數
             string ID = Session["account"].ToString();
             //會員資料，以ID做排序
-            var Result = db.Member.Where(a => a.Account.Contains(keyword)).OrderBy(a => a.MemberID);
+            var Result = db.Member.Where(m => m.Account.Contains(keyword) &&m.MemberID!=ID).OrderBy(m => m.MemberID).ToList();
             //找出是自己朋友的會員，用來判斷是否顯示追蹤按鈕
             var checkfriends = db.Relationship.Where(r => r.MemberID == ID && r.FollowDate.Year > 1991).ToList();
             //如果有查到好友丟到ViewBag給View使用
-            if (checkfriends.Count > 0) { 
-            ViewBag.checkfriend = checkfriends;
-            }
-            else
-            {
-                ViewBag.checkfriend = "false";
-            }
+            if (checkfriends.Count > 0)
+                ViewBag.checkfriend = checkfriends;
+
+            ViewBag.keyword = keyword;
             return View(Result);
         }
 
@@ -418,78 +415,6 @@ namespace PathPlus.Controllers
             
             return View();
         }
-        //無用?
-        //[HttpPost]
-        //public ActionResult EveryPosts(string comm, string PostID)
-        //{
-        //    Comment newcomment = new Comment();
-
-        //    newcomment.MemberID = Session["account"].ToString();           
-        //    newcomment.PostID = PostID;
-        //    newcomment.MessageDate = DateTime.Now;
-        //    newcomment.Comment1 = comm;
-
-
-        //    if (newcomment.Like != true)
-        //    {
-        //        newcomment.Like = false;
-        //    }
-        //    else
-        //    {
-        //        newcomment.Like = true;
-        //    }
-
-        //    db.Comment.Add(newcomment);
-        //    db.SaveChanges();
-
-
-
-        //    return RedirectToAction("EveryPosts","Home",new { PostID = PostID });
-        //}
-
-        //無用?
-        //public ActionResult likes(string PostID)
-        //{
-        //    var likes =( from c in db.Comment
-        //               where c.PostID == PostID                     
-        //               select new {c.Like});
-
-        //    ViewBag.like = likes;
-
-        //    return View();
-        //}
-
-        //單則貼文like狀態改變做整個頁面刷新
-        //[HttpPost]
-        //public ActionResult likes(Comment newlike)
-        //{
-        //   var likeststus = (from c in db.Comment
-        //                    where c.PostID == newlike.PostID && c.MemberID == Session["account"].ToString()
-        //                    select new { c.Like}).FirstOrDefault().ToString();
-    
-
-
-        //    if (likeststus == null)
-        //    {
-        //        newlike.MemberID = Session["account"].ToString();
-        //        newlike.PostID = newlike.PostID;
-        //        newlike.Like = newlike.Like;
-                
-        //    }
-        //    else if(likeststus == "false")
-        //    {
-        //        newlike.Like = true;
-        //    }
-        //    else
-        //    {
-        //        newlike.Like = false;
-        //    }
-             
-        //    db.SaveChanges();            
-
-
-        //    return RedirectToAction("EveryPosts", "Home", new { PostID = newlike.PostID });
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]

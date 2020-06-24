@@ -235,12 +235,12 @@
             <div id="contentrightup" class="row form-inline d-flex">
                 <div id="" class="p-2">
 
-                    <a href="@Url.Action("Index", "PersonalHomePage")"><img class="img-thumbnail personalphoto" src="/Selfphoto/@ViewBag.personalphoto" /></a> <!--帶入照片-->
+                    <a href="@Url.Action("Index", "PersonalHomePage",new { MemberID=@ViewBag.MID})"><img class="img-thumbnail personalphoto" src="/Selfphoto/@ViewBag.personalphoto" /></a> <!--帶入照片-->
 
                 </div>
 
                 <div class="p-2">
-                    <a href="@Url.Action("Index","PersonalHomePage")"><div class="h6 text-secondary">@ViewBag.personalaccount</div></a>   <!--帶入使用者帳號-->
+                    <a href="@Url.Action("Index","PersonalHomePage",new { MemberID=@ViewBag.MID})"><div class="h6 text-secondary">@ViewBag.personalaccount</div></a>   <!--帶入使用者帳號-->
                     <div class="h6">@ViewBag.personalname</div>       <!--帶入使用者姓名-->
                 </div>
                 <div class="p-2 ">

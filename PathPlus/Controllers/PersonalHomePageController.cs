@@ -13,6 +13,12 @@ namespace PathPlus.Controllers
         // GET: PersonalHomePage
         PathPlusEntities db = new PathPlusEntities();
 
+        //public ActionResult Index()
+        //{
+        //    string MID = Session["account"].ToString();
+        //    return RedirectToAction("Index", "PersonalHomePage", new { MemberID = MID });
+        //}
+
         //個人頁顯示資料
         public ActionResult Index(string MemberID)
         {
@@ -68,6 +74,7 @@ namespace PathPlus.Controllers
             //View在追蹤與退追蹤按鈕所需的會員ID
             ViewBag.RSID = MID;
             ViewBag.MID = MemberID;
+
             return View(vm);
         }
 
@@ -150,6 +157,16 @@ namespace PathPlus.Controllers
                         select new { a.MemberName, b.Comment1, };
             //儲存上方post變數抓取內容
             ViewBag.postcomment = post.ToList();
+
+            //抓取該筆貼文的評論
+            var commentlike = (db.Comment.Where(c => c.PostID == PostID && c.MemberID == MID));
+
+            //如果該貼文沒有人評論還是需要顯示點選喜歡的圖片，所以要做判斷值
+            if (commentlike.Any() == false)
+                ViewBag.nocomment = "true";
+
+            //View所需評論資訊
+            ViewBag.commentlike = commentlike.ToList();
 
             return View(PVM);
         }

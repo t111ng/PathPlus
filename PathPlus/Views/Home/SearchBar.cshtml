@@ -5,7 +5,6 @@
     var data = ViewBag.checkfriend;
     Layout = "~/Views/Shared/_IndexLayout.cshtml";
     int count = 0;
-
 }
 
 @*<div>
@@ -33,7 +32,7 @@
                 <div>
                     @foreach (var item in Model)
                     {
-                        count=0;
+                        count = 0;
                         <div class="row form-inline mt-5 align-content-center">
 
                             <div class="col-sm-3 d-flex justify-content-end">
@@ -47,32 +46,39 @@
                                     @Html.DisplayFor(modelItem => item.MemberName)
                                 </div>
                             </div>
-                            @foreach (var r in data)
+
+                            @if (data == null && count == 0)
                             {
-                                if ( ViewBag.checkfriend == "false" && count == 0)
-                                {
-                                    <div class="col-sm-6  d-flex justify-content-center">
-                                        <div class="btn btn-info">+追蹤</div>
-                                    </div>
-                                    count++;
-                                }
-                                else if (@r.GetType().GetProperty("RSMemberID").GetValue(r) == item.MemberID && count == 0) 
-                                {
-                                    <div class="col-sm-6  d-flex justify-content-center">
-                                        <div class="btn btn-secondary">取消追蹤</div>
-                                    </div>
-                                    count++;
-                                }
-                                else if (@r.GetType().GetProperty("RSMemberID").GetValue(r) != item.MemberID && count == 0)
-                                {
-                                    <div class="col-sm-6  d-flex justify-content-center">
-                                        <div class="btn btn-info">+追蹤</div>
-                                    </div>
-                                    count++;
-                                }
-                                
+
+                                <div class="col-sm-6  d-flex justify-content-center">
+                                    <a href="@Url.Action("FollowForSearchbar", "Relationship", new { RSMID = item.MemberID, flage = true, keyword = ViewBag.keyword })" class="btn btn-info">追蹤</a>
+                                </div>
+                                count++;
                             }
-                            
+                            else
+                            {
+                                foreach (var r in data)
+                                {
+                                    if (r.GetType().GetProperty("RSMemberID").GetValue(r) == item.MemberID)
+                                    {
+                                        count = 1;
+                                    }
+                                }
+                                if (count == 1)
+                                {
+                                    <div class="col-sm-6  d-flex justify-content-center">
+                                        <a href="@Url.Action("FollowForSearchbar", "Relationship", new { RSMID = item.MemberID, flage = false, keyword = ViewBag.keyword })" class="btn btn-secondary">退追蹤</a>
+                                        @*<div class="btn btn-secondary">取消追蹤</div>*@
+                                    </div>
+                                }
+                                else if (count == 0)
+                                {
+                                    <div class="col-sm-6  d-flex justify-content-center">
+                                        <a href="@Url.Action("FollowForSearchbar", "Relationship", new { RSMID = item.MemberID, flage = true, keyword = ViewBag.keyword })" class="btn btn-info">+追蹤</a>
+                                        @*<div class="btn btn-info">+追蹤</div>*@
+                                    </div>
+                                }
+                            }
                         </div>
                     }
                 </div>

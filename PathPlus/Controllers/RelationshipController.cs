@@ -187,11 +187,20 @@ namespace PathPlus.Controllers
             return PartialView();
         }
 
+        //<a href = "@Url.Action("FollowForRelationship", "Relationship", new {RSMID=ViewBag.RSID,flage=false})" class="btn btn-info align-self-end col-md">退追蹤</a>
         public ActionResult FollowForRelationship(string RSMID, bool flage)
         {
             Follow(RSMID, flage);
 
             return RedirectToAction("Index", "PersonalHomePage", new { MemberID = RSMID });
+        }
+
+        //<a href = "@Url.Action("FollowForSearchbar", "Relationship", new {RSMID=ViewBag.RSID,flage=false})" class="btn btn-info align-self-end col-md">退追蹤</a>
+        public ActionResult FollowForSearchbar(string RSMID, bool flage, string keyword)
+        {
+            Follow(RSMID, flage);
+
+            return RedirectToAction("SearchBar", "Home", new { keyword = keyword });
         }
     }
 }
