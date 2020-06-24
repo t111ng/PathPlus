@@ -18,7 +18,7 @@
                         <div class="bg-transparent border-top-0 border-left-0 border-right-0 form-inline d-flex mt-3 ml-3">
 
                             <div class="p2">
-                                <img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" />
+                                <a href="@Url.Action("Index", "PersonalHomePage", new { MemberID = item.GetType().GetProperty("MemberID").GetValue(item) })"><img id="personalphoto1" class="img-thumbnail" src="~/Selfphoto/@item.GetType().GetProperty("Photo").GetValue(item)" /></a>
                             </div>
                             <div class="p2">
                                 <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span><br />
@@ -157,6 +157,7 @@
                         <hr />
                         @using (Html.BeginForm("EveryPosts", "Home", FormMethod.Post))
                         {
+                            @*@Html.AntiForgeryToken()*@
                             <div class=" border-0 form-group row no-gutters">
                                 <input class="form-control border-0 col-sm-10 " name="Comm" id="postcomment" type="text" placeholder="留言……" />
 
@@ -197,11 +198,11 @@
             }
             @*//---------------以上刪文彈窗頁面---------------*@
 
-        }
+        
     </div>
 </div>
-    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
     <script>
     //--------停止內文照片每五秒一動一次----------
     $('.carousel').carousel({

@@ -75,6 +75,10 @@ namespace PathPlus.Controllers
             ViewBag.RSID = MID;
             ViewBag.MID = MemberID;
 
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == SessionMID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+
             return View(vm);
         }
 

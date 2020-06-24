@@ -51,7 +51,7 @@ namespace PathPlus.Controllers
             //利用rid找出的自己好友的ID，篩選出貼文貼文中屬於好友的的貼文ID
             string[] rid2 = db.Post.Where(p => p.StatusCategoryID != "2").Where(p => rid.Contains(p.MemberID)).Select(p => p.PostID).ToList().ToArray();
             //找出自己貼文的ID
-            string[] rid3 = db.Post.Where(p => p.StatusCategoryID != "2").Where(p => p.MemberID == ID).Select(p => p.PostID).ToList().ToArray();
+            string[] rid3 = db.Post/*.Where(p => p.StatusCategoryID != "2")*/.Where(p => p.MemberID == ID).Select(p => p.PostID).ToList().ToArray();
             //利用rid2篩選出好友的貼文ID，找出對應貼文的圖片，選取PostID、Photo兩個欄位
             var photo1 = from po in db.PostPhoto
                         where rid2.Contains(po.PostID)
@@ -112,7 +112,14 @@ namespace PathPlus.Controllers
                 ViewBag.checkfriend = checkfriends;
 
             ViewBag.keyword = keyword;
+
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == ID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+
             return View(Result);
+
+           
         }
 
         //開卡
@@ -446,6 +453,34 @@ namespace PathPlus.Controllers
 
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult EveryPosts(string comm, string PostID)
+        {
+            Comment newcomment = new Comment();
+
+            newcomment.MemberID = Session["account"].ToString();
+            newcomment.PostID = PostID;
+            newcomment.MessageDate = DateTime.Now;
+            newcomment.Comment1 = comm;
+
+
+            if (newcomment.Like != true)
+            {
+                newcomment.Like = false;
+            }
+            else
+            {
+                newcomment.Like = true;
+            }
+
+            db.Comment.Add(newcomment);
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("EveryPosts", "Home", new { PostID = PostID });
         }
 
         //點選喜歡(Json用)

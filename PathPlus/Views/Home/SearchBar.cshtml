@@ -15,18 +15,19 @@
     <br />*@
 
 <div id="HomeContainer" class="container">
+    <div id="searchbar2">
+        <form class="form-inline" action="@Url.Action("SearchBar")" method="post">
+            <div class="form-group">
+                <input id="keyword2" name="keyword" type="search" class="form-control" placeholder="Search" />
+            </div>
+            <button class="btn btn-sm border-0" type="submit">
+                <img width="25" src="~/image/查詢鍵(黑白).jpg" />
+            </button>
+        </form>
+    </div>
     <div>
-        <div id="searchbar2">
-            <form class="form-inline" action="@Url.Action("SearchBar")" method="post">
-                <div class="form-group">
-                    <input id="keyword2" name="keyword" type="search" class="form-control" placeholder="Search" />
-                </div>
-                <button class="btn btn-sm border-0" type="submit">
-                    <img width="25" src="~/image/查詢鍵(黑白).jpg" />
-                </button>
-            </form>
-        </div>
-        <div id="searchbody">
+        
+        <div id="searchbody" class="mt-5">
             @if (Model.Count() > 0)
             {
                 <div>
@@ -91,8 +92,8 @@
     </div>
 </div>
 
-<script src="~/Scripts/jquery-3.5.1.min.js"></script>
-<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+@*<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
 <script>
     // Filter table
 

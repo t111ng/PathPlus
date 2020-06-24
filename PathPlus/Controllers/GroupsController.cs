@@ -245,6 +245,10 @@ namespace PathPlus.Controllers
                 grouppost = db.GroupPost.Where(p => selfgroup.Contains(p.GroupID)).OrderByDescending(p => p.GroupID).ToList(),
             };
 
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == MID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+
             return View(groupviewmodel);
         }
 
@@ -260,6 +264,10 @@ namespace PathPlus.Controllers
 
             //找自己社團發文，選取欄位GroupPostID
             string[] grouppost = db.GroupPost.Where(p => p.GroupID == GroupID).Select(p => p.GroupPostID).ToList().ToArray();
+
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == MID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
 
             GroupViewModel groupviewmodel = new GroupViewModel()
             {
@@ -414,6 +422,12 @@ namespace PathPlus.Controllers
                 grouppostphotos = db.GroupPostPhoto.Where(m => gpid.Contains(m.GroupPostID)).OrderByDescending(m => m.GroupPostID).ToList()
             };
 
+            //存放會員ID
+            string MID = Session["account"].ToString();
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == MID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+
             return View(GVM);
         }
 
@@ -473,6 +487,9 @@ namespace PathPlus.Controllers
         //瀏覽單則貼文
         public ActionResult readpost(string GroupPostID)
         {
+            //宣告並存會員ID變數
+            string MID = Session["account"].ToString();
+
             //抓取該貼文社團ID
             string[] getgroupID = db.GroupPost.Where(p => p.GroupPostID == GroupPostID).Select(p => p.GroupID).ToList().ToArray();
             //使用ViewModel該貼文所有照片
@@ -495,6 +512,10 @@ namespace PathPlus.Controllers
                         where b.GroupPostID == GroupPostID
                         select new { a.MemberName, b.Comment, };
 
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == MID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+
             ViewBag.postcomment = group.ToList();
 
             return View(GVM);
@@ -504,8 +525,10 @@ namespace PathPlus.Controllers
         [HttpPost]
         public ActionResult readpost(string comm, string GroupPostID)
         {
+           
+
             //建構存新增留言的物件
-           CommentGroupPost  newcomment = new CommentGroupPost();
+            CommentGroupPost  newcomment = new CommentGroupPost();
             //將所需資料放進欄位
             newcomment.MemberID = Session["account"].ToString();
             newcomment.GroupPostID = GroupPostID;
@@ -518,6 +541,10 @@ namespace PathPlus.Controllers
             db.CommentGroupPost.Add(newcomment);
             //將模組資料存進資料庫
             db.SaveChanges();
+
+           
+
+            ViewBag.grouppostid = GroupPostID;
 
             return RedirectToAction("readpost", "Groups", new { GroupPostID = GroupPostID });
         }

@@ -121,7 +121,7 @@
                                         <img id="like1" class="width" style="display:none" src="~/image/heart鍵(紅愛心).jpg" />
                                     </div>
                                     <div class="mx-2">
-                                        <img id="" class="width" src="~/image/留言鍵(黑白).jpg" />
+                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})"><img id="" class="width" src="~/image/留言鍵(黑白).jpg" /></a>
                                     </div>
                                     <div class="mx-2">
                                         <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
