@@ -593,6 +593,7 @@
     <Content Include="Views\Home\SearchBar.cshtml" />
     <Content Include="Views\Shared\_AdminSystemLayout.cshtml" />
     <Content Include="Views\Relationship\_RelationshipForDetailPage.cshtml" />
+    <Content Include="Views\Home\CategoryPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

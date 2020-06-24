@@ -127,31 +127,19 @@
                                         <img id="message" class="width" src="~/image/messagr鍵(黑白).jpg" />
                                     </div>
                                 </div>
-                                <div>
-
-                                    <div class="text-secondary">
-                                        <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
-                                    </div>
-                                </div>
+                               
                                 <div>
                                     <p>
                                         <span class="h5"><strong>@item.GetType().GetProperty("MemberName").GetValue(item)</strong></span>&nbsp;&nbsp;
                                         <span class="h6"> @item.GetType().GetProperty("PostContent").GetValue(item)</span>
                                     </p>
 
-                                    @*@foreach (var item3 in data4)
-                                        {
-                                            <blockquote>
-                                                <span class="h5"><strong>@item3.GetType().GetProperty("MemberName").GetValue(item)</strong></span>
-                                                <span class="h6">@item3.GetType().GetProperty("Comment1").GetValue(item)</span>
-                                            </blockquote>
-
-                                        }*@
+                                   
                                     @Html.Action("_CommentsForPost", "Comment", new { PostID = item.GetType().GetProperty("PostID").GetValue(item) })
                                 </div>
 
 
-                                }
+                                
 
                                 <div class="text-secondary">
                                     <a href="@Url.Action("EveryPosts", "Home", new {PostID = item.GetType().GetProperty("PostID").GetValue(item)})">查看全部留言</a>
@@ -235,12 +223,12 @@
             <div id="contentrightup" class="row form-inline d-flex">
                 <div id="" class="p-2">
 
-                    <a href="@Url.Action("Index", "PersonalHomePage")"><img class="img-thumbnail personalphoto" src="/Selfphoto/@ViewBag.personalphoto" /></a> <!--帶入照片-->
+                    <a href="@Url.Action("Index", "PersonalHomePage",new { MemberID = ViewBag.MemberID})"><img class="img-thumbnail personalphoto" src="/Selfphoto/@ViewBag.personalphoto" /></a> <!--帶入照片-->
 
                 </div>
 
                 <div class="p-2">
-                    <a href="@Url.Action("Index","PersonalHomePage")"><div class="h6 text-secondary">@ViewBag.personalaccount</div></a>   <!--帶入使用者帳號-->
+                    <a href="@Url.Action("Index","PersonalHomePage",new { MemberID = ViewBag.MemberID})"><div class="h6 text-secondary">@ViewBag.personalaccount</div></a>   <!--帶入使用者帳號-->
                     <div class="h6">@ViewBag.personalname</div>       <!--帶入使用者姓名-->
                 </div>
                 <div class="p-2 ">

@@ -90,6 +90,9 @@ namespace PathPlus.Controllers
             var group = db.Group.Where(g=>g.PrivateCategoryID == "0").Where(g=> !jp.Contains(g.GroupID)).Take(5);
             ViewBag.group = group.ToList();
 
+            //取個人ID
+            ViewBag.MemberID = Session["account"].ToString();
+
             return View();
         }
 
@@ -569,6 +572,31 @@ namespace PathPlus.Controllers
             public string postid { get; set; }    
             public bool likestatus { get; set; }    
             
+        }
+
+        public ActionResult CategoryPost(string categoryid)
+        {
+            var ID = Session["account"].ToString();
+            var categorypost = from p in db.Post
+                               where p.StatusCategoryID == "0" && p.CategoryID == categoryid
+                               join m in db.Member on p.MemberID equals m.MemberID
+                               join pp in db.PostPhoto on p.PostID equals pp.PostID into pps
+                               select new { p.PostID, p.PostContent, pps, p.PostDate, m.MemberName, m.Photo, m.Account, m.MemberID };
+
+            if (categorypost.Any() == false)
+            {
+                ViewBag.postmessage = false;
+            }
+            else
+            {
+                ViewBag.postmessage = true;
+                ViewBag.post = categorypost.OrderByDescending(p => p.PostDate).ToList();
+            }
+
+            //個人圖片
+            var PersonalPhoto = db.Member.Where(p => p.MemberID == ID).Select(p => p.Photo).FirstOrDefault();
+            ViewBag.personalphoto = PersonalPhoto;
+            return View();
         }
     }
 }
