@@ -50,16 +50,16 @@
                 </div>
 
                 @*----------誰點我讚鍵-------------*@
-                <div class="mx-2 col-xs-2">
+                @*<div class="mx-2 col-xs-2">
                     <img class="width1" src="~/image/heart鍵(navbar).jpg" />
-                    <span id="Notifications2" class="badge badge-danger">4</span>     <!------跑計算數值進去------>
-                </div>
+                    <span id="Notifications2" class="badge badge-danger">4</span>    
+                </div>*@
 
                 @*----------訊息鍵-------------*@
-                <div class="mx-2 col-xs-2">
+                @*<div class="mx-2 col-xs-2">
                     <img class="width1" src="~/image/messagr鍵(navbar).jpg" />
-                    <span id="Notifications3" class="badge badge-danger">99+</span>    <!------跑計算數值進去------>
-                </div>
+                    <span id="Notifications3" class="badge badge-danger">99+</span>   
+                </div>*@
                 @*-----以下功能鍵-----*@
                 <div class="nav-link dropdown mx-0 col-xs-2">
                     <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,13 +78,13 @@
                         <div class="dropdown-submenu ">
                             <a class="dropdown-item dropdown-toggle" href="#">社團</a>
                             <div class="dropdown-menu">
-                                <div><a class="dropdown-item" href="@Url.Action("Create","Groups")" data-toggle="modal" data-target="#staticBackdropGroup">新增社團</a></div>
+                                <div><a class="dropdown-item" href="#" data-toggle="modal" data-target="#staticBackdropGroup">新增社團</a></div>
                                 <div><a class="dropdown-item" href="@Url.Action("GroupHome","Groups")">我的社團</a></div>
                                 <div><a class="dropdown-item" href="@Url.Action("AllGroup","Groups")">所有社團</a></div>
                             </div>
                         </div>
 
-                        <div class="dropdown-item" href="@Url.Action("SearchBar","Home")">查詢</div>
+                        <a class="dropdown-item" href="@Url.Action("SearchBar","Home")">查詢</a>
                         <div class="dropdown-item text-danger" href="#">新增中...</div>
                         </>
 

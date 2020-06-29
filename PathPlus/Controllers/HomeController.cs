@@ -526,6 +526,49 @@ namespace PathPlus.Controllers
             //return RedirectToAction("EveryPosts", "Home", new { PostID = check.postid });
         }
 
+        //點選喜歡(Json用)
+        [HttpPost]
+        public JsonResult newlikeforgrouppost(object sender, EventArgs e)
+        //public ActionResult newlike(object sender, EventArgs e) 
+        {
+            //接收json方法
+            var sr = new StreamReader(Request.InputStream);
+            var stream = sr.ReadToEnd();
+
+            //做一個class用來裝解開json的資料，class內容在該Action下
+            checklike check = JsonConvert.DeserializeObject<checklike>(stream);
+            if (check != null)
+            {
+                //抓MemberID
+                string MID = Session["account"].ToString();
+                //找Comment(評論表)裡是否已經有該會員對該貼文的評論
+                var comm = db.CommentGroupPost.Where(o => o.GroupPostID == check.postid && o.MemberID == MID).FirstOrDefault();
+
+                //如果該會員沒有對該貼文做評論的紀錄
+                if (comm == null)
+                {
+                    CommentGroupPost commentLike = new CommentGroupPost();
+                    commentLike.MemberID = MID;
+                    commentLike.GroupPostID = check.postid;
+                    commentLike.Like = true;
+
+                    db.CommentGroupPost.Add(commentLike);
+                }
+                else
+                {
+                    //有資料就將要改變的資料作修改
+                    comm.Like = check.likestatus;
+
+                }
+
+                db.SaveChanges();
+                return Json(new { msg = "成功" });
+            }
+
+            return Json(new { msg = "傳進來的值是空的" });
+            //return RedirectToAction("EveryPosts", "Home", new { PostID = check.postid });
+        }
+
         //newlike解json所需class
         public class checklike
         {

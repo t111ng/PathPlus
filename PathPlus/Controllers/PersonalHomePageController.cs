@@ -73,7 +73,10 @@ namespace PathPlus.Controllers
 
             //View在追蹤與退追蹤按鈕所需的會員ID
             ViewBag.RSID = MID;
+
             ViewBag.MID = MemberID;
+            if (MemberID == null)
+                ViewBag.MID = SessionMID;
 
             //個人圖片
             var PersonalPhoto = db.Member.Where(p => p.MemberID == SessionMID).Select(p => p.Photo).FirstOrDefault();
@@ -94,12 +97,17 @@ namespace PathPlus.Controllers
 
             //傳過來的資料如果是空的，就使用資料庫原本的資料，否則就用View傳過來的
             m.MemberName = member.MemberName == null ? m.MemberName : member.MemberName;
-            m.PersonalProfile = member.MemberName == null ? m.PersonalProfile : member.PersonalProfile;
-            m.Mail = member.MemberName == null ? m.Mail : member.Mail;
-            m.Address = member.MemberName == null ? m.Address : member.Address;
-            m.Gender = member.MemberName == null ? m.Gender : member.Gender;
-            
+            m.PersonalProfile = member.PersonalProfile == null ? m.PersonalProfile : member.PersonalProfile;
+            m.Mail = member.Mail == null ? m.Mail : member.Mail;
+            m.Address = member.Address == null ? m.Address : member.Address;
+            m.Gender = member.Gender == null ? m.Gender : member.Gender;
+
+            try { 
             db.SaveChanges();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
 
             return RedirectToAction("Index", "PersonalHomePage", new { MemberID = MID });
         }

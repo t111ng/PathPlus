@@ -64,16 +64,6 @@ namespace PathPlus.Controllers
             SelfFeature sf = new SelfFeature();
             string GID = sf.GetID("Group");
             group.GroupID = GID;
-            //var id = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
-            //int nid = int.Parse(id.Substring(4)) + 1;
-            //id = "G" + DateTime.Now.Year.ToString().Substring(1, 3);
-            //string sid = nid.ToString();
-            //for (int i = 0; i < (11 - sid.Length); i++)
-            //{
-            //    id += 0;
-            //}
-            //id += sid;
-
             group.MemberID = Session["account"].ToString();
 
             Group grp = db.Group.Where(m => m.GroupName == group.GroupName).FirstOrDefault();
@@ -87,26 +77,6 @@ namespace PathPlus.Controllers
             groupManagement.ManageDate = DateTime.Now;
             groupManagement.AuthorityCategoryID = "0";
 
-
-
-            //Post post = new Post();
-            //var pid = db.Group.OrderByDescending(p => p.GroupID).FirstOrDefault().GroupID;
-            //int npid = int.Parse(id.Substring(4)) + 1;
-            //pid = "P" + DateTime.Now.Year.ToString().Substring(1, 3);
-            //string spid = npid.ToString();
-            //for (int i = 0; i < (11 - spid.Length); i++)
-            //{
-            //    pid += 0;
-            //}
-            //pid += spid;
-            //post.PostID = pid;
-            //post.PostContent = "我新增了一個群組：" + group.GroupName + "。歡迎大家加入～";
-            //post.PostDate = DateTime.Now;
-            //post.EditDate = DateTime.Now;
-            //post.MemberID = Session["account"].ToString();
-            ////post.CategoryID = "0";
-            //post.StatusCategoryID = group.PrivateCategoryID;
-
             string fileName = "";
 
             if (Photo != null)
@@ -115,7 +85,7 @@ namespace PathPlus.Controllers
                 {
 
                     fileName = "group" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "").Replace("上午", "").Replace("下午", "").ToString() + ".jpg";
-                    Photo.SaveAs(Server.MapPath("~/GroupPhoto/" + fileName));
+                    Photo.SaveAs(Server.MapPath("~/GroupPhotos/" + fileName));
                     group.Photo = fileName;
 
                 }
@@ -127,8 +97,8 @@ namespace PathPlus.Controllers
 
 
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 db.Group.Add(group);
                 db.SaveChanges();
                 db.GroupManagement.Add(groupManagement);
@@ -136,11 +106,11 @@ namespace PathPlus.Controllers
                 //db.Post.Add(post);
                 //db.SaveChanges();
                 return RedirectToAction("Index", "Home");
-            }
+            //}
 
-            ViewBag.PrivateCategoryID = new SelectList(db.GroupPrivateCategory, "PrivateCategoryID", "PrivateCategoryName", group.PrivateCategoryID);
-            ViewBag.MemberID = new SelectList(db.Member, "MemberID", "MemberName", group.MemberID);
-            return View(group);
+            //ViewBag.PrivateCategoryID = new SelectList(db.GroupPrivateCategory, "PrivateCategoryID", "PrivateCategoryName", group.PrivateCategoryID);
+            //ViewBag.MemberID = new SelectList(db.Member, "MemberID", "MemberName", group.MemberID);
+            //return View(group);
         }
 
         // GET: Groups/Edit/5
@@ -517,6 +487,15 @@ namespace PathPlus.Controllers
             ViewBag.personalphoto = PersonalPhoto;
 
             ViewBag.postcomment = group.ToList();
+
+            var commentlike = (db.CommentGroupPost.Where(c => c.GroupPostID == GroupPostID && c.MemberID == MID));
+
+            //如果該貼文沒有人評論還是需要顯示點選喜歡的圖片，所以要做判斷值
+            if (commentlike.Any() == false)
+                ViewBag.nocomment = "true";
+
+            //View所需評論資訊
+            ViewBag.commentlike = commentlike.ToList();
 
             return View(GVM);
         }

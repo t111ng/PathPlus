@@ -26,8 +26,8 @@ namespace Main.Models
         [DisplayName("密碼")]
         [Required(ErrorMessage = "請輸入密碼")]
         [StringLength(12, ErrorMessage = "長度限制6-12個字", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*\d)(?=.*[a-zA-Z]).{2,255}$", ErrorMessage = "密碼強度不足, 請至少包含數字及英文字母")]
+        //[DataType(DataType.Password)]
+        //[RegularExpression(@"^(?=.*\d)(?=.*[a-zA-Z]).{2,255}$", ErrorMessage = "密碼強度不足, 請至少包含數字及英文字母")]
         public string Password { get; set; }
 
         [DisplayName("姓名")]
